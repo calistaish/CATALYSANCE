@@ -1,3 +1,4 @@
+<?php include('php/register.php');?>
 <!DOCTYPE html>
 <html>
 <head>
