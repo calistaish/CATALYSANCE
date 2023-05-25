@@ -13,28 +13,40 @@
 		}
 
 		body {
-			display:flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background: linear-gradient(45deg, pink, orange);
-      font-family: Arial, sans-serif;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+			background: linear-gradient(45deg, pink, orange);
+			font-family: Arial, sans-serif;
+		}
+
+		.container-img {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: 20px;
+		}
+
+		.container-img img {
+			width: 90px;
+			height: auto;
 		}
 
 		.container {
 			width: 35%;
 			max-width: 1000%;
-      padding: 20px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+			padding: 20px;
+			background: #fff;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 		}
 
 		h2 {
 			font-size: 24px;
-			font-weight: 600;
+			font-weight: 700;
 			text-align: center;
-			color: #333;
+			color: #E76027;
 			margin-bottom: 20px;
 		}
 
@@ -47,26 +59,27 @@
 			color: #333;
 			text-transform: uppercase;
 		}
+
 		input[type="text"],
-	input[type="password"] {
-		width: 100%;
-		padding: 10px;
-		border-radius: 5px;
-		border: 1px solid #ccc;
-	}
+		input[type="password"] {
+			width: 100%;
+			padding: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+		}
 
-	.password-container {
-		position: relative;
-	}
+		.password-container {
+			position: relative;
+		}
 
-	.password-logo {
-		width: 16px;
-		position: absolute;
-		top: 50%;
-		right: 5px;
-		transform: translateY(-50%);
-		cursor: pointer;
-	}
+		.password-logo {
+			width: 16px;
+			position: absolute;
+			top: 50%;
+			right: 5px;
+			transform: translateY(-50%);
+			cursor: pointer;
+		}
 
 		.button-container {
 			display: flex;
@@ -126,66 +139,73 @@
 		a:hover {
 			color: #7a3800;
 		}
-			/* WebKit Browsers */
-			::-webkit-scrollbar {
-      width: 8px; /* Adjust the width as needed */
-    }
-    
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(45deg, rgb(174, 33, 56), rgb(197, 93, 14)); /* Replace with your desired gradient */
-      border-radius: 8px; /* Adjust the radius as needed */
-    }
-    
-    /* Firefox */
-    ::-moz-scrollbar {
-      width: 8px; /* Adjust the width as needed */
-    }
-    
-    ::-moz-scrollbar-thumb {
-      background: linear-gradient(45deg, rgb(190, 33, 59), rgb(197, 93, 14)); /* Replace with your desired gradient */
-      border-radius: 8px; /* Adjust the radius as needed */
-    }
+
+		/* WebKit Browsers */
+		::-webkit-scrollbar {
+			width: 8px; /* Adjust the width as needed */
+		}
+
+		::-webkit-scrollbar-thumb {
+			background: linear-gradient(45deg, rgb(174, 33, 56), rgb(197, 93, 14)); /* Replace with your desired gradient */
+			border-radius: 8px; /* Adjust the radius as needed */
+		}
+
+		/* Firefox */
+		::-moz-scrollbar {
+			width: 8px; /* Adjust the width as needed */
+		}
+
+		::-moz-scrollbar-thumb {
+			background: linear-gradient(45deg, rgb(190, 33, 59), rgb(197, 93, 14)); /* Replace with your desired gradient */
+			border-radius: 8px; /* Adjust the radius as needed */
+		}
 	</style>
 </head>
 <body>
 	<div class="container">
+		<div class="container-img">
+			<img src="./img/logo8.png" alt="Logo">
+		</div>
 		<h2>Register Account</h2>
-        <form action="#" method="post">
-            <label for="fname">Full Name:</label>
-            <input type="text" id="fname" name="fname" required>
+		<form action="acccreation.php" method="post">
+			<label for="fname">First Name:</label>
+			<input type="text" id="fname" name="fname" required>
 
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+			<label for="lname">Last Name:</label>
+			<input type="text" id="lname" name="lname" required>
 
-            <label for="email">Email:</label>
-            <input type="text" id="email" name="email" required>
+			<label for="username">Username:</label>
+			<input type="text" id="username" name="username" required>
+
+			<label for="email">Email:</label>
+			<input type="text" id="email" name="email" required>
 
 			<label for="password">Password:</label>
 			<div class="password-container">
 				<input type="password" id="password" name="password" required>
 				<img src="./img/password-hide.png" class="password-logo" id="password-toggle" alt="Password Toggle">
 			</div>
-			
+
 			<label for="conpassword">Confirm Password:</label>
 			<div class="password-container">
 				<input type="password" id="conpassword" name="conpassword" required>
 				<img src="./img/password-hide.png" class="password-logo" id="conpassword-toggle" alt="Confirm Password Toggle">
 			</div>
-			
-            <label for="fname">Contact No:</label>
-            <input type="text" id="cont" name="cont" required>
 
-            <label for="username">Address:</label>
-            <input type="text" id="add" name="add" required>
+			<label for="fname">Contact No:</label>
+			<input type="text" id="cont" name="cont" required>
 
-            <div class="button-container">
-                <input type="submit" value="Register" required>
-                <button class="cancel-button" onclick="location.href='userlogin.html'">Cancel</button>
-            </div>
-        </form>
-        <br>
-        <center><a href="userlogin.html">Already have an account? Login here.</a></center>
-    </div>
+			<label for="username">Address:</label>
+			<input type="text" id="add" name="add" required>
+
+			<div class="button-container">
+				<input type="submit" value="Register" name="register" required>
+				<button class="cancel-button" onclick="location.href='userlogin.html'">Cancel</button>
+			</div>
+		</form>
+		<br>
+		<center><a href="userlogin.html">Already have an account? Login here.</a></center>
+	</div>
 
 	<script>
 		function togglePassword() {
