@@ -81,6 +81,7 @@
 		<p>Your account has been successfully created. <br>You can now log in to your account.</p>
 		<form action="userlogin.html">
 			<input type="submit" value="OK">
+			<?php include('php/register.php')?>
 		</form>
 	</div>
 </body>

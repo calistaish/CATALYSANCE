@@ -1,8 +1,6 @@
 <?php
     include('connect.php');
-
-    session_start();
-
+    
     $firstname = "";
     $surname = "";
     $email = "";
