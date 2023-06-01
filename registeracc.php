@@ -167,7 +167,7 @@
 			<img src="./img/logo8.png" alt="Logo">
 		</div>
 		<h2>Register Account</h2>
-		<form action="acccreation.php" method="post">
+		<form action="includes/signup.inc.php" method="post">
 			<label for="fname">First Name:</label>
 			<input type="text" id="fname" name="fname" required>
 
@@ -195,16 +195,13 @@
 			<label for="fname">Contact No:</label>
 			<input type="text" id="cont" name="cont" required>
 
-			<label for="username">Address:</label>
-			<input type="text" id="add" name="add" required>
-
 			<div class="button-container">
 				<input type="submit" value="Register" name="register" required>
-				<button class="cancel-button" onclick="location.href='userlogin.html'">Cancel</button>
+				<button class="cancel-button" onclick="location.href='userlogin.php'">Cancel</button>
 			</div>
 		</form>
 		<br>
-		<center><a href="userlogin.html">Already have an account? Login here.</a></center>
+		<center><a href="userlogin.php">Already have an account? Login here.</a></center>
 	</div>
 
 	<script>

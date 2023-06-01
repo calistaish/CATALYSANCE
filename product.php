@@ -19,10 +19,10 @@
     <nav class="navbar">
         
         <ul class="menu2">
-            <li><a href="homepage - final.html">Home</a></li>
-            <li><a href="product.html">Product</a></li>
-            <li><a href="reproductdeets.html">Reviews</a></li>
-            <li><a href="about us.html">About Us</a></li>
+            <li><a href="homepage - final.php">Home</a></li>
+            <li><a href="product.php">Product</a></li>
+            <li><a href="reproductdeets.php">Reviews</a></li>
+            <li><a href="about us.php">About Us</a></li>
         </ul>
         
         <div class="logo-container">
@@ -33,19 +33,19 @@
         
         <ul class="icons2">
             <li>
-                <a href="wishlist.html">
+                <a href="wishlist.php">
                     <img src="./img/wishlist.png" alt="Wishlist">
                     <span>Wishlist</span>
                 </a>
             </li>
             <li>
-                <a href="cart.html">
+                <a href="cart.php">
                     <img src="./img/cart.png" alt="Add to Cart">
                     <span>Cart</span>
                 </a>
             </li>
             <li>
-                <a href="userlogin.html">
+                <a href="userlogin.php">
                     <img src="./img/acc1.png" alt="Sign In">
                     <span>Sign In</span>
                 </a>
@@ -99,7 +99,7 @@
     <!-- breadcrum -->
     <div class="container py-4 flex justify-between">
         <div class="flex gap-3 items-center">
-            <a href="homepage - final.html" class="text-primary text-base">
+            <a href="homepage - final.php" class="text-primary text-base">
                 <i class="fas fa-home"></i>
             </a>
             <span class="text-sm text-gray-400"><i class="fas fa-chevron-right"></i></span>
@@ -251,7 +251,7 @@
                         <img src="./img/bp12.png" class="w-full">
                         <div
                             class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
-                            <a href="productdeets.html"
+                            <a href="productdeets.php"
                                 class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
                                 <i class="fas fa-search"></i>
                             </a>
@@ -264,7 +264,7 @@
                     <!-- product image end -->
                     <!-- product content -->
                     <div class="pt-4 pb-3 px-4">
-                        <a href="productdeets.html">
+                        <a href="productdeets.php">
                             <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
                                 Tote Bag
                             </h4>
@@ -300,7 +300,7 @@
                         <img src="./img/bp12.png" class="w-full">
                         <div
                             class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
-                            <a href="productdeets.html"
+                            <a href="productdeets.php"
                                 class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
                                 <i class="fas fa-search"></i>
                             </a>
@@ -313,7 +313,7 @@
                     <!-- product image end -->
                     <!-- product content -->
                     <div class="pt-4 pb-3 px-4">
-                        <a href="productdeets.html">
+                        <a href="productdeets.php">
                             <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
                                 Tote Bag
                             </h4>
@@ -349,7 +349,7 @@
                         <img src="./img/bp12.png" class="w-full">
                         <div
                             class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
-                            <a href="productdeets.html"
+                            <a href="productdeets.php"
                                 class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
                                 <i class="fas fa-search"></i>
                             </a>
@@ -362,7 +362,7 @@
                     <!-- product image end -->
                     <!-- product content -->
                     <div class="pt-4 pb-3 px-4">
-                        <a href="productdeets.html">
+                        <a href="productdeets.php">
                             <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
                                 Mousepad
                             </h4>
@@ -398,7 +398,7 @@
                         <img src="./img/bp12.png" class="w-full">
                         <div
                             class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
-                            <a href="productdeets.html"
+                            <a href="productdeets.php"
                                 class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
                                 <i class="fas fa-search"></i>
                             </a>
@@ -411,7 +411,7 @@
                     <!-- product image end -->
                     <!-- product content -->
                     <div class="pt-4 pb-3 px-4">
-                        <a href="productdeets.html">
+                        <a href="productdeets.php">
                             <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
                                 Mousepad
                             </h4>
@@ -447,7 +447,7 @@
                         <img src="./img/bp12.png" class="w-full">
                         <div
                             class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
-                            <a href="productdeets.html"
+                            <a href="productdeets.php"
                                 class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
                                 <i class="fas fa-search"></i>
                             </a>
@@ -460,7 +460,7 @@
                     <!-- product image end -->
                     <!-- product content -->
                     <div class="pt-4 pb-3 px-4">
-                        <a href="productdeets.html">
+                        <a href="productdeets.php">
                             <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
                                 Mousepad
                             </h4>
@@ -496,7 +496,7 @@
                         <img src="./img/bp12.png" class="w-full">
                         <div
                             class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
-                            <a href="productdeets.html"
+                            <a href="productdeets.php"
                                 class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
                                 <i class="fas fa-search"></i>
                             </a>
@@ -509,7 +509,7 @@
                     <!-- product image end -->
                     <!-- product content -->
                     <div class="pt-4 pb-3 px-4">
-                        <a href="productdeets.html">
+                        <a href="productdeets.php">
                             <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">
                                 Mousepad
                             </h4>

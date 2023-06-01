@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,10 +21,10 @@
           <nav class="navbar">
         
         <ul class="menu2">
-            <li><a href="homepage - final.html">Home</a></li>
-            <li><a href="product.html">Product</a></li>
-            <li><a href="review.html">Reviews</a></li>
-            <li><a href="about us.html">About Us</a></li>
+            <li><a href="homepage - final.php">Home</a></li>
+            <li><a href="product.php">Product</a></li>
+            <li><a href="review.php">Reviews</a></li>
+            <li><a href="about us.php">About Us</a></li>
         </ul>
         
         <div class="logo-container">
@@ -34,23 +35,39 @@
         
         <ul class="icons2">
             <li>
-                <a href="wishlist.html">
+                <a href="wishlist.php">
                     <img src="./img/wishlist.png" alt="Wishlist">
                     <span>Wishlist</span>
                 </a>
             </li>
             <li>
-                <a href="cart.html">
+                <a href="cart.php">
                     <img src="./img/cart.png" alt="Add to Cart">
                     <span>Cart</span>
                 </a>
             </li>
-            <li>
-                <a href="userlogin.html">
-                    <img src="./img/acc1.png" alt="Sign In">
-                    <span>Sign In</span>
-                </a>
-            </li>
+            <?php
+                  if(isset($_SESSION['id'])){
+                ?>
+                <li>
+                    <a href="account.php">
+                        <img src="./img/acc1.png" alt="Sign In">
+                        <span>My Account</span>
+                    </a>
+                </li>
+                <?php
+                }
+                else{
+                ?>
+                <li>
+                    <a href="userlogin.php">
+                        <img src="./img/acc1.png" alt="Sign In">
+                        <span>Sign In</span>
+                    </a>
+                </li>
+                <?php
+                }
+                ?>
         </ul>
         
         <div class="burger-menu2">
@@ -110,7 +127,7 @@
 
   <!-- breadcrum -->
     <div class="py-4 container flex gap-3 items-center">
-        <a href="homepage - final.html" class="text-primary text-base">
+        <a href="homepage - final.php" class="text-primary text-base">
             <i class="fas fa-home"></i>
         </a>
         <span class="text-sm text-gray-400"><i class="fas fa-chevron-right"></i></span>
@@ -129,7 +146,7 @@
                 </div>
                 <div>
                     <p class="text-gray-600">Hello,</p>
-                    <h4 class="text-gray-800 capitalize font-medium">Chanyeol</h4>
+                    <h4 class="text-gray-800 capitalize font-medium"><?php echo $_SESSION['firstname'];?></h4>
                 </div>
             </div>
             <!-- account profile end -->
@@ -138,16 +155,16 @@
             <div class="mt-6 bg-white shadow rounded p-4 divide-y divide-gray-200 space-y-4 text-gray-600">
                 <!-- single link -->
                 <div class="space-y-1 pl-8">
-                    <a href="account.html"
+                    <a href="account.php"
                         class="relative medium text-base1 font-medium capitalize hover:text-primary transition block">
                         Manage account
                         <span class="absolute -left-8 top-0 text-base1">
                             <i class="far fa-address-card"></i>
                         </span>
                     </a>
-                    <a href="profile-info.html" class="hover:text-primary transition capitalize block text-primary">Profile
+                    <a href="profile-info.php" class="hover:text-primary transition capitalize block text-primary">Profile
                         information</a>
-                    <a href="manage-address.html" class="hover:text-primary transition capitalize block">Manage
+                    <a href="manage-address.php" class="hover:text-primary transition capitalize block">Manage
                         address</a>
 
                 </div>
@@ -167,7 +184,7 @@
                 <!-- single link end -->
                 <!-- single link -->
                 <div class="pl-8 pt-4">
-                    <a href="wishlist.html"
+                    <a href="wishlist.php"
                         class="relative capitalize hover:text-primary transition block">
                         my wishlist
                         <span class="absolute -left-8 top-0 text-base1">
@@ -178,7 +195,7 @@
                 <!-- single link end -->
                 <!-- single link -->
                 <div class="pl-8 pt-4">
-                    <a href="#"
+                    <a href="includes/logout.inc.php"
                         class="relative medium capitalize text-gray-800 font-medium1 hover:text-primary transition block">
                         logout
                         <span class="absolute -left-8 top-0 text-base1">
@@ -205,13 +222,13 @@
                             <label class="text-gray-600 mb-2 block">
                                 First Name
                             </label>
-                            <input type="text" class="input-box" value="Chanyeol">
+                            <input type="text" class="input-box" value="<?php echo $_SESSION['firstname'];?>">
                         </div>
                         <div>
                             <label class="text-gray-600 mb-2 block">
                                 Last Name
                             </label>
-                            <input type="text" class="input-box" value="Park">
+                            <input type="text" class="input-box" value="<?php echo $_SESSION['surname'];?>">
                         </div>
                     </div>
                     <div class="grid sm:grid-cols-2 gap-4">
@@ -236,13 +253,13 @@
                             <label class="text-gray-600 mb-2 block">
                                 Email Address
                             </label>
-                            <input type="text" class="input-box" value="example@mail.com">
+                            <input type="text" class="input-box" value="<?php echo $_SESSION['email'];?>">
                         </div>
                         <div>
                             <label class="text-gray-600 mb-2 block">
                                 Phone Number
                             </label>
-                            <input type="text" class="input-box" value="+123 456 789">
+                            <input type="text" class="input-box" value="<?php echo $_SESSION['phone'];?>">
                         </div>
                     </div>
                 </div>

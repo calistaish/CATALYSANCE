@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" href="./img/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Wishlist</title>
+    <title>Your Account</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" />
@@ -20,10 +21,10 @@
           <nav class="navbar">
         
         <ul class="menu2">
-            <li><a href="homepage - final.html">Home</a></li>
-            <li><a href="product.html">Product</a></li>
-            <li><a href="review.html">Reviews</a></li>
-            <li><a href="about us.html">About Us</a></li>
+            <li><a href="homepage - final.php">Home</a></li>
+            <li><a href="product.php">Product</a></li>
+            <li><a href="review.php">Reviews</a></li>
+            <li><a href="about us.php">About Us</a></li>
         </ul>
         
         <div class="logo-container">
@@ -34,23 +35,39 @@
         
         <ul class="icons2">
             <li>
-                <a href="wishlist.html">
+                <a href="wishlist.php">
                     <img src="./img/wishlist.png" alt="Wishlist">
                     <span>Wishlist</span>
                 </a>
             </li>
             <li>
-                <a href="cart.html">
+                <a href="cart.php">
                     <img src="./img/cart.png" alt="Add to Cart">
                     <span>Cart</span>
                 </a>
             </li>
-            <li>
-                <a href="userlogin.html">
-                    <img src="./img/acc1.png" alt="Sign In">
-                    <span>Sign In</span>
-                </a>
-            </li>
+            <?php
+                  if(isset($_SESSION['id'])){
+                ?>
+                <li>
+                    <a href="account.php">
+                        <img src="./img/acc1.png" alt="Sign In">
+                        <span>My Account</span>
+                    </a>
+                </li>
+                <?php
+                }
+                else{
+                ?>
+                <li>
+                    <a href="userlogin.php">
+                        <img src="./img/acc1.png" alt="Sign In">
+                        <span>Sign In</span>
+                    </a>
+                </li>
+                <?php
+                }
+                ?>
         </ul>
         
         <div class="burger-menu2">
@@ -110,11 +127,11 @@
 
   <!-- breadcrum -->
     <div class="py-4 container flex gap-3 items-center">
-        <a href="homepage - final.html" class="text-primary text-base">
+        <a href="homepage - final.php" class="text-primary text-base">
             <i class="fas fa-home"></i>
         </a>
         <span class="text-sm text-gray-400"><i class="fas fa-chevron-right"></i></span>
-        <p class="text-gray-600 font-medium uppercase">My Account - Wishlist</p>
+        <p class="text-gray-600 font-medium uppercase">My Account</p>
     </div>
     <!-- breadcrum end -->
 
@@ -129,7 +146,7 @@
                 </div>
                 <div>
                     <p class="text-gray-600">Hello,</p>
-                    <h4 class="text-gray-800 capitalize font-medium">Chanyeol</h4>
+                    <h4 class="text-gray-800 capitalize font-medium"><?php echo $_SESSION['firstname'];?></h4>
                 </div>
             </div>
             <!-- account profile end -->
@@ -138,37 +155,37 @@
             <div class="mt-6 bg-white shadow rounded p-4 divide-y divide-gray-200 space-y-4 text-gray-600">
                 <!-- single link -->
                 <div class="space-y-1 pl-8">
-                    <a href="account.html"
-                        class="relative text-base1 font-medium1 capitalize hover:text-primary transition block">
+                    <a href="account.php"
+                        class="relative medium text-base1 font-medium capitalize hover:text-primary transition block text-primary">
                         Manage account
                         <span class="absolute -left-8 top-0 text-base1">
                             <i class="far fa-address-card"></i>
                         </span>
                     </a>
-                    <a href="profile-info.html" class="hover:text-primary transition capitalize block">Profile
+                    <a href="profile-info.php" class="hover:text-primary transition capitalize block">Profile
                         information</a>
-                    <a href="manage-address.html" class="hover:text-primary transition capitalize block">Manage
+                    <a href="manage-address.php" class="hover:text-primary transition capitalize block">Manage
                         address</a>
 
                 </div>
                 <!-- single link end -->
                 <!-- single link -->
                 <div class="space-y-1 pl-8 pt-4">
-                    <a href="#"
+                    <a href="my-order-history.php"
                         class="relative medium capitalize text-gray-800 font-medium1 hover:text-primary transition block">
                         My order history
                         <span class="absolute -left-8 top-0 text-base1">
                             <i class="fas fa-gift"></i>
                         </span>
                     </a>
-                    <a href="#" class="hover:text-primary transition block capitalize">my purchases</a>
-                    <a href="#" class="hover:text-primary transition block capitalize">my reviews</a>
+                    <a href="my purchases.php" class="hover:text-primary transition block capitalize">my purchases</a>
+                    <a href="my reviews.php" class="hover:text-primary transition block capitalize">my reviews</a>
                 </div>
                 <!-- single link end -->
                 <!-- single link -->
                 <div class="pl-8 pt-4">
-                    <a href="wishlist.html"
-                        class="relative medium capitalize font-medium hover:text-primary transition block text-primary">
+                    <a href="wishlist.php"
+                        class="relative capitalize hover:text-primary transition block">
                         my wishlist
                         <span class="absolute -left-8 top-0 text-base1">
                             <i class="far fa-heart"></i>
@@ -178,7 +195,7 @@
                 <!-- single link end -->
                 <!-- single link -->
                 <div class="pl-8 pt-4">
-                    <a href="#"
+                    <a href="includes/logout.inc.php"
                         class="relative medium capitalize text-gray-800 font-medium1 hover:text-primary transition block">
                         logout
                         <span class="absolute -left-8 top-0 text-base1">
@@ -192,71 +209,57 @@
         </div>
         <!-- sidebar end -->
 
-        <!-- account content -->
-        <div class=" col-span-9 mt-6 lg:mt-0 space-y-4">
-            <!-- single wishlist -->
-            <div
-                class="bg-white flex items-center md:justify-between gap-4 md:gap-6 p-4 border border-gray-200 rounded flex-wrap md:flex-nowrap">
-                <!-- cart image -->
-                <div class=" w-28 flex-shrink-0">
-                    <img src="./img/bp11.png"  class="w-full">
+         <!-- account content -->
+         <div class="col-span-9 grid md:grid-cols-3 gap-4 mt-6 lg:mt-0">
+            <!-- single card -->
+            <div class="shadow rounded bg-white px-4 pt-6 pb-8">
+                <div class="flex justify-between items center mb-4">
+                    <h3 class="font-medium capitalize text-gray-800 text-lg">personal profile</h3>
+                    <a href="profile-info.php" class="text-primary">Edit</a>
                 </div>
-                <!-- cart image end -->
-                <!-- cart content -->
-                <div class="md:w-1/3 w-full">
-                    <h2 class="text-gray-800 mb-1 xl:text-xl textl-lg font-medium uppercase">
-                        Tote Bag
-                    </h2>
-                    <p class="text-gray-500 text-sm">Availability: <span class="text-green-600">In Stock</span></p>
-                </div>
-                <!-- cart content end -->
-                <div class="">
-                    <p class="text-primary text-lg font-semibold">₱320.00</p>
-                </div>
-                <a href="#"
-                    class="ml-auto md:ml-0 block px-6 py-2 text-center text-sm text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
-                    Add to cart
-                </a>
-                <div class="text-gray-600 hover:text-primary cursor-pointer">
-                    <i class="fas fa-trash"></i>
+                <div class="space-y-1">
+                    <h4 class="text-gray-700 font-medium"><?php echo $_SESSION['firstname'] . $_SESSION['surname']?></h4>
+                    <p class="text-gray-800"><?php echo $_SESSION['email']?></p>
+                    <p class="text-gray-800"><?php echo $_SESSION['phone']?></p>
                 </div>
             </div>
-            <!-- single wishlist end -->
-            <!-- single wishlist -->
-            <div
-                class="bg-white flex items-center md:justify-between gap-4 md:gap-6 p-4 border border-gray-200 rounded flex-wrap md:flex-nowrap">
-                <!-- cart image -->
-                <div class="w-28 flex-shrink-0">
-                    <img src="./img/bp11.png"  class="w-full">
+            <!-- single card end -->
+            <!-- single card -->
+            <div class="shadow rounded bg-white px-4 pt-6 pb-8">
+                <div class="flex justify-between items center mb-4">
+                    <h3 class="font-medium capitalize text-gray-800 text-lg">Shipping Address</h3>
+                    <a href="#" class="text-primary">Edit</a>
                 </div>
-                <!-- cart image end -->
-                <!-- cart content -->
-                <div class="md:w-1/3 w-full">
-                    <h2 class="text-gray-800 mb-1 xl:text-xl textl-lg font-medium uppercase">
-                        Tote Bag
-                    </h2>
-                    <p class="text-gray-500 text-sm">Availability: <span class="text-red-600">Out of Stock</span></p>
-                </div>
-                <!-- cart content end -->
-                <div class="">
-                    <p class="text-primary text-lg font-semibold">₱320.00</p>
-                </div>
-                <a href="#"
-                    class="ml-auto md:ml-0 block px-6 py-2 text-center text-sm text-white bg-primary border border-primary rounded 
-                    uppercase font-roboto font-medium cursor-not-allowed bg-opacity-80">
-                    Add to cart
-                </a>
-                <div class="text-gray-600 hover:text-primary cursor-pointer">
-                    <i class="fas fa-trash"></i>
+                <div class="space-y-1">
+                    <h4 class="text-gray-700 font-medium">Park Chanyeol</h4>
+                    <p class="text-gray-800">SM Entertainment, Wangsimni-ro, Seongdong-gu.</p>
+                    <p class="text-gray-800">Seoul, South Korea</p>
+                    <p class="text-gray-800">(123) 456-789</p>
                 </div>
             </div>
-            <!-- single wishlist end -->
+            <!-- single card end -->
+            <!-- single card -->
+            <div class="shadow rounded bg-white px-4 pt-6 pb-8">
+                <div class="flex justify-between items center mb-4">
+                    <h3 class="font-medium capitalize text-gray-800 text-lg">Billing Address</h3>
+                    <a href="#" class="text-primary">Edit</a>
+                </div>
+                <div class="space-y-1">
+                    <h4 class="text-gray-700 font-medium">Park Chanyeol</h4>
+                    <p class="text-gray-800">SM Entertainment, Wangsimni-ro, Seongdong-gu.</p>
+                    <p class="text-gray-800">Seoul, South Korea</p>
+                    <p class="text-gray-800">(123) 456-789</p>
+                </div>
+            </div>
+            <!-- single card end -->
         </div>
         <!-- account content end -->
     </div>
     <!-- account wrapper end -->
 
-      <!--footer--->
+
+
+         <!--footer--->
 <section id="contact">
     <div class="footer">
       <div class="list">

@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +25,10 @@
         <nav class="navbar">
             
             <ul class="menu">
-                <li><a href="homepage - final.html">Home</a></li>
-                <li><a href="product.html">Product</a></li>
-                <li><a href="review.html">Reviews</a></li>
-                <li><a href="about us.html">About Us</a></li>
+                <li><a href="homepage - final.php">Home</a></li>
+                <li><a href="product.php">Product</a></li>
+                <li><a href="review.php">Reviews</a></li>
+                <li><a href="about us.php">About Us</a></li>
             </ul>
             
             <div class="logo-container">
@@ -38,23 +39,39 @@
             
             <ul class="icons">
                 <li>
-                    <a href="wishlist.html">
+                    <a href="wishlist.php">
                         <img src="./img/wishlist.png" alt="Wishlist">
                         <span>Wishlist</span>
                     </a>
                 </li>
                 <li>
-                    <a href="cart.html">
+                    <a href="cart.php">
                         <img src="./img/cart.png" alt="Add to Cart">
                         <span>Add to Cart</span>
                     </a>
                 </li>
+                <?php
+                  if(isset($_SESSION['id'])){
+                ?>
                 <li>
-                    <a href="userlogin.html">
+                    <a href="account.php">
+                        <img src="./img/acc1.png" alt="Sign In">
+                        <span>My Account</span>
+                    </a>
+                </li>
+                <?php
+                }
+                else{
+                ?>
+                <li>
+                    <a href="userlogin.php">
                         <img src="./img/acc1.png" alt="Sign In">
                         <span>Sign In</span>
                     </a>
                 </li>
+                <?php
+                }
+                ?>
             </ul>
             
             <div class="burger-menu">
@@ -76,7 +93,7 @@
         <div class="home-text">
             <h1>Wear Your Mood <br> Prints</h1>
 			<h2>Print your mood, wear your vibe: Our mood prints, your unique style!</h2>
-        <a href="product.html" class="home-btn">
+        <a href="product.php" class="home-btn">
           <span>Shop Now</span>
         </a>
 
@@ -87,7 +104,7 @@
 			<div class="carousel-wrapper">
 			  <div class="carousel-container">
 				
-          <a href="productdeets.html" class="card">
+          <a href="productdeets.php" class="card">
             <div class="overlay"></div>
             <img src="./img/bp1.png" alt="Best Seller 1">
             <h3>PURPLE TOTE BAG</h3>
@@ -99,7 +116,7 @@
             </ul>
           </a>
           
-				  <a href="productdeets.html" class="card">
+				  <a href="productdeets.php" class="card">
             <div class="overlay"></div>
 					<img src="./img/bp2.png" alt="Best Seller 2">
 					<h3>MINIMALIST MUGS</h3>
@@ -111,7 +128,7 @@
           </ul>
 				  </a>
 			  
-				  <a href="productdeets.html" class="card">
+				  <a href="productdeets.php" class="card">
             <div class="overlay"></div>
 					<img src="./img/bp3.png" alt="Best Seller 3">
 					<h3>NEW JEANS TOTE BAG</h3>
@@ -123,7 +140,7 @@
           </ul>
 				  </a>
 	
-				  <a href="productdeets.html" class="card">
+				  <a href="productdeets.php" class="card">
             <div class="overlay"></div>
 					<img src="./img/bp6.png" alt="Best Seller 4">
 					<h3>BLUE MOUSEPAD</h3>
@@ -135,7 +152,7 @@
           </ul>
 				  </a>
 	
-				  <a href="productdeets.html" class="card">
+				  <a href="productdeets.php" class="card">
             <div class="overlay"></div>
 					<img src="./img/bp5.png" alt="Best Seller 5">
 					<h3>ENHYPEN TOTE BAG</h3>
@@ -147,7 +164,7 @@
           </ul>
 				  </a>
 	
-				  <a href="productdeets.html" class="card">
+				  <a href="productdeets.php" class="card">
             <div class="overlay"></div>
 					<img src="./img/bp4.png" alt="Best Seller 6">
 					<h3>BUTTERFLY TOTE BAG</h3>
@@ -159,7 +176,7 @@
           </ul>
 				  </a>
 	
-				  <a href="productdeets.html" class="card">
+				  <a href="productdeets.php" class="card">
             <div class="overlay"></div>
 					<img src="./img/bp7.png" alt="Best Seller 7">
 					<h3>MOTIVATIONAL MOUSEPAD</h3>
@@ -184,7 +201,7 @@
               <h2>WHO WE ARE</h2>
                         <p>At "Wear Your Mood Prints", we're all about helping you express your personality through custom designs on your everyday items. We offer a range of printing services, from tote bags to mugs and mousepads, that let you show off your unique style and mood. Whether you're looking for a fun way to brighten up your workspace or a personalized gift for someone special, we've got you covered. So why settle for plain and boring when you can wear your mood prints?</p>
                         <center>
-                          <a href="about us.html" class="wwa-btn"><span>Learn More</span></a>
+                          <a href="about us.php" class="wwa-btn"><span>Learn More</span></a>
                         </center>
              </div>
           </div>

@@ -131,12 +131,12 @@
             <h2>WEAR YOUR MOOD PRINTS</h2>
             <center><img src="img/logo4.png" width="140px"></center>
             <h2>LOG IN</h2>
-            <form action = "homepage - final.html" method="post">
+            <form action = "includes/login.inc.php" method="post">
                 <input type="text" id="username" name="username" placeholder="Username">
                 <input type="password" id="password" name="password" placeholder="Password">
-                <center><input type="submit" value="  Log In   "></center><br>
-                <center><a href="homepage - final.html">Continue as Guest</a></center><br>
-                <center><a href="registeracc.html">Sign Up</a></center>
+                <center><input type="submit" value="  Log In   " name="login"></center><br>
+                <center><a href="homepage - final.php">Continue as Guest</a></center><br>
+                <center><a href="registeracc.php">Sign Up</a></center>
             </form>
         </div>
     </body>

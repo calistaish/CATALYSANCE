@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" href="./img/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Account</title>
+    <title>Your Wishlist</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" />
@@ -20,10 +20,10 @@
           <nav class="navbar">
         
         <ul class="menu2">
-            <li><a href="homepage - final.html">Home</a></li>
-            <li><a href="product.html">Product</a></li>
-            <li><a href="review.html">Reviews</a></li>
-            <li><a href="about us.html">About Us</a></li>
+            <li><a href="homepage - final.php">Home</a></li>
+            <li><a href="product.php">Product</a></li>
+            <li><a href="review.php">Reviews</a></li>
+            <li><a href="about us.php">About Us</a></li>
         </ul>
         
         <div class="logo-container">
@@ -34,19 +34,19 @@
         
         <ul class="icons2">
             <li>
-                <a href="wishlist.html">
+                <a href="wishlist.php">
                     <img src="./img/wishlist.png" alt="Wishlist">
                     <span>Wishlist</span>
                 </a>
             </li>
             <li>
-                <a href="cart.html">
+                <a href="cart.php">
                     <img src="./img/cart.png" alt="Add to Cart">
                     <span>Cart</span>
                 </a>
             </li>
             <li>
-                <a href="userlogin.html">
+                <a href="userlogin.php">
                     <img src="./img/acc1.png" alt="Sign In">
                     <span>Sign In</span>
                 </a>
@@ -110,11 +110,11 @@
 
   <!-- breadcrum -->
     <div class="py-4 container flex gap-3 items-center">
-        <a href="homepage - final.html" class="text-primary text-base">
+        <a href="homepage - final.php" class="text-primary text-base">
             <i class="fas fa-home"></i>
         </a>
         <span class="text-sm text-gray-400"><i class="fas fa-chevron-right"></i></span>
-        <p class="text-gray-600 font-medium uppercase">My Account</p>
+        <p class="text-gray-600 font-medium uppercase">My Account - Wishlist</p>
     </div>
     <!-- breadcrum end -->
 
@@ -138,37 +138,37 @@
             <div class="mt-6 bg-white shadow rounded p-4 divide-y divide-gray-200 space-y-4 text-gray-600">
                 <!-- single link -->
                 <div class="space-y-1 pl-8">
-                    <a href="account.html"
-                        class="relative medium text-base1 font-medium capitalize hover:text-primary transition block">
+                    <a href="account.php"
+                        class="relative text-base1 font-medium1 capitalize hover:text-primary transition block">
                         Manage account
                         <span class="absolute -left-8 top-0 text-base1">
                             <i class="far fa-address-card"></i>
                         </span>
                     </a>
-                    <a href="profile-info.html" class="hover:text-primary transition capitalize block ">Profile
+                    <a href="profile-info.php" class="hover:text-primary transition capitalize block">Profile
                         information</a>
-                    <a href="manage-address.html" class="hover:text-primary transition capitalize block text-primary">Manage
+                    <a href="manage-address.php" class="hover:text-primary transition capitalize block">Manage
                         address</a>
 
                 </div>
                 <!-- single link end -->
                 <!-- single link -->
                 <div class="space-y-1 pl-8 pt-4">
-                    <a href="#"
+                    <a href="my-order-history.php"
                         class="relative medium capitalize text-gray-800 font-medium1 hover:text-primary transition block">
                         My order history
                         <span class="absolute -left-8 top-0 text-base1">
                             <i class="fas fa-gift"></i>
                         </span>
                     </a>
-                    <a href="#" class="hover:text-primary transition block capitalize">my purchases</a>
-                    <a href="#" class="hover:text-primary transition block capitalize">my reviews</a>
+                    <a href="my purchases.php" class="hover:text-primary transition block capitalize">my purchases</a>
+                    <a href="my reviews.php" class="hover:text-primary transition block capitalize">my reviews</a>
                 </div>
                 <!-- single link end -->
                 <!-- single link -->
                 <div class="pl-8 pt-4">
-                    <a href="wishlist.html"
-                        class="relative capitalize hover:text-primary transition block">
+                    <a href="wishlist.php"
+                        class="relative medium capitalize font-medium hover:text-primary transition block text-primary">
                         my wishlist
                         <span class="absolute -left-8 top-0 text-base1">
                             <i class="far fa-heart"></i>
@@ -192,92 +192,71 @@
         </div>
         <!-- sidebar end -->
 
-          <!-- account content -->
-          <div class="col-span-9 bg-white shadow rounded px-6 pt-5 pb-7 mt-6 lg:mt-0">
-            <form action="">
-                <h3 class="text-lg font-medium capitalize mb-4">
-                    Manage Address
-                </h3>
-                <div class="space-y-4">
-                    <!-- Form row -->
-                    <div class="grid sm:grid-cols-2 gap-4">
-                        <!-- Single input -->
-                        <div>
-                            <label class="text-gray-600 mb-2 block">
-                                Full Name
-                            </label>
-                            <input type="text" class="input-box" value="Park Chanyeol">
-                        </div>
-                        <!-- single input end -->
-                        <!-- single input -->
-                        <div>
-                            <label class="text-gray-600 mb-2 block">
-                                Phone Number
-                            </label>
-                            <input type="text" class="input-box" value="+123 456 789">
-                        </div>
-                        <!-- Single input end -->
-                    </div>
-                    <!-- Form row end -->
-                    <div class="grid sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="text-gray-600 mb-2 block">
-                                Country
-                            </label>
-                            <select class="input-box">
-                                <option>South Korea</option>
-                                <option>Philippines</option>
-                                <option>China</option>
-                                <option>Japan</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="text-gray-600 mb-2 block">
-                                Region
-                            </label>
-                            <select class="input-box">
-                                <option>NCR</option>
-                                <option>Calabarzon</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="grid sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="text-gray-600 mb-2 block">
-                                City
-                            </label>
-                            <select class="input-box">
-                                <option>Seoul</option>
-                                <option>Makati</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="text-gray-600 mb-2 block">
-                               ZIP Code
-                            </label>
-                            <input type="text" class="input-box" value="1216">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="text-gray-600 mb-2 block">
-                            Address
-                        </label>
-                        <input type="text" class="input-box" value="SM Entertainment 83-21, Wangsimni-ro, Seongdong-gu.">
-                    </div>
+        <!-- account content -->
+        <div class=" col-span-9 mt-6 lg:mt-0 space-y-4">
+            <!-- single wishlist -->
+            <div
+                class="bg-white flex items-center md:justify-between gap-4 md:gap-6 p-4 border border-gray-200 rounded flex-wrap md:flex-nowrap">
+                <!-- cart image -->
+                <div class=" w-28 flex-shrink-0">
+                    <img src="./img/bp11.png"  class="w-full">
                 </div>
-                <div class="mt-6">
-                    <button type="submit"
-                        class="px-6 py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
-                        Save change
-                    </button>
+                <!-- cart image end -->
+                <!-- cart content -->
+                <div class="md:w-1/3 w-full">
+                    <h2 class="text-gray-800 mb-1 xl:text-xl textl-lg font-medium uppercase">
+                        Tote Bag
+                    </h2>
+                    <p class="text-gray-500 text-sm">Availability: <span class="text-green-600">In Stock</span></p>
                 </div>
-            </form>
+                <!-- cart content end -->
+                <div class="">
+                    <p class="text-primary text-lg font-semibold">₱320.00</p>
+                </div>
+                <a href="#"
+                    class="ml-auto md:ml-0 block px-6 py-2 text-center text-sm text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
+                    Add to cart
+                </a>
+                <div class="text-gray-600 hover:text-primary cursor-pointer">
+                    <i class="fas fa-trash"></i>
+                </div>
+            </div>
+            <!-- single wishlist end -->
+            <!-- single wishlist -->
+            <div
+                class="bg-white flex items-center md:justify-between gap-4 md:gap-6 p-4 border border-gray-200 rounded flex-wrap md:flex-nowrap">
+                <!-- cart image -->
+                <div class="w-28 flex-shrink-0">
+                    <img src="./img/bp11.png"  class="w-full">
+                </div>
+                <!-- cart image end -->
+                <!-- cart content -->
+                <div class="md:w-1/3 w-full">
+                    <h2 class="text-gray-800 mb-1 xl:text-xl textl-lg font-medium uppercase">
+                        Tote Bag
+                    </h2>
+                    <p class="text-gray-500 text-sm">Availability: <span class="text-red-600">Out of Stock</span></p>
+                </div>
+                <!-- cart content end -->
+                <div class="">
+                    <p class="text-primary text-lg font-semibold">₱320.00</p>
+                </div>
+                <a href="#"
+                    class="ml-auto md:ml-0 block px-6 py-2 text-center text-sm text-white bg-primary border border-primary rounded 
+                    uppercase font-roboto font-medium cursor-not-allowed bg-opacity-80">
+                    Add to cart
+                </a>
+                <div class="text-gray-600 hover:text-primary cursor-pointer">
+                    <i class="fas fa-trash"></i>
+                </div>
+            </div>
+            <!-- single wishlist end -->
         </div>
         <!-- account content end -->
     </div>
     <!-- account wrapper end -->
 
-         <!--footer--->
+      <!--footer--->
 <section id="contact">
     <div class="footer">
       <div class="list">

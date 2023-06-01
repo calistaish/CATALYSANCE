@@ -78,7 +78,7 @@
         <img src="./img/check1.png" alt="Check sign" width="140px">
 		<h2>Account Creation Successful!</h2>
 		<p>Your account has been successfully created. <br>You can now log in to your account.</p>
-		<form action="userlogin.html">
+		<form action="userlogin.php">
 			<input type="submit" value="OK">
 		</form>
 	</div>

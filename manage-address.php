@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,10 +21,10 @@
           <nav class="navbar">
         
         <ul class="menu2">
-            <li><a href="homepage - final.html">Home</a></li>
-            <li><a href="product.html">Product</a></li>
-            <li><a href="review.html">Reviews</a></li>
-            <li><a href="about us.html">About Us</a></li>
+            <li><a href="homepage - final.php">Home</a></li>
+            <li><a href="product.php">Product</a></li>
+            <li><a href="review.php">Reviews</a></li>
+            <li><a href="about us.php">About Us</a></li>
         </ul>
         
         <div class="logo-container">
@@ -34,19 +35,19 @@
         
         <ul class="icons2">
             <li>
-                <a href="wishlist.html">
+                <a href="wishlist.php">
                     <img src="./img/wishlist.png" alt="Wishlist">
                     <span>Wishlist</span>
                 </a>
             </li>
             <li>
-                <a href="cart.html">
+                <a href="cart.php">
                     <img src="./img/cart.png" alt="Add to Cart">
                     <span>Cart</span>
                 </a>
             </li>
             <li>
-                <a href="userlogin.html">
+                <a href="userlogin.php">
                     <img src="./img/acc1.png" alt="Sign In">
                     <span>Sign In</span>
                 </a>
@@ -110,7 +111,7 @@
 
   <!-- breadcrum -->
     <div class="py-4 container flex gap-3 items-center">
-        <a href="homepage - final.html" class="text-primary text-base">
+        <a href="homepage - final.php" class="text-primary text-base">
             <i class="fas fa-home"></i>
         </a>
         <span class="text-sm text-gray-400"><i class="fas fa-chevron-right"></i></span>
@@ -138,16 +139,16 @@
             <div class="mt-6 bg-white shadow rounded p-4 divide-y divide-gray-200 space-y-4 text-gray-600">
                 <!-- single link -->
                 <div class="space-y-1 pl-8">
-                    <a href="account.html"
-                        class="relative medium text-base1 font-medium capitalize hover:text-primary transition block text-primary">
+                    <a href="account.php"
+                        class="relative medium text-base1 font-medium capitalize hover:text-primary transition block">
                         Manage account
                         <span class="absolute -left-8 top-0 text-base1">
                             <i class="far fa-address-card"></i>
                         </span>
                     </a>
-                    <a href="profile-info.html" class="hover:text-primary transition capitalize block">Profile
+                    <a href="profile-info.php" class="hover:text-primary transition capitalize block ">Profile
                         information</a>
-                    <a href="manage-address.html" class="hover:text-primary transition capitalize block">Manage
+                    <a href="manage-address.php" class="hover:text-primary transition capitalize block text-primary">Manage
                         address</a>
 
                 </div>
@@ -167,7 +168,7 @@
                 <!-- single link end -->
                 <!-- single link -->
                 <div class="pl-8 pt-4">
-                    <a href="wishlist.html"
+                    <a href="wishlist.php"
                         class="relative capitalize hover:text-primary transition block">
                         my wishlist
                         <span class="absolute -left-8 top-0 text-base1">
@@ -192,55 +193,90 @@
         </div>
         <!-- sidebar end -->
 
-         <!-- account content -->
-         <div class="col-span-9 grid md:grid-cols-3 gap-4 mt-6 lg:mt-0">
-            <!-- single card -->
-            <div class="shadow rounded bg-white px-4 pt-6 pb-8">
-                <div class="flex justify-between items center mb-4">
-                    <h3 class="font-medium capitalize text-gray-800 text-lg">personal profile</h3>
-                    <a href="#" class="text-primary">Edit</a>
+          <!-- account content -->
+          <div class="col-span-9 bg-white shadow rounded px-6 pt-5 pb-7 mt-6 lg:mt-0">
+            <form action="">
+                <h3 class="text-lg font-medium capitalize mb-4">
+                    Manage Address
+                </h3>
+                <div class="space-y-4">
+                    <!-- Form row -->
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <!-- Single input -->
+                        <div>
+                            <label class="text-gray-600 mb-2 block">
+                                Full Name
+                            </label>
+                            <input type="text" class="input-box" value="Park Chanyeol">
+                        </div>
+                        <!-- single input end -->
+                        <!-- single input -->
+                        <div>
+                            <label class="text-gray-600 mb-2 block">
+                                Phone Number
+                            </label>
+                            <input type="text" class="input-box" value="+123 456 789">
+                        </div>
+                        <!-- Single input end -->
+                    </div>
+                    <!-- Form row end -->
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-gray-600 mb-2 block">
+                                Country
+                            </label>
+                            <select class="input-box">
+                                <option>South Korea</option>
+                                <option>Philippines</option>
+                                <option>China</option>
+                                <option>Japan</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-gray-600 mb-2 block">
+                                Region
+                            </label>
+                            <select class="input-box">
+                                <option>NCR</option>
+                                <option>Calabarzon</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-gray-600 mb-2 block">
+                                City
+                            </label>
+                            <select class="input-box">
+                                <option>Seoul</option>
+                                <option>Makati</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-gray-600 mb-2 block">
+                               ZIP Code
+                            </label>
+                            <input type="text" class="input-box" value="1216">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-gray-600 mb-2 block">
+                            Address
+                        </label>
+                        <input type="text" class="input-box" value="SM Entertainment 83-21, Wangsimni-ro, Seongdong-gu.">
+                    </div>
                 </div>
-                <div class="space-y-1">
-                    <h4 class="text-gray-700 font-medium">Park Chanyeol</h4>
-                    <p class="text-gray-800">chanyeolmyloml@gmail.com</p>
-                    <p class="text-gray-800">0912327632</p>
+                <div class="mt-6">
+                    <button type="submit"
+                        class="px-6 py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
+                        Save change
+                    </button>
                 </div>
-            </div>
-            <!-- single card end -->
-            <!-- single card -->
-            <div class="shadow rounded bg-white px-4 pt-6 pb-8">
-                <div class="flex justify-between items center mb-4">
-                    <h3 class="font-medium capitalize text-gray-800 text-lg">Shipping Address</h3>
-                    <a href="#" class="text-primary">Edit</a>
-                </div>
-                <div class="space-y-1">
-                    <h4 class="text-gray-700 font-medium">Park Chanyeol</h4>
-                    <p class="text-gray-800">SM Entertainment, Wangsimni-ro, Seongdong-gu.</p>
-                    <p class="text-gray-800">Seoul, South Korea</p>
-                    <p class="text-gray-800">(123) 456-789</p>
-                </div>
-            </div>
-            <!-- single card end -->
-            <!-- single card -->
-            <div class="shadow rounded bg-white px-4 pt-6 pb-8">
-                <div class="flex justify-between items center mb-4">
-                    <h3 class="font-medium capitalize text-gray-800 text-lg">Billing Address</h3>
-                    <a href="#" class="text-primary">Edit</a>
-                </div>
-                <div class="space-y-1">
-                    <h4 class="text-gray-700 font-medium">Park Chanyeol</h4>
-                    <p class="text-gray-800">SM Entertainment, Wangsimni-ro, Seongdong-gu.</p>
-                    <p class="text-gray-800">Seoul, South Korea</p>
-                    <p class="text-gray-800">(123) 456-789</p>
-                </div>
-            </div>
-            <!-- single card end -->
+            </form>
         </div>
         <!-- account content end -->
     </div>
     <!-- account wrapper end -->
-
-
 
          <!--footer--->
 <section id="contact">

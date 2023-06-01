@@ -813,10 +813,10 @@ border-radius: 5px;
 		<nav class="navbar">
 			
 			<ul class="menu2">
-			  <li><a href="homepage - final.html">Home</a></li>
-			  <li><a href="product.html">Product</a></li>
-			  <li><a href="review.html">Reviews</a></li>
-			  <li><a href="about us.html">About Us</a></li>
+			  <li><a href="homepage - final.php">Home</a></li>
+			  <li><a href="product.php">Product</a></li>
+			  <li><a href="review.php">Reviews</a></li>
+			  <li><a href="about us.php">About Us</a></li>
 			</ul>
 			
 			<div class="logo-container">
@@ -827,19 +827,19 @@ border-radius: 5px;
 			
 			<ul class="icons2">
 				<li>
-					<a href="wishlist.html">
+					<a href="wishlist.php">
 						<img src="./img/wishlist.png" alt="Wishlist">
 						<span>Wishlist</span>
 					</a>
 				</li>
 				<li>
-					<a href="cart.html">
+					<a href="cart.php">
 						<img src="./img/cart.png" alt="Add to Cart">
 						<span>Cart</span>
 					</a>
 				</li>
 				<li>
-					<a href="userlogin.html">
+					<a href="userlogin.php">
 						<img src="./img/acc1.png" alt="Sign In">
 						<span>Sign In</span>
 					</a>
