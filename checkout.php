@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,10 +21,10 @@
           <nav class="navbar">
         
         <ul class="menu2">
-            <li><a href="homepage - final.html">Home</a></li>
-            <li><a href="product.html">Product</a></li>
-            <li><a href="review.html">Reviews</a></li>
-            <li><a href="about us.html">About Us</a></li>
+            <li><a href="homepage - final.php">Home</a></li>
+            <li><a href="product.php">Product</a></li>
+            <li><a href="review.php">Reviews</a></li>
+            <li><a href="about us.php">About Us</a></li>
         </ul>
         
         <div class="logo-container">
@@ -34,23 +35,39 @@
         
         <ul class="icons2">
             <li>
-                <a href="wishlist.html">
+                <a href="wishlist.php">
                     <img src="./img/wishlist.png" alt="Wishlist">
                     <span>Wishlist</span>
                 </a>
             </li>
             <li>
-                <a href="cart.html">
+                <a href="cart.php">
                     <img src="./img/cart.png" alt="Add to Cart">
                     <span>Cart</span>
                 </a>
             </li>
-            <li>
-                <a href="userlogin.html">
-                    <img src="./img/acc1.png" alt="Sign In">
-                    <span>Sign In</span>
-                </a>
-            </li>
+            <?php
+                  if(isset($_SESSION['id'])){
+                ?>
+                <li>
+                    <a href="account.php">
+                        <img src="./img/acc1.png" alt="Sign In">
+                        <span>My Account</span>
+                    </a>
+                </li>
+                <?php
+                }
+                else{
+                ?>
+                <li>
+                    <a href="userlogin.php">
+                        <img src="./img/acc1.png" alt="Sign In">
+                        <span>Sign In</span>
+                    </a>
+                </li>
+                <?php
+                }
+                ?>
         </ul>
         
         <div class="burger-menu2">
@@ -110,11 +127,11 @@
 
     <!-- breadcrum -->
     <div class="py-4 container flex gap-3 items-center">
-        <a href="homepage - final.html" class="text-primary text-base">
+        <a href="homepage - final.php" class="text-primary text-base">
             <i class="fas fa-home"></i>
         </a>
         <span class="text-sm text-gray-400"><i class="fas fa-chevron-right"></i></span>
-        <a href="cart.html" class="text-primary text-base1 font-medium uppercase">
+        <a href="cart.php" class="text-primary text-base1 font-medium uppercase">
             Cart
         </a>
         <span class="text-sm text-gray-400"><i class="fas fa-chevron-right"></i></span>
@@ -240,7 +257,7 @@
             </div>
 
             <!-- checkout -->
-            <a href="ordercomp.html" class="bg-primary border border-primary text-white px-4 py-3 font-medium rounded-md uppercase hover:bg-transparent
+            <a href="ordercomp.php" class="bg-primary border border-primary text-white px-4 py-3 font-medium rounded-md uppercase hover:bg-transparent
          hover:text-primary transition text-sm w-full block text-center">
                 Place order
             </a>
