@@ -142,7 +142,7 @@
             <!-- account profile -->
             <div class="bg-white px-4 py-3 shadow flex items-center gap-4">
                 <div class="flex-shrink-0">
-                    <img src="./img/chanyeol.jpg" class="rounded-full w-14 h-14 p-1 border border-gray-200 object-cover">
+                    <img src="./img/defaultpic.png" class="rounded-full w-14 h-14 p-1 border border-gray-200 object-cover">
                 </div>
                 <div>
                     <p class="text-gray-600">Hello,</p>
@@ -212,7 +212,7 @@
 
          <!-- account content -->
          <div class="col-span-9 shadow bg-white rounded px-6 pt-5 pb-7 mt-6 lg:mt-0">
-            <form action="">
+            <form action="includes/profile.inc.php" method='post'>
                 <h3 class="text-lg font-medium capitalize mb-4">
                     Profile Information
                 </h3>
@@ -222,13 +222,13 @@
                             <label class="text-gray-600 mb-2 block">
                                 First Name
                             </label>
-                            <input type="text" class="input-box" value="<?php echo $_SESSION['firstname'];?>">
+                            <input type="text" name='fname' class="input-box" value="<?php echo $_SESSION['firstname'];?>">
                         </div>
                         <div>
                             <label class="text-gray-600 mb-2 block">
                                 Last Name
                             </label>
-                            <input type="text" class="input-box" value="<?php echo $_SESSION['surname'];?>">
+                            <input type="text" name='lname' class="input-box" value="<?php echo $_SESSION['surname'];?>">
                         </div>
                     </div>
                     <div class="grid sm:grid-cols-2 gap-4">
@@ -236,15 +236,44 @@
                             <label class="text-gray-600 mb-2 block">
                                 Birthday
                             </label>
-                            <input type="date" value="1992-11-27" class="input-box">
+                            <?php
+                            if(isset($_SESSION['birthday'])){ ?>
+                                <input type="date" name='birthday' value="<?php echo $_SESSION['birthday'];?>" class="input-box">
+                            <?php
+                            }
+                            else { ?>
+                                <input type="date" name='birthday' value="2023-06-02" class="input-box">
+                            <?php
+                            } ?>
+                            
                         </div>
                         <div>
                             <label class="text-gray-600 mb-2 block">
                                 Gender
                             </label>
-                            <select class="input-box">
-                                <option>Male</option>
-                                <option>Female</option>
+                            <select name='gender' class="input-box">
+                                <?php
+                                if(isset($_SESSION['gender'])){
+                                    if($_SESSION['gender'] == 'male'){ ?>
+                                        <option value='' >gender</option>
+                                        <option value='male' selected>Male</option>
+                                        <option value='female'>Female</option>
+                                <?php
+                                    }
+                                    else if($_SESSION['gender'] == 'female'){ ?>
+                                        <option value='' >gender</option>
+                                        <option value='male'>Male</option>
+                                        <option value='female' selected>Female</option>
+                                <?php
+                                    }
+                                }
+                                else{ ?>
+                                    <option value='' selected>gender</option>
+                                    <option value='male'>Male</option>
+                                    <option value='female'>Female</option>
+                                <?php
+                                } ?>
+                                
                             </select>
                         </div>
                     </div>
@@ -253,18 +282,18 @@
                             <label class="text-gray-600 mb-2 block">
                                 Email Address
                             </label>
-                            <input type="text" class="input-box" value="<?php echo $_SESSION['email'];?>">
+                            <input type="text" name='email' class="input-box" value="<?php echo $_SESSION['email'];?>">
                         </div>
                         <div>
                             <label class="text-gray-600 mb-2 block">
                                 Phone Number
                             </label>
-                            <input type="text" class="input-box" value="<?php echo $_SESSION['phone'];?>">
+                            <input type="text" name='cont' class="input-box" value="<?php echo $_SESSION['phone'];?>">
                         </div>
                     </div>
                 </div>
                 <div class="mt-6">
-                    <button type="submit"
+                    <button type="submit" name='edit'
                         class="px-6 py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
                         Save change
                     </button>

@@ -142,7 +142,7 @@
             <!-- account profile -->
             <div class="bg-white px-4 py-3 shadow flex items-center gap-4">
                 <div class="flex-shrink-0">
-                    <img src="./img/chanyeol.jpg" class="rounded-full w-14 h-14 p-1 border border-gray-200 object-cover">
+                    <img src="./img/defaultpic.png" class="rounded-full w-14 h-14 p-1 border border-gray-200 object-cover">
                 </div>
                 <div>
                     <p class="text-gray-600">Hello,</p>
@@ -218,7 +218,7 @@
                     <a href="profile-info.php" class="text-primary">Edit</a>
                 </div>
                 <div class="space-y-1">
-                    <h4 class="text-gray-700 font-medium"><?php echo $_SESSION['firstname'] . $_SESSION['surname']?></h4>
+                    <h4 class="text-gray-700 font-medium"><?php echo $_SESSION['firstname'] . " " . $_SESSION['surname']?></h4>
                     <p class="text-gray-800"><?php echo $_SESSION['email']?></p>
                     <p class="text-gray-800"><?php echo $_SESSION['phone']?></p>
                 </div>
@@ -231,10 +231,18 @@
                     <a href="#" class="text-primary">Edit</a>
                 </div>
                 <div class="space-y-1">
-                    <h4 class="text-gray-700 font-medium">Park Chanyeol</h4>
-                    <p class="text-gray-800">SM Entertainment, Wangsimni-ro, Seongdong-gu.</p>
-                    <p class="text-gray-800">Seoul, South Korea</p>
-                    <p class="text-gray-800">(123) 456-789</p>
+                    <h4 class="text-gray-700 font-medium"><?php echo $_SESSION['firstname'] . " " . $_SESSION['surname']?></h4>
+                    <?php if(isset($_SESSION['address'])){?>
+                        <p class="text-gray-800"><?php echo $_SESSION['address']?></p>
+                        <p class="text-gray-800"><?php echo $_SESSION['city'] . ", " . $_SESSION['country']?></p>
+                    <?php 
+                    }
+                    else{
+                    ?>
+                        <p class="text-gray-800"><i>Address is not set.</i></p>
+                    <?php 
+                    }?>
+                    <p class="text-gray-800"><?php echo $_SESSION['phone']; ?> </p>
                 </div>
             </div>
             <!-- single card end -->
@@ -245,10 +253,18 @@
                     <a href="#" class="text-primary">Edit</a>
                 </div>
                 <div class="space-y-1">
-                    <h4 class="text-gray-700 font-medium">Park Chanyeol</h4>
-                    <p class="text-gray-800">SM Entertainment, Wangsimni-ro, Seongdong-gu.</p>
-                    <p class="text-gray-800">Seoul, South Korea</p>
-                    <p class="text-gray-800">(123) 456-789</p>
+                    <h4 class="text-gray-700 font-medium"><?php echo $_SESSION['firstname'] . " " . $_SESSION['surname']?></h4>
+                    <?php if(isset($_SESSION['address'])){?>
+                        <p class="text-gray-800"><?php echo $_SESSION['address']?></p>
+                        <p class="text-gray-800"><?php echo $_SESSION['city'] . ", " . $_SESSION['country']?></p>
+                    <?php 
+                    }
+                    else{
+                    ?>
+                        <p class="text-gray-800"><i>Address is not set.</i></p>
+                    <?php 
+                    }?>
+                    <p class="text-gray-800"><?php echo $_SESSION['phone']; ?> </p>
                 </div>
             </div>
             <!-- single card end -->

@@ -1,4 +1,4 @@
-
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,12 +46,28 @@
                     <span>Cart</span>
                 </a>
             </li>
-            <li>
-                <a href="userlogin.php">
-                    <img src="./img/acc1.png" alt="Sign In">
-                    <span>Sign In</span>
-                </a>
-            </li>
+            <?php
+                  if(isset($_SESSION['id'])){
+                ?>
+                <li>
+                    <a href="account.php">
+                        <img src="./img/acc1.png" alt="Sign In">
+                        <span>My Account</span>
+                    </a>
+                </li>
+                <?php
+                }
+                else{
+                ?>
+                <li>
+                    <a href="userlogin.php">
+                        <img src="./img/acc1.png" alt="Sign In">
+                        <span>Sign In</span>
+                    </a>
+                </li>
+                <?php
+                }
+                ?>
         </ul>
         
         <div class="burger-menu2">
@@ -126,11 +142,11 @@
             <!-- account profile -->
             <div class="bg-white px-4 py-3 shadow flex items-center gap-4">
                 <div class="flex-shrink-0">
-                    <img src="./img/chanyeol.jpg" class="rounded-full w-14 h-14 p-1 border border-gray-200 object-cover">
+                    <img src="./img/defaultpic.png" class="rounded-full w-14 h-14 p-1 border border-gray-200 object-cover">
                 </div>
                 <div>
                     <p class="text-gray-600">Hello,</p>
-                    <h4 class="text-gray-800 capitalize font-medium">Chanyeol</h4>
+                    <h4 class="text-gray-800 capitalize font-medium"><?php echo $_SESSION['firstname'];?></h4>
                 </div>
             </div>
             <!-- account profile end -->
@@ -155,15 +171,15 @@
                 <!-- single link end -->
                 <!-- single link -->
                 <div class="space-y-1 pl-8 pt-4">
-                    <a href="#"
+                    <a href="my-order-history.php"
                         class="relative medium capitalize text-gray-800 font-medium1 hover:text-primary transition block">
                         My order history
                         <span class="absolute -left-8 top-0 text-base1">
                             <i class="fas fa-gift"></i>
                         </span>
                     </a>
-                    <a href="#" class="hover:text-primary transition block capitalize">my purchases</a>
-                    <a href="#" class="hover:text-primary transition block capitalize">my reviews</a>
+                    <a href="my purchases.php" class="hover:text-primary transition block capitalize">my purchases</a>
+                    <a href="my reviews.php" class="hover:text-primary transition block capitalize">my reviews</a>
                 </div>
                 <!-- single link end -->
                 <!-- single link -->
@@ -195,50 +211,80 @@
 
           <!-- account content -->
           <div class="col-span-9 bg-white shadow rounded px-6 pt-5 pb-7 mt-6 lg:mt-0">
-            <form action="">
+            <form action="includes/address.inc.php" method='post'>
                 <h3 class="text-lg font-medium capitalize mb-4">
                     Manage Address
                 </h3>
                 <div class="space-y-4">
-                    <!-- Form row -->
-                    <div class="grid sm:grid-cols-2 gap-4">
-                        <!-- Single input -->
-                        <div>
-                            <label class="text-gray-600 mb-2 block">
-                                Full Name
-                            </label>
-                            <input type="text" class="input-box" value="Park Chanyeol">
-                        </div>
-                        <!-- single input end -->
-                        <!-- single input -->
-                        <div>
-                            <label class="text-gray-600 mb-2 block">
-                                Phone Number
-                            </label>
-                            <input type="text" class="input-box" value="+123 456 789">
-                        </div>
-                        <!-- Single input end -->
-                    </div>
-                    <!-- Form row end -->
                     <div class="grid sm:grid-cols-2 gap-4">
                         <div>
                             <label class="text-gray-600 mb-2 block">
                                 Country
                             </label>
-                            <select class="input-box">
-                                <option>South Korea</option>
-                                <option>Philippines</option>
-                                <option>China</option>
-                                <option>Japan</option>
+                            <select name='country' class="input-box">
+                            <?php
+                                if(isset($_SESSION['country'])){
+                                    if($_SESSION['country'] == 'South Korea'){ ?>
+                                        <option value='South Korea' selected>South Korea</option>
+                                        <option value='Philippines'>Philippines</option>
+                                        <option value='China'>China</option>
+                                        <option value='Japan'>Japan</option>
+                                <?php
+                                    }
+                                    else if($_SESSION['country'] == 'Philippines'){ ?>
+                                        <option value='South Korea'>South Korea</option>
+                                        <option value='Philippines' selected>Philippines</option>
+                                        <option value='China'>China</option>
+                                        <option value='Japan'>Japan</option>
+                                        <?php
+                                    }
+                                    else if($_SESSION['country'] == 'China'){ ?>
+                                        <option value='South Korea'>South Korea</option>
+                                        <option value='Philippines'>Philippines</option>
+                                        <option value='China' selected>China</option>
+                                        <option value='Japan'>Japan</option>
+                                        <?php
+                                    }
+                                    else if($_SESSION['country'] == 'Japan'){ ?>
+                                        <option value='South Korea'>South Korea</option>
+                                        <option value='Philippines'>Philippines</option>
+                                        <option value='China'>China</option>
+                                        <option value='Japan' selected>Japan</option>
+                                <?php
+                                    }
+                                }
+                                else{ ?>
+                                    <option value='South Korea' selected>South Korea</option>
+                                    <option value='Philippines'>Philippines</option>
+                                    <option value='China'>China</option>
+                                    <option value='Japan'>Japan</option>
+                                <?php
+                                } ?>
                             </select>
                         </div>
                         <div>
                             <label class="text-gray-600 mb-2 block">
                                 Region
                             </label>
-                            <select class="input-box">
-                                <option>NCR</option>
-                                <option>Calabarzon</option>
+                            <select name='region' class="input-box">
+                            <?php
+                                if(isset($_SESSION['region'])){
+                                    if($_SESSION['region'] == 'NCR'){ ?>
+                                        <option value='NCR' selected>NCR</option>
+                                        <option value='Calabarzon'>Calabarzon</option>
+                                <?php
+                                    }
+                                    else if($_SESSION['region'] == 'Calabarzon'){ ?>
+                                        <option value='NCR'>NCR</option>
+                                        <option value='Calabarzon' selected>Calabarzon</option>
+                                <?php
+                                    }
+                                }
+                                else{ ?>
+                                    <option value='NCR' selected>NCR</option>
+                                    <option value='Calabarzon'>Calabarzon</option>
+                                <?php
+                                } ?>                               
                             </select>
                         </div>
                     </div>
@@ -247,29 +293,50 @@
                             <label class="text-gray-600 mb-2 block">
                                 City
                             </label>
-                            <select class="input-box">
-                                <option>Seoul</option>
-                                <option>Makati</option>
+                            <select name='city' class="input-box">
+                            <?php
+                                if(isset($_SESSION['city'])){
+                                    if($_SESSION['city'] == 'Seoul'){ ?>
+                                        <option value='Seoul' selected>Seoul</option>
+                                        <option value='Makati'>Makati</option>
+                                <?php
+                                    }
+                                    else if($_SESSION['city'] == 'Makati'){ ?>
+                                        <option value='Seoul'>Seoul</option>
+                                        <option value='Makati' selected>Makati</option>
+                                <?php
+                                    }
+                                }
+                                else{ ?>
+                                    <option value='Seoul' selected>Seoul</option>
+                                    <option value='Makati'>Makati</option>
+                                <?php
+                                } ?>            
+                                
                             </select>
                         </div>
                         <div>
                             <label class="text-gray-600 mb-2 block">
                                ZIP Code
                             </label>
-                            <input type="text" class="input-box" value="1216">
+                            <input name='zipcode' type="text" class="input-box" value="<?php echo $_SESSION['zipcode'];?>">
                         </div>
                     </div>
                     <div>
                         <label class="text-gray-600 mb-2 block">
                             Address
                         </label>
-                        <input type="text" class="input-box" value="SM Entertainment 83-21, Wangsimni-ro, Seongdong-gu.">
+                        <input type="text" name='address' class="input-box" value="<?php echo $_SESSION['address'];?>">
                     </div>
                 </div>
                 <div class="mt-6">
-                    <button type="submit"
+                    <button type="submit" name='billing'
                         class="px-6 py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
-                        Save change
+                        Save as Billing Address
+                    </button>
+                    <button type="submit" name='shipping'
+                        class="px-6 py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
+                        Save as Shipping Address
                     </button>
                 </div>
             </form>
