@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +22,7 @@
         <ul class="menu2">
             <li><a href="homepage - final.php">Home</a></li>
             <li><a href="product.php">Product</a></li>
-            <li><a href="reproductdeets.php">Reviews</a></li>
+            <li><a href="review.php">Reviews</a></li>
             <li><a href="about us.php">About Us</a></li>
         </ul>
         
@@ -44,12 +45,28 @@
                     <span>Cart</span>
                 </a>
             </li>
-            <li>
-                <a href="userlogin.php">
-                    <img src="./img/acc1.png" alt="Sign In">
-                    <span>Sign In</span>
-                </a>
-            </li>
+            <?php
+                  if(isset($_SESSION['id'])){
+                ?>
+                <li>
+                    <a href="account.php">
+                        <img src="./img/acc1.png" alt="Sign In">
+                        <span>My Account</span>
+                    </a>
+                </li>
+                <?php
+                }
+                else{
+                ?>
+                <li>
+                    <a href="userlogin.php">
+                        <img src="./img/acc1.png" alt="Sign In">
+                        <span>Sign In</span>
+                    </a>
+                </li>
+                <?php
+                }
+                ?>
         </ul>
         
         <div class="burger-menu2">
