@@ -1,7 +1,7 @@
 $(document).ready(function() {
     // Initial AJAX request to generate the categories
     $.ajax({
-        url: '/get-categories.php',
+        url: '/demo/CATALYSANCE/get-categories.php',
         type: 'GET',
         dataType: 'html',
         success: function(response) {
@@ -10,11 +10,12 @@ $(document).ready(function() {
         },
         error: function(xhr, status, error) {
             console.error('Error:', error);
+            xhr.error(error);
         }
     });
 
     $.ajax({
-        url: '/get-themes.php',
+        url: '/demo/CATALYSANCE/get-themes.php',
         type: 'GET',
         dataType: 'html',
         success: function(response) {
@@ -102,7 +103,7 @@ function updateProductsPanel() {
         $('#errorMessages').html('').hide();
 
         $.ajax({
-            url: '/get-products.php',
+            url: '/demo/CATALYSANCE/get-products.php',
             type: 'POST',
             data: { 
                 categories: selectedCategories,
