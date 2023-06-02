@@ -1,3 +1,38 @@
+document.addEventListener('DOMContentLoaded', function() {
+  const allStar = document.querySelectorAll('.rating .star');
+  const ratingValue = document.querySelector('.rating input');
+
+  allStar.forEach((item, idx) => {
+    item.addEventListener('click', function() {
+      ratingValue.value = idx + 1;
+
+      allStar.forEach((i, iIdx) => {
+        if (iIdx <= idx) {
+          i.classList.add('active');
+        } else {
+          i.classList.remove('active');
+        }
+      });
+    });
+    
+    item.addEventListener('mouseover', function() {
+      allStar.forEach((i, iIdx) => {
+        if (iIdx <= idx) {
+          i.classList.add('hover');
+        } else {
+          i.classList.remove('hover');
+        }
+      });
+    });
+    
+    item.addEventListener('mouseout', function() {
+      allStar.forEach((i) => {
+        i.classList.remove('hover');
+      });
+    });
+  });
+});
+
 window.addEventListener('load', function() {
   var container = document.querySelector('.container4');
   container.classList.add('loaded');
@@ -85,29 +120,6 @@ window.onscroll = () => {
   navbar.classList.remove('open');
 };
 
-const allStar = document.querySelectorAll('.rating .star')
-const ratingValue = document.querySelector('.rating input')
-
-allStar.forEach((item, idx)=> {
-  item.addEventListener('click', function () {
-    let click = 0
-    ratingValue.value = idx + 1
-
-    allStar.forEach(i=> {
-      i.classList.replace('bxs-star', 'bx-star')
-      i.classList.remove('active')
-    })
-    for(let i=0; i<allStar.length; i++) {
-      if(i <= idx) {
-        allStar[i].classList.replace('bx-star', 'bxs-star')
-        allStar[i].classList.add('active')
-      } else {
-        allStar[i].style.setProperty('--i', click)
-        click++
-      }
-    }
-  })
-});
 var sortingSelect = document.getElementById('sorting-select');
     var productContainer = document.querySelector('.product-list');
 

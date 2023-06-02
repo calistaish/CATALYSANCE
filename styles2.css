@@ -410,6 +410,7 @@ p {
 	background-color: #fff8f0;
 }
 
+
 .left{
 	background: url("./img/review.png") no-repeat center;
 	background-size: cover;
@@ -443,41 +444,38 @@ h2:after{
     background-color: var(--second-color);
 }
 .rating {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	grid-gap: .5rem;
-	font-size: 2rem;
-	color: #bc377e;
-	margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4rem;
 }
+
 .rating .star {
-	cursor: pointer;
-}
-.rating .star.active {
-	opacity: 0;
-	animation: animate .5s calc(var(--i) * .1s) ease-in-out forwards;
-}
-
-@keyframes animate {
-	0% {
-		opacity: 0;
-		transform: scale(1);
-	}
-	50% {
-		opacity: 1;
-		transform: scale(1.2);
-	}
-	100% {
-		opacity: 1;
-		transform: scale(1);
-	}
+  cursor: pointer;
+  margin-right: 2.3rem;
+  position: relative;
+  font-size: 2.3rem;
 }
 
-
+.rating .star.active,
 .rating .star:hover {
-	transform: scale(1.1);
+  color: #bc377e;
 }
+
+.rating .star:before {
+  content: "\f006";
+  font-family: "FontAwesome";
+  position: absolute;
+  color: rgb(207, 112, 4);
+  opacity: 1;
+}
+
+.rating .star.active:before,
+.rating .star:hover:before {
+  content: "\f005";
+  color: #bc377e;
+}
+
 textarea {
 	width: 100%;
 	background: #F5F5F5;

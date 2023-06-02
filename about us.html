@@ -326,134 +326,144 @@ border-radius: 5px;
 
 /* ABOUT OWNER */
 .about-wrapper{
-    	padding: 3%;
-    	min-height: 70vh;
-    	padding-bottom: 100px;
+    height: 80vh;
+    margin-top: -7rem;
+    background-color: #F5ECE0;
+    margin-bottom: 7rem;
 }
 .about-left{
-	background: linear-gradient(45deg, pink, rgba(255, 166, 0, 0.902));
-    	display: flex;	
-    	flex-direction: column;
-    	align-items: center;
-    	justify-content: center;
-    	height: 80vh;
+    margin-left: 350px;
+    background: linear-gradient(45deg, pink, rgba(255, 166, 0, 0.902));
+    width: 25vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
 }
 .about-left-content > div{
-    	background: rgb(254, 153, 170);
-    	padding: 4rem 4rem 2.5rem 5rem;
-     	text-align: center;
+    background: rgb(254, 153, 170);
+    padding: 4rem 4rem 2.5rem 5rem;
+    text-align: center;
 }
 .about-left-content{
-    	box-shadow: 0px 0px 18px -1px rgba(230, 78, 157, 0.582);
-    	-webkit-box-shadow: 0px 0px 20px -1px rgba(139, 93, 24, 0.744);
-    	-moz-box-shadow: 0px 0px 18px -1px rgba(230, 169, 78, 0.582);
+    margin-right: -20px;
+    align-items: center;  
+    box-shadow: 0px 0px 18px -1px rgba(0, 0, 0, 0.39);
+    -webkit-box-shadow: 0px 0px 18px -1px rgba(0, 0, 0, 0.39);
+    -moz-box-shadow: 0px 0px 18px -1px rgba(0, 0, 0, 0.39);
 }
 .about-img img{
-    	display: block;
-    	width: 200px;
+    display: block;
+    width: 200px;
 }
 .about-img{
-    	width: 200px;
-    	height: 200px;
-    	overflow: hidden;
-    	border-radius: 50%;
-    	transition: all 0.5s ease-in-out;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+    transition: all 0.5s ease-in-out;
 }
 .shadow{
-    	margin-left: auto;
-    	margin-right: auto;
-    	border-radius: 50%;
-    	width: 200px;
-    	height: 200px;
-    	position: relative;
-    	cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    cursor: pointer;
 }
 .shadow::after{
-    	content: "";
-    	position: absolute;
-    	background: rgba(0, 0, 0, 0.4);
-    	left: 50%;
-    	transform: translateX(-50%);
-    	bottom: -20px;
-    	height: 7px;
-    	width: 50px;
-    	filter: blur(3px);
-    	-webkit-filter: blur(3px);
-    	opacity: 0;
-    	transition: all 0.6s ease;
+    content: "";
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -20px;
+    height: 7px;
+    width: 50px;
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
+    opacity: 0;
+    transition: all 0.6s ease;
 }
 .shadow:hover .about-img{
-    	transform: translateY(-10px);
+    transform: translateY(-10px);
 }
 .shadow:hover::after{
-    	opacity: 1;
+    opacity: 1;
 }
-.about-left-content h2{	
-	color: #f5ece0;
-    	font-size: 2rem;
-    	margin: 2.2rem 0 0.6rem 0;
-    	line-height: 1.2;
-    	padding-bottom: 1rem;
-    	border-bottom: 2px solid #edffec;
+.about-left-content h2{
+    color: #bc377e;
+    font-size: 2rem;
+    margin: 2.2rem 0 0.6rem 0;
+    line-height: 1.2;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #bc377e;
+    white-space: nowrap;
+
 }
 .about-left-content h3{
-	font-size: 20px;
-    	text-transform: uppercase;
-    	font-weight: 400;
-    	letter-spacing: 5px;
-    	margin-top: 1.2rem;
-		color: #f5ece0;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 7px;
+    margin-top: 1.2rem;
+    white-space: nowrap;
+    color: #bc377e;
+
 }
 .icon{
-    	background: #fff;
-    	display: flex;
-    	justify-content: center;
-    	padding: 0.8rem 0;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 0.8rem 0;
 }
 .icon a{
-    	list-style-type: none;
-    	background: linear-gradient(45deg, pink, rgb(255, 166, 0));
-    	color: #fff;
-    	width: 40px;
-    	height: 40px;
-    	margin: 0 0.5rem;
-    	border-radius: 50%;
-    	display: flex;
-    	justify-content: center;
-    	align-items: center;
-    	font-size: 1.2rem;
-    	cursor: pointer;
-    	transition: all 0.5s ease-in-out;
+    list-style-type: none;
+    background: linear-gradient(45deg, pink, rgba(255, 166, 0, 0.902));
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    margin: 0 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
 }
 .icon a:hover{
-    	transform: rotate(360deg);
-    	background: #fff;
-    	color: rgba(255, 166, 0, 0.879);
+    transform: rotate(360deg);
+    background: var(--bg-color);
+    color: orange;
 }
 .about-right{
-    	background: #f5ece0;
-    	height: 80vh;
-    	display: flex;
-    	flex-direction: column;
-    	align-items: center;
-    	justify-content: center;
-    	padding: 0 5rem;
-    	text-align: center;
+    width: 100vh;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5rem;
+    text-align: center;
 }
 .about-right h1{
 	color: var(--main-color);
-    	font-size: 8rem;
-    	text-transform: uppercase;
+    font-size: 7rem;
+    text-transform: uppercase;
 }
 .about-right h1 span{
-    color: #bc377e;
+	color:  #bc377e;
+
 }
 .about-para p{
-	font-size: var(--p-font);
-	padding: 0.5rem;
-    font-weight: 400;
-	text-align: justify;
+    text-align: justify;	
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 0.5rem;
 }
+
 
 /* ABOUT TIMELINE */
 .timeline {
@@ -467,6 +477,7 @@ border-radius: 5px;
   	font-size: 50px;
 	text-align: center;
   	padding-bottom: 0;
+    margin-top: 3rem;
   	color: var(--main-color)
 }
 .timeline p {
@@ -761,10 +772,38 @@ border-radius: 5px;
 	   margin-bottom: 30px;
 	}
 }
+@media screen and (max-width: 1010px){
+	.about{
+	   margin-bottom: -5rem;
+	   width: 100%;
+	   height: auto;
+	   padding: 60px 0;
+	   align-items: center;
+	}
+	.all-text{
+	   text-align: center;
+	   margin-bottom: 30px;
+	}
+	 .about-wrapper{
+	margin-bottom: 40rem;
+	margin-top: -1rem;
+
+    }
+}
 @media screen and (max-width: 650px){
 	.about .main img{
 	   margin-bottom: 10px;
 	}
+	.about-right{
+	margin-left: -20px;
+	width: 75vh;
+	}
+	 .about-left{
+        margin-left: 150px;
+    }
+	 .about-wrapper{
+	margin-bottom: 40rem;
+    }
 }
 </style>
 </head>
@@ -788,15 +827,15 @@ border-radius: 5px;
 			
 			<ul class="icons2">
 				<li>
-					<a href="#">
+					<a href="wishlist.html">
 						<img src="./img/wishlist.png" alt="Wishlist">
 						<span>Wishlist</span>
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="cart.html">
 						<img src="./img/cart.png" alt="Add to Cart">
-						<span>Add to Cart</span>
+						<span>Cart</span>
 					</a>
 				</li>
 				<li>
