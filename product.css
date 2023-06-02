@@ -11703,6 +11703,7 @@ h1, h2, h3, h4, h5, h6{
   font-size: 2rem;
   line-height: 1.5rem;
 }
+
 .text-base1{
   font-size: 1rem;
   line-height: 1.5rem;
@@ -11715,6 +11716,10 @@ h1, h2, h3, h4, h5, h6{
 
 .text-xl{
   font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.text-xl1{
+  font-size: 2.25rem;
   line-height: 1.75rem;
 }
 
@@ -12853,7 +12858,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .mb-1{
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.85rem;
 }
 
 .ml-1{
@@ -14921,6 +14926,11 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .px-4{
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.px-4a{
+  margin-top: auto;
   padding-left: 1rem;
   padding-right: 1rem;
 }
@@ -158064,5 +158074,49 @@ border-radius: 5px;
   95%, 100% {
     left: 64px;
     width: 16px;
+  }
+}
+.preloader1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 40%;
+  left: 48%;
+  width: 8em;
+  height: 8em;
+  background: linear-gradient(-45deg, #E3347C 0%, #F09B59 100% );
+  animation: spin 3s infinite;
+}
+
+.preloader1::before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-45deg, #E3347C 0%, #F09B59 100% );
+  transform: translate3d(0, 0, 0) scale(0.95);
+  filter: blur(20px);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(-45deg);
+  }
+
+  50% {
+    transform: rotate(-360deg);
+    border-radius: 50%;
+  }
+
+  100% {
+    transform: rotate(-45deg);
+  }
+}
+@media (max-width: 768px) {
+  .preloader1 {
+    left: 42%;
+    width: 6em;
+    height: 6em;
   }
 }
