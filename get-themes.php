@@ -9,8 +9,8 @@
         $productCount = $row['count'];
         echo '<!-- single brand name -->
         <div class="flex items-center">
-            <input type="checkbox" id="'.$themeID.'" class="themeCheckbox text-primary focus:ring-0 rounded-sm cursor-pointer">
-                <label for="'.$themeID.'" class="text-gray-600 ml-3 cursor-pointer">'.$themeName.'</label>
+            <input type="checkbox" id="theme_'.$themeID.'" class="themeCheckbox text-primary focus:ring-0 rounded-sm cursor-pointer">
+                <label for="theme_'.$themeID.'" class="text-gray-600 ml-3 cursor-pointer">'.$themeName.'</label>
                 <div class="ml-auto text-gray-600 text-sm">('.$productCount.')</div>
         </div>
         <!-- single brand name end -->';

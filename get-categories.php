@@ -10,9 +10,9 @@
                                 echo 
                                 '<!-- single category -->
                                 <div class="flex items-center">
-                                    <input type="checkbox" id="'.$categoryID.'"
+                                    <input type="checkbox" id="category_'.$categoryID.'"
                                         class="categoryCheckbox text-primary focus:ring-0 rounded-sm cursor-pointer">
-                                    <label for="'.$categoryID.'" class="text-gray-600 ml-3 cursor-pointer">'.$categoryName.'</label>
+                                    <label for="category_'.$categoryID.'" class="text-gray-600 ml-3 cursor-pointer">'.$categoryName.'</label>
                                     <div class="ml-auto text-gray-600 text-sm">('.$productCount.')</div>
                                 </div>
                                 <!-- single category end -->';

@@ -57,6 +57,7 @@ header {
             justify-content: flex-start;
             margin-left: 80px;
             padding: 0;
+            z-index: 999;
             list-style: none;
         }
         
@@ -542,6 +543,10 @@ border-radius: 5px;
 	vertical-align:bottom;
 	height:60px;
 	position:relative;
+}
+
+#progress-bar-container{
+    z-index: -1;
 }
 
 #progress-bar-container li .step-inner {

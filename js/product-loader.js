@@ -82,52 +82,51 @@ function updateProductsPanel() {
         $('#minPriceRange, #maxPriceRange').addClass('error');
     } else {
         $('#minPriceRange, #maxPriceRange').removeClass('error');
-    }
-
-    // Display error messages
-    if (errorMessages.length > 0) {
-        $('#errorMessages').html(errorMessages.join('<br>')).show();
-    } else {
-        $('#errorMessages').html('').hide();
     }   
 
     $('.categoryCheckbox:checked').each(function() {
-        var categoryId = $(this).attr('id');
+        var categoryId = $(this).attr('id').replace('category_', '');
         selectedCategories.push(categoryId);
         console.log('Selected Category: ' + categoryId);
     });
 
     $('.themeCheckbox:checked').each(function() {
-        var themeId = $(this).attr('id');
+        var themeId = $(this).attr('id').replace('theme_', '');
         selectedThemes.push(themeId);
         console.log('Selected Theme: ' + themeId);
     });
 
-    $.ajax({
-        url: '/get-products.php',
-        type: 'POST',
-        data: { 
-            categories: selectedCategories,
-            themes: selectedThemes,
-            minPrice: minPrice,
-            maxPrice: maxPrice,
-            sort: selectedSort
-        },
-        dataType: 'json',
-        success: function(response) {
-            console.log(response);
-            if (response.success) {
-                // Update the products container with the retrieved products
-                updateProducts(response.products);
-            } else {
-                console.error('Error:', response.message);
+    if (errorMessages.length > 0) {
+        $('#errorMessages').html(errorMessages.join('<br>')).show();
+    } else {
+        $('#errorMessages').html('').hide();
+
+        $.ajax({
+            url: '/get-products.php',
+            type: 'POST',
+            data: { 
+                categories: selectedCategories,
+                themes: selectedThemes,
+                minPrice: minPrice,
+                maxPrice: maxPrice,
+                sort: selectedSort
+            },
+            dataType: 'json',
+            success: function(response) {
+                console.log(response);
+                if (response.success) {
+                    // Update the products container with the retrieved products
+                    updateProducts(response.products);
+                } else {
+                    console.error('Error:', response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX Error:', error);
+                console.log('Response:', xhr.responseText);
             }
-        },
-        error: function(xhr, status, error) {
-            console.error('AJAX Error:', error);
-            console.log('Response:', xhr.responseText);
-        }
-    });
+        });
+    }
 }
 
 function updateProducts(products) {
