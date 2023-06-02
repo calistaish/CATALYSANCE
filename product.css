@@ -42,7 +42,7 @@ body {
 		'Segoe UI Emoji';
 }
 
-/
+
 
 hr {
   height: 0; /* 1 */
@@ -513,6 +513,16 @@ h1, h2, h3, h4, h5, h6{
   margin-left: auto;
   padding-right: 1rem;
   padding-left: 1rem;
+}
+
+.error {
+    border-color: red;
+}
+
+#errorMessages {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
 }
 
 @media (min-width: 576px){
@@ -25718,7 +25728,7 @@ h1, h2, h3, h4, h5, h6{
 
 .focus-within\:text-primary:focus-within{
   --tw-text-opacity: 1;
-  color: rgba(188, 55, 126,, var(--tw-text-opacity));
+  color: rgba(188, 55, 126, var(--tw-text-opacity));
 }
 
 .hover\:text-transparent:hover{
@@ -40385,7 +40395,7 @@ h1, h2, h3, h4, h5, h6{
 
   .group:hover .sm\:group-hover\:border-primary{
     --tw-border-opacity: 1;
-    border-color: rgba(188, 55, 126,, var(--tw-border-opacity));
+    border-color: rgba(188, 55, 126, var(--tw-border-opacity));
   }
 
   .sm\:focus-within\:border-transparent:focus-within{
@@ -40808,7 +40818,7 @@ h1, h2, h3, h4, h5, h6{
 
   .sm\:focus-within\:border-primary:focus-within{
     --tw-border-opacity: 1;
-    border-color: rgba(188, 55, 126,, var(--tw-border-opacity));
+    border-color: rgba(188, 55, 126, var(--tw-border-opacity));
   }
 
   .sm\:hover\:border-transparent:hover{
@@ -56833,7 +56843,7 @@ h1, h2, h3, h4, h5, h6{
 
   .group:hover .sm\:group-hover\:text-primary{
     --tw-text-opacity: 1;
-    color: rgba(188, 55, 126,, var(--tw-text-opacity));
+    color: rgba(188, 55, 126, var(--tw-text-opacity));
   }
 
   .sm\:focus-within\:text-transparent:focus-within{

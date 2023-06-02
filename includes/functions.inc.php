@@ -11,7 +11,7 @@ function usernameExists($conn, $username, $email) {
     mysqli_stmt_execute($stmt);
 
     $resultData = mysqli_stmt_get_result($stmt);
-
+    mysqli_stmt_close($stmt);
     if ($row = mysqli_fetch_assoc($resultData)){
         return $row;
     }
@@ -19,8 +19,6 @@ function usernameExists($conn, $username, $email) {
         $result = false;
         return $result;
     }
-
-    mysqli_stmt_close($stmt);
 }
 
 function createUser($conn, $fname, $lname, $email, $phone, $username, $password)

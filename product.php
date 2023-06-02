@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/product-loader.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" />
@@ -79,36 +81,7 @@
             <span></span>
             <span></span>
             <span></span>
-        </div>
-     <script> const header = document.querySelector("header");
-  window.addEventListener('DOMContentLoaded', () => {
-    const burgerMenu = document.querySelector('.burger-menu');
-    const burgerIcons = document.querySelector('.burger-icons');
-    const icons = document.querySelector('.icons');
-    const menu = document.querySelector('.menu');
-  
-    burgerIcons.addEventListener('click', () => {
-      burgerIcons.classList.toggle('active');
-      icons.classList.toggle('show');
-    });
-  });
-  
-  window.addEventListener('DOMContentLoaded', () => {
-    const burgerMenu2 = document.querySelector('.burger-menu2');
-    const burgerIcons2 = document.querySelector('.burger-icons2');
-    const icons2 = document.querySelector('.icons2');
-    const menu2 = document.querySelector('.menu2');
-  
-    burgerMenu2.addEventListener('click', () => {
-      burgerMenu2.classList.toggle('active');
-      menu2.classList.toggle('show');
-    });
-  
-    burgerIcons2.addEventListener('click', () => {
-      burgerIcons2.classList.toggle('active');
-      icons2.classList.toggle('show');
-    });
-  }); </script>
+</div>
     </nav>
   </header>
 
@@ -138,93 +111,30 @@
                         <i class="fas fa-times"></i>
                     </div>
                     <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Categories</h3>
-                    <div class="space-y-2">
-                        <!-- single category -->
-                        <div class="flex items-center">
-                            <input type="checkbox" id="Bedroom"
-                                class="text-primary focus:ring-0 rounded-sm cursor-pointer">
-                            <label for="Bedroom" class="text-gray-600 ml-3 cursor-pointer">Tote Bag</label>
-                            <div class="ml-auto text-gray-600 text-sm">(15)</div>
-                        </div>
-                        <!-- single category end -->
-                        <!-- single category -->
-                        <div class="flex items-center">
-                            <input type="checkbox" id="Sofa"
-                                class="text-primary focus:ring-0 rounded-sm cursor-pointer">
-                            <label for="Sofa" class="text-gray-600 ml-3 cursor-pointer">Mug</label>
-                            <div class="ml-auto text-gray-600 text-sm">(05)</div>
-                        </div>
-                        <!-- single category end -->
-                        <!-- single category -->
-                        <div class="flex items-center">
-                            <input type="checkbox" id="Office"
-                                class="text-primary focus:ring-0 rounded-sm cursor-pointer">
-                            <label for="Office" class="text-gray-600 ml-3 cursor-pointer">Mousepad</label>
-                            <div class="ml-auto text-gray-600 text-sm">(09)</div>
-                        </div>
-                        <!-- single category end -->
-                        <!-- single category -->
-                        <div class="flex items-center">
-                            <input type="checkbox" id="Outdoor"
-                                class="text-primary focus:ring-0 rounded-sm cursor-pointer">
-                            <label for="Outdoor" class="text-gray-600 ml-3 cursor-pointer">All Products</label>
-                            <div class="ml-auto text-gray-600 text-sm">(19)</div>
-                        </div>
-                        <!-- single category end -->
-                    </div>
+                    <div id="categoryContainer" class="space-y-2"></div>
                 </div>
                 <!-- category filter end -->
                 <!-- brand filter -->
                 <div class="pt-4">
                     <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Theme</h3>
-                    <div class="space-y-2">
-                        <!-- single brand name -->
-                        <div class="flex items-center">
-                            <input type="checkbox" id="Dominik"
-                                class="text-primary focus:ring-0 rounded-sm cursor-pointer">
-                            <label for="Dominik" class="text-gray-600 ml-3 cursor-pointer">KPop</label>
-                            <div class="ml-auto text-gray-600 text-sm">(15)</div>
-                        </div>
-                        <!-- single brand name end -->
-                        <!-- single brand name -->
-                        <div class="flex items-center">
-                            <input type="checkbox" id="Karl"
-                                class="text-primary focus:ring-0 rounded-sm cursor-pointer">
-                            <label for="Karl" class="text-gray-600 ml-3 cursor-pointer">Aesthetic</label>
-                            <div class="ml-auto text-gray-600 text-sm">(18)</div>
-                        </div>
-                        <!-- single brand name end -->
-                        <!-- single brand name -->
-                        <div class="flex items-center">
-                            <input type="checkbox" id="Maxing"
-                                class="text-primary focus:ring-0 rounded-sm cursor-pointer">
-                            <label for="Maxing" class="text-gray-600 ml-3 cursor-pointer">Motivational</label>
-                            <div class="ml-auto text-gray-600 text-sm">(09)</div>
-                        </div>
-                        <!-- single brand name end -->
-                        <!-- single brand name -->
-                        <div class="flex items-center">
-                            <input type="checkbox" id="Ernest"
-                                class="text-primary focus:ring-0 rounded-sm cursor-pointer">
-                            <label for="Ernest" class="text-gray-600 ml-3 cursor-pointer">Custom Made</label>
-                            <div class="ml-auto text-gray-600 text-sm">(12)</div>
-                        </div>
-                        <!-- single brand name end -->
+                    <div id="themeContainer" class="space-y-2">
+                        
                     </div>
                 </div>
                 <!-- brand filter end -->
                 <!-- price filter -->
                 <div class="pt-4">
-                    <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Price</h3>
-                    <div class="mt-4 flex items-center">
-                        <input type="text"
+                    <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Price Range</h3>
+                    <div id="priceRangeContainer" class="mt-4 flex items-center">
+                        <input id="minPriceRange" type="text"
                             class="w-full border-gray-300 focus:ring-0 focus:border-primary px-3 py-1 text-gray-600 text-sm shadow-sm rounded"
                             placeholder="min">
                         <span class="mx-3 text-gray-500">-</span>
-                        <input type="text"
+                        <input id="maxPriceRange" type="text"
                             class="w-full border-gray-300 focus:ring-0 focus:border-primary px-3 py-1 text-gray-600 text-sm shadow-sm rounded"
                             placeholder="mix">
                     </div>
+                    <div id="errorMessages" class="error-messages"></div>
                 </div>
                 <!-- price filter end -->
               
@@ -240,12 +150,12 @@
                     class="bg-primary border border-primary text-white px-10 py-3 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition lg:hidden text-sm mr-3 focus:outline-none">
                     Filter
                 </button>
-                <select
+                <select id="sortCombobox"
                     class="w-44 text-sm text-gray-600 px-4 py-3 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary">
-                    <option>Default sorting</option>
-                    <option>Price low-high</option>
-                    <option>Price high-low</option>
-                    <option>Latest product</option>
+                    <option value="default">Default sorting</option>
+                    <option value="low">Price low-high</option>
+                    <option value="high">Price high-low</option>
+                    <option value="latest">Latest product</option>
                 </select>
                 <div class="flex gap-2 ml-auto">
                     <div
@@ -260,8 +170,9 @@
             </div>
             <!-- sorting end -->
             <!-- product wrapper -->
-            <div class="grid lg:grid-cols-2 xl:grid-cols-3 sm:grid-cols-2 gap-6">
-            <?php include('includes/productlist.inc.php'); ?>
+            <div id="productContainer" class="grid lg:grid-cols-2 xl:grid-cols-3 sm:grid-cols-2 gap-6">
+            </div>
+            <!-- product wrapper end -->
         </div>
         <!-- products end -->
     </div>
