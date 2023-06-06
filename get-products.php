@@ -58,6 +58,7 @@
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     while ($row = mysqli_fetch_assoc($result)) {
+        $productID = $row['id'];
         $productName = $row['name'];
         $productPrice = $row['price'];
         $productOriginalPrice = $row['original_price'];
@@ -68,7 +69,8 @@
                             'price' => $productPrice,
                             'originalPrice' => $productOriginalPrice,
                             'reviews' => $productReviews,
-                            'stars' => $productStars
+                            'stars' => $productStars,
+                            'id' => $productID
                         );
                 
                         // Add the product to the products array

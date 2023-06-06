@@ -128,11 +128,11 @@
                     <div id="priceRangeContainer" class="mt-4 flex items-center">
                         <input id="minPriceRange" type="text"
                             class="w-full border-gray-300 focus:ring-0 focus:border-primary px-3 py-1 text-gray-600 text-sm shadow-sm rounded"
-                            placeholder="min">
+                            placeholder="min" value='0'>
                         <span class="mx-3 text-gray-500">-</span>
                         <input id="maxPriceRange" type="text"
                             class="w-full border-gray-300 focus:ring-0 focus:border-primary px-3 py-1 text-gray-600 text-sm shadow-sm rounded"
-                            placeholder="mix">
+                            placeholder="max" value='0'>
                     </div>
                     <div id="errorMessages" class="error-messages"></div>
                 </div>
