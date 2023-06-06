@@ -18,71 +18,9 @@
   <body>
 <!--header--->
 <header style="background-color: #c68234f5;">
-  <nav class="navbar">
-      
-      <ul class="menu2">
-        <li><a href="homepage - final.php">Home</a></li>
-        <li><a href="product.php">Product</a></li>
-        <li><a href="review.php">Reviews</a></li>
-        <li><a href="about us.php">About Us</a></li>
-      </ul>
-      
-      <div class="logo-container">
-          <a href="#" class="logo">
-              <img src="./img/logo8.png" alt="Logo">
-          </a>
-      </div>
-      
-      <ul class="icons2">
-          <li>
-              <a href="wishlist.php">
-                  <img src="./img/wishlist.png" alt="Wishlist">
-                  <span>Wishlist</span>
-              </a>
-          </li>
-          <li>
-            <a href="cart.php">
-                  <img src="./img/cart.png" alt="Add to Cart">
-                  <span>Add to Cart</span>
-              </a>
-          </li>
-          <?php
-                  if(isset($_SESSION['id'])){
-                ?>
-                <li>
-                    <a href="account.php">
-                        <img src="./img/acc1.png" alt="Sign In">
-                        <span>My Account</span>
-                    </a>
-                </li>
-                <?php
-                }
-                else{
-                ?>
-                <li>
-                    <a href="userlogin.php">
-                        <img src="./img/acc1.png" alt="Sign In">
-                        <span>Sign In</span>
-                    </a>
-                </li>
-                <?php
-                }
-                ?>
-      </ul>
-      
-      <div class="burger-menu2">
-          <span></span>
-          <span></span>
-          <span></span>
-      </div>
-      
-      <div class="burger-icons2">
-          <span></span>
-          <span></span>
-          <span></span>
-      </div>
-      
-  </nav>
+  <?php
+    include 'header.php';
+  ?>
 </header>
 <!-- REVIEW -->
 <section class="review-section">
@@ -304,27 +242,7 @@
   
 
          <!--footer--->
-         <section id="contact">
-          <div class="footer">
-            <div class="list">
-              <h4>Connect With Us</h4>
-              <div class="social">
-                <div class="socialf">
-                  <a href="#"><i class='bx bxl-facebook'></i></a>
-                </div>
-                <div class="sociali">
-                  <a href="#"><i class='bx bxl-instagram'></i></a>
-                </div>
-                <div class="socialt">
-                  <a href="#"><i class='bx bxl-tiktok'></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="end-text">
-            <p>Developed by Catalysance | &copy;2023 All rights reserved | Wear Your Mood Prints</p>
-          </div>
-        </section>
+         <?php include 'footer.php'; ?>
         
   <script src="./js/fscriptz.js"></script>
 

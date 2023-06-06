@@ -9,13 +9,11 @@
     <title>Products</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/demo/CATALYSANCE/js/product-loader.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="product.css">
 </head>
-
-
 <body>
 <!--header--->
 <header style="background-color: #c68234f5;">
@@ -191,27 +189,8 @@
       </div>
       
     <!--footer--->
-<section id="contact">
- <div class="footer">
-   <div class="list">
-     <h4>Connect With Us</h4>
-     <div class="social">
-       <div class="socialf">
-         <a href="#"><i class='bx bxl-facebook'></i></a>
-       </div>
-       <div class="sociali">
-         <a href="#"><i class='bx bxl-instagram'></i></a>
-       </div>
-       <div class="socialt">
-         <a href="#"><i class='bx bxl-tiktok'></i></a>
-       </div>
-     </div>
-   </div>
- </div>
- <div class="end-text">
-   <p>Developed by Catalysance | &copy;2023 All rights reserved | Wear Your Mood Prints</p>
- </div>
-</section>
+<!--footer--->
+<?php include 'footer.php'; ?>
 
 </body>
 
