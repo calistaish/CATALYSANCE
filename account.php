@@ -146,7 +146,11 @@
                 </div>
                 <div>
                     <p class="text-gray-600">Hello,</p>
-                    <h4 class="text-gray-800 capitalize font-medium"><?php echo $_SESSION['firstname'];?></h4>
+                    <?php if(isset($_SESSION['id'])){ ?>
+                        <h4 class="text-gray-800 capitalize font-medium"><?php echo $_SESSION['firstname'];?></h4>
+                    <?php } else { ?>
+                        <h4 class="text-gray-800 capitalize font-medium">Guest</h4>
+                    <?php } ?> 
                 </div>
             </div>
             <!-- account profile end -->
@@ -218,9 +222,13 @@
                     <a href="profile-info.php" class="text-primary">Edit</a>
                 </div>
                 <div class="space-y-1">
+                <?php if(isset($_SESSION['id'])){ ?>
                     <h4 class="text-gray-700 font-medium"><?php echo $_SESSION['firstname'] . " " . $_SESSION['surname']?></h4>
                     <p class="text-gray-800"><?php echo $_SESSION['email']?></p>
                     <p class="text-gray-800"><?php echo $_SESSION['phone']?></p>
+                <?php } else { ?>
+                    <p class="text-gray-800"><i>Please log in to access this feature.</i></p>
+                <?php } ?>
                 </div>
             </div>
             <!-- single card end -->
@@ -228,9 +236,10 @@
             <div class="shadow rounded bg-white px-4 pt-6 pb-8">
                 <div class="flex justify-between items center mb-4">
                     <h3 class="font-medium capitalize text-gray-800 text-lg">Shipping Address</h3>
-                    <a href="#" class="text-primary">Edit</a>
+                    <a href="manage-address.php" class="text-primary">Edit</a>
                 </div>
                 <div class="space-y-1">
+                <?php if(isset($_SESSION['id'])){ ?>
                     <h4 class="text-gray-700 font-medium"><?php echo $_SESSION['firstname'] . " " . $_SESSION['surname']?></h4>
                     <?php if(isset($_SESSION['address'])){?>
                         <p class="text-gray-800"><?php echo $_SESSION['address']?></p>
@@ -243,28 +252,9 @@
                     <?php 
                     }?>
                     <p class="text-gray-800"><?php echo $_SESSION['phone']; ?> </p>
-                </div>
-            </div>
-            <!-- single card end -->
-            <!-- single card -->
-            <div class="shadow rounded bg-white px-4 pt-6 pb-8">
-                <div class="flex justify-between items center mb-4">
-                    <h3 class="font-medium capitalize text-gray-800 text-lg">Billing Address</h3>
-                    <a href="#" class="text-primary">Edit</a>
-                </div>
-                <div class="space-y-1">
-                    <h4 class="text-gray-700 font-medium"><?php echo $_SESSION['firstname'] . " " . $_SESSION['surname']?></h4>
-                    <?php if(isset($_SESSION['address'])){?>
-                        <p class="text-gray-800"><?php echo $_SESSION['address']?></p>
-                        <p class="text-gray-800"><?php echo $_SESSION['city'] . ", " . $_SESSION['country']?></p>
-                    <?php 
-                    }
-                    else{
-                    ?>
-                        <p class="text-gray-800"><i>Address is not set.</i></p>
-                    <?php 
-                    }?>
-                    <p class="text-gray-800"><?php echo $_SESSION['phone']; ?> </p>
+                <?php } else { ?>
+                    <p class="text-gray-800"><i>Please log in to access this feature.</i></p>
+                <?php } ?>
                 </div>
             </div>
             <!-- single card end -->

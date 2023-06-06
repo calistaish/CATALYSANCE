@@ -233,7 +233,7 @@
                   <h2>Custom-Made Products</h2>
                 <p>Looking to add a touch of personality to your everyday items? Look no further than "Wear Your Mood Prints"! We specialize in custom printing services for a range of products, including tote bags, mugs, and mousepads. With our help, you can bring your unique ideas and designs to life, creating one-of-a-kind items that showcase your personality and style. Let us help you unleash your creativity and turn your vision into reality today!</p>
                 <div class="btn-conteiner">
-                <a class="btn-content" href="#">
+                <a class="btn-content" href="custom.php">
                   <span class="btn-title">CREATE YOUR OWN</span>
                   <span class="icon-arrow">
                   <svg width="56px" height="33px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

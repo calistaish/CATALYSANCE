@@ -195,6 +195,17 @@
 			<label for="fname">Contact No:</label>
 			<input type="text" id="cont" name="cont" required>
 
+			<label for="SQ">Security Question:</label>
+			<select id="SQ" name="SQ" style="height: 40px;border-radius: 5px;font-size: 15px;" required>
+				<option style="font-size: 15px;" value="1">What city were you born in?</option>
+				<option style="font-size: 15px;" value="2">What was the first concert you attended?</option>
+				<option style="font-size: 15px;" value="3">What is your first pet's name?</option>
+				<option style="font-size: 15px;" value="4">In what city or town did your parents meet?</option>
+			</select>
+
+			<label for="SA">Security Answer:</label>
+			<input type="text" id="SA" name="SA" required>
+
 			<div class="button-container">
 				<input type="submit" value="Register" name="register" required>
 				<button class="cancel-button" onclick="location.href='userlogin.php'">Cancel</button>

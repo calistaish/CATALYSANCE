@@ -134,9 +134,11 @@
             <form action = "includes/login.inc.php" method="post">
                 <input type="text" id="username" name="username" placeholder="Username">
                 <input type="password" id="password" name="password" placeholder="Password">
+                <center><a href="forgotpassword.php">Forgot password</a></center>
                 <center><input type="submit" value="  Log In   " name="login"></center><br>
                 <center><a href="homepage - final.php">Continue as Guest</a></center><br>
-                <center><a href="registeracc.php">Sign Up</a></center>
+                <center><a href="registeracc.php">Sign Up</a></center><br>
+                <center><a href="admin.php">Continue as Admin</a></center>
             </form>
         </div>
     </body>

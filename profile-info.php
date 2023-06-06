@@ -255,20 +255,20 @@
                                 <?php
                                 if(isset($_SESSION['gender'])){
                                     if($_SESSION['gender'] == 'male'){ ?>
-                                        <option value='' >gender</option>
+                                        <option value='' >Gender</option>
                                         <option value='male' selected>Male</option>
                                         <option value='female'>Female</option>
                                 <?php
                                     }
                                     else if($_SESSION['gender'] == 'female'){ ?>
-                                        <option value='' >gender</option>
+                                        <option value='' >Gender</option>
                                         <option value='male'>Male</option>
                                         <option value='female' selected>Female</option>
                                 <?php
                                     }
                                 }
                                 else{ ?>
-                                    <option value='' selected>gender</option>
+                                    <option value='' selected>Gender</option>
                                     <option value='male'>Male</option>
                                     <option value='female'>Female</option>
                                 <?php
@@ -295,7 +295,7 @@
                 <div class="mt-6">
                     <button type="submit" name='edit'
                         class="px-6 py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
-                        Save change
+                        Save Changes
                     </button>
                 </div>
             </form>

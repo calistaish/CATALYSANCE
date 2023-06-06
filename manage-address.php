@@ -146,7 +146,11 @@
                 </div>
                 <div>
                     <p class="text-gray-600">Hello,</p>
+                <?php if(isset($_SESSION['id'])){ ?>
                     <h4 class="text-gray-800 capitalize font-medium"><?php echo $_SESSION['firstname'];?></h4>
+                <?php } else { ?>
+                    <h4 class="text-gray-800 capitalize font-medium">Guest</h4>
+                <?php } ?>     
                 </div>
             </div>
             <!-- account profile end -->
@@ -195,7 +199,7 @@
                 <!-- single link end -->
                 <!-- single link -->
                 <div class="pl-8 pt-4">
-                    <a href="#"
+                    <a href="includes/logout.inc.php"
                         class="relative medium capitalize text-gray-800 font-medium1 hover:text-primary transition block">
                         logout
                         <span class="absolute -left-8 top-0 text-base1">
@@ -294,49 +298,49 @@
                                 City
                             </label>
                             <select name='city' class="input-box">
-                            <?php
-                                if(isset($_SESSION['city'])){
-                                    if($_SESSION['city'] == 'Seoul'){ ?>
-                                        <option value='Seoul' selected>Seoul</option>
-                                        <option value='Makati'>Makati</option>
-                                <?php
-                                    }
-                                    else if($_SESSION['city'] == 'Makati'){ ?>
+                            <?php if(isset($_SESSION['city'])){ 
+                                if($_SESSION['city'] == 'Seoul'){ ?>
+                                    <option value='Seoul' selected>Seoul</option>
+                                    <option value='Makati'>Makati</option>
+                            <?php }
+                                else if($_SESSION['city'] == 'Makati'){ ?>
                                         <option value='Seoul'>Seoul</option>
                                         <option value='Makati' selected>Makati</option>
-                                <?php
-                                    }
+                            <?php }
                                 }
                                 else{ ?>
                                     <option value='Seoul' selected>Seoul</option>
                                     <option value='Makati'>Makati</option>
-                                <?php
-                                } ?>            
-                                
+                            <?php } ?>                     
                             </select>
                         </div>
                         <div>
                             <label class="text-gray-600 mb-2 block">
                                ZIP Code
                             </label>
-                            <input name='zipcode' type="text" class="input-box" value="<?php echo $_SESSION['zipcode'];?>">
+                            <?php if(isset($_SESSION['address'])){ ?>
+                                <input name='zipcode' type="text" class="input-box" value="<?php echo $_SESSION['zipcode'];?>">
+                            <?php } else { ?>
+                                <input name='zipcode' type="text" class="input-box" value="zipcode">
+                            <?php } ?>
                         </div>
                     </div>
                     <div>
                         <label class="text-gray-600 mb-2 block">
                             Address
                         </label>
-                        <input type="text" name='address' class="input-box" value="<?php echo $_SESSION['address'];?>">
+                        <?php if(isset($_SESSION['address'])){ ?>
+                            <input type="text" name='address' class="input-box" value="<?php echo $_SESSION['address'];?>">
+                        <?php } else { ?>
+                            <input type="text" name='address' class="input-box" value="address">
+                        <?php } ?>
+                        
                     </div>
                 </div>
                 <div class="mt-6">
                     <button type="submit" name='billing'
                         class="px-6 py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
-                        Save as Billing Address
-                    </button>
-                    <button type="submit" name='shipping'
-                        class="px-6 py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
-                        Save as Shipping Address
+                        Save Changes
                     </button>
                 </div>
             </form>

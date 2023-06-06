@@ -180,39 +180,6 @@
                 </div>
             </div>
             <!-- single cart end -->
-            <!-- single cart -->
-            <div
-                class="flex items-center md:justify-between gap-4 md:gap-6 p-4 border border-gray-200 rounded flex-wrap md:flex-nowrap">
-                <!-- cart image -->
-                <div class="w-32 flex-shrink-0">
-                    <img src="./img/hp.png" class="w-full">
-                </div>
-                <!-- cart image end -->
-                <!-- cart content -->
-                <div class="md:w-1/3 w-full">
-                    <h2 class="text-gray-800 mb-3 xl:text-xl textl-lg font-medium uppercase">
-                        Tote Bag
-                    </h2>
-                    <p class="text-primary font-semibold">₱45.00</p>
-                    <p class="text-gray-500">Theme: KPop</p>
-                </div>
-                <!-- cart content end -->
-                <!-- cart quantity -->
-                <div class="flex border border-gray-300 text-gray-600 divide-x divide-gray-300">
-                    <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">-</div>
-                    <div class="h-8 w-10 flex items-center justify-center">4</div>
-                    <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">+</div>
-                </div>
-                <!-- cart quantity end -->
-                <div class="ml-auto md:ml-0">
-                    <p class="text-primary text-lg font-semibold">₱320.00</p>
-                </div>
-                <div class="text-gray-600 hover:text-primary cursor-pointer">
-                    <i class="fas fa-trash"></i>
-                </div>
-            </div>
-            <!-- single cart end -->
-        </div>
         <!-- shipping carts end -->
     </div>
     <!-- product cart end -->

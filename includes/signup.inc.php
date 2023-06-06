@@ -9,6 +9,8 @@ if(isset($_POST['register'])){
     $password = $_POST['password'];
     $conpassword = $_POST['conpassword'];
     $phone = $_POST['cont'];
+    $SQ = $_POST['SQ'];
+    $SA = strtoupper($_POST['SA']);
 
     require_once 'conn.inc.php';
     require_once 'functions.inc.php';
@@ -18,7 +20,8 @@ if(isset($_POST['register'])){
         exit();
     }
     
-    createUser($conn, $fname, $lname, $email, $phone, $username, $password);
+    createUser($conn, $fname, $lname, $email, $phone, $username, $password, $SQ, $SA);
+    
 }
 else {
     header("location: ../registeracc.php");
