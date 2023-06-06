@@ -65,12 +65,12 @@
         $productReviews = $row['reviews'];
         $productStars = $row['stars'];
                         $product = array(
+                            'id' => $productID,
                             'name' => $productName,
                             'price' => $productPrice,
                             'originalPrice' => $productOriginalPrice,
                             'reviews' => $productReviews,
-                            'stars' => $productStars,
-                            'id' => $productID
+                            'stars' => $productStars
                         );
                 
                         // Add the product to the products array
