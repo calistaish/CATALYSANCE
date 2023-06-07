@@ -1,11 +1,11 @@
 <?php
-    $sql = "SELECT categories.id as id, categories.name as name, count(products.category_id) as count FROM categories join products on categories.id = products.category_id group by id";
+    $sql = "SELECT categories.id as id, categories.category as category, count(products.category_id) as count FROM categories join products on categories.id = products.category_id group by id";
     require_once 'includes/conn.inc.php';
         
     $result = mysqli_query($conn, $sql);
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $categoryID = $row['id'];
-                                $categoryName = $row['name'];
+                                $categoryName = $row['category'];
                                 $productCount = $row['count'];
                                 echo 
                                 '<!-- single category -->

@@ -145,6 +145,61 @@ function createUser($conn, $fname, $lname, $email, $phone, $username, $password,
     exit();
 }
 
+function codeExist($conn, $id) {
+    $sql = "SELECT * FROM admincode WHERE id = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../registeracc.php?error=anerroroccured");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, 'i', $id);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+    mysqli_stmt_close($stmt);
+    if ($row = mysqli_fetch_assoc($resultData)){
+        return $row;
+    }
+    else {
+        $result = false;
+        return $result;
+    }
+}
+
+function createcode($conn, $code)
+{
+    $sql = "INSERT INTO admincode (code) VALUES (?);";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../registeracc.php?error=anerroroccured");
+        exit();
+    }
+
+    $hashedpwd = password_hash($code, PASSWORD_DEFAULT);
+    mysqli_stmt_bind_param($stmt, 's', $hashedpwd);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../admin.php");
+    exit();
+}
+
+function Authenticator($conn, $code, $id){
+    $codeexist = codeExist($conn, $id);
+
+    $pwdhashed = $codeexist['code'];
+    $checkPwd = password_verify($code, $pwdhashed);
+
+    if ($checkPwd === false) {
+        header("location: ../admin.php?error=incorrectpassword");
+        exit();
+    }
+    else if ($checkPwd === true) {
+        header("location: ../admin2.php");
+        exit();
+    }
+}
+
 function loginUser($conn, $username, $password){
     $usernameexist = usernameExists($conn, $username, $username);
     if($usernameexist === false){

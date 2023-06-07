@@ -137,11 +137,11 @@
     <div class="container">
         <center><img src="img/admin.png" width="140px"></center>
         <h2>Admin</h2>
-        <form action="admin2.php" method="post">
+        <form action="includes/admin1.inc.php" method="post">
             <label>Please enter company verification code:</label>
-            <input type="text" id="code" name="code" placeholder="12345">
+            <input type="text" id="code" name="code" placeholder="*****">
             <div class="button-container">
-                <input type="submit" value="Submit">
+                <input type="submit" name="Submit" value="Submit">
             </div>
         </form>
     </div>

@@ -1,3 +1,11 @@
+<?php
+require_once 'includes/conn.inc.php';
+$results_per_page = 10;
+if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
+$start_from = ($page-1) * $results_per_page;
+$sql = "SELECT * FROM Inventory ORDER BY ID ASC LIMIT $start_from, ".$results_per_page;
+$rs_result = $conn->query($sql);
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -77,58 +85,51 @@
               <div class="recent-sales box">
                 <div class="title orange">Inventory</div>
                 <div class="sales-details">
-                  <ul class="details">
-                    <li class="topic">Product Name</li>
-                    <li><a href="#">Blue Mousepad</a></li>
-                    <li><a href="#">Blackpink Tote Bag</a></li>
-                    <li><a href="#">Aesthetic Mugs</a></li>
-                    <li><a href="#">Blue Tote Bag</a></li>
-                  </ul>
-                  <ul class="details">
-                  <li class="topic">Category</li>
-                  <li><a href="#">Mousepad</a></li>
-                  <li><a href="#">Tote Bag</a></li>
-                  <li><a href="#">Mug</a></li>
-                  <li><a href="#">Tote Bag</a></li>
-                </ul>
-                <ul class="details">
-                  <li class="topic">Price</li>
-                  <li><a href="#">₱ 100</a></li>
-                  <li><a href="#">₱ 150</a></li>
-                  <li><a href="#">₱ 100</a></li>
-                  <li><a href="#">₱ 150</a></li>
-                </ul>
-                <ul class="details">
-                  <li class="topic">Quantity</li>
-                  <li><a href="#">56</a></li>
-                  <li><a href="#">43</a></li>
-                  <li><a href="#">12</a></li>
-                  <li><a href="#">25</a></li>
-                </ul>
+                  <table style="width: 100%; border-spacing: 5px;" class="details">
+                    <tr>
+                    <td style="font-size: 20px;" class="topic"><strong>Product Name</strong></td>
+                    <td style="font-size: 20px;" class="topic"><strong>Category</strong></td>
+                    <td style="font-size: 20px;" class="topic"><strong>Price</strong></td>
+                    <td style="font-size: 20px;" class="topic"><strong>Stocks</strong></td>
+                    </tr>
+                    <?php while($row = $rs_result->fetch_assoc()) { ?>
+                    <tr>
+                      <td><a style="text-decoration: none; font-size: 18px; color:  #333;" href="productdeets.php?id=<?php echo $row['id']; ?>"><?php echo $row["name"]; ?></a></td>
+                      <td><center><a style="text-decoration: none; font-size: 18px; color:  #333;" href="productdeets.php?id=<?php echo $row['id']; ?>"><?php echo $row["category"]; ?></center></td>
+                      <td><center><a style="text-decoration: none; font-size: 18px; color:  #333;" href="productdeets.php?id=<?php echo $row['id']; ?>"><?php echo $row["price"]; ?></center></td>
+                      <td><center><a style="text-decoration: none; font-size: 18px; font-weight: bold; color:  #333;" href="productdeets.php?id=<?php echo $row['id']; ?>"><?php echo $row["stocks"]; ?></center></td>
+                    </tr>
+                    <?php }; ?>
+                  </table>
                 </div>
+                <center>
+                    <?php
+                    $sql = "SELECT COUNT(ID) AS total FROM Inventory;";
+                    $result = $conn->query($sql);
+                    $row = $result->fetch_assoc();
+                    $total_pages = ceil($row["total"] / $results_per_page);
+
+                    for ($i=1; $i<=$total_pages; $i++) {
+                      echo "<a style='color: #D55008; font-weight: bold;'href='admin3.php?page=".$i."'";
+                      if ($i==$page)  echo " class='curPage'";
+                      echo ">".$i."</a> ";
+                    }; ?>
+                </center>
               </div>
+              <?php 
+                $sql = "SELECT * FROM Inventory WHERE status = 'Critical Stocks' OR status = 'Out of Stock' ORDER BY stocks ASC LIMIT 0, 10 " ;
+                $rs_result = $conn->query($sql);
+              ?>
               <div class="top-sales box">
                 <div class="title red">Critical Stock</div>
-                <ul class="top-sales-details">
-                  <li>
-                  <a href="#">
-                    <span class="product black">Purple Tote Bag</span>
-                  </a>
-                  <span class="price red">2 pcs</span>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="product black">Green Mousepad </span>
-                  </a>
-                  <span class="price red">5 pcs</span>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="product black">Brown Mug</span>
-                  </a>
-                  <span class="price red">10 pcs</span>
-                </li>
-                </ul>
+                <table style="border-spacing: 10px;" class="top-sales-details">
+                <?php while($row = $rs_result->fetch_assoc()) { ?>
+                  <tr>
+                    <td><a style="text-decoration: none;" href="productdeets.php?id=<?php echo $row['id']; ?>"><span class="product black"><?php echo $row["name"]; ?></span></a></td>
+                    <td><span class="price red"><?php echo $row["stocks"]; ?></span></td>
+                  </tr>
+                <?php }?>
+                </table>
               </div>
             </div>
           </div>
