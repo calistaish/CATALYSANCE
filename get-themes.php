@@ -1,5 +1,5 @@
 <?php
-    $sql = "SELECT themes.id as id, themes.name as name, count(products.theme_id) as count FROM themes join products on themes.id = products.theme_id group by id";
+    $sql = "SELECT themes.id as id, themes.theme as name, count(products.theme_id) as count FROM themes join products on themes.id = products.theme_id group by id";
     require_once 'includes/conn.inc.php';
         
     $result = mysqli_query($conn, $sql);

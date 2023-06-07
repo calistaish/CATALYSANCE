@@ -158286,10 +158286,10 @@ border-radius: 5px;
           <nav class="navbar">
         
         <ul class="menu2">
-            <li><a href="homepage - final.html">Home</a></li>
-            <li><a href="product.html">Product</a></li>
-            <li><a href="review.html">Reviews</a></li>
-            <li><a href="about us.html">About Us</a></li>
+            <li><a href="homepage - final.php">Home</a></li>
+            <li><a href="product.php">Product</a></li>
+            <li><a href="review.php">Reviews</a></li>
+            <li><a href="about us.php">About Us</a></li>
         </ul>
         
         <div class="logo-container">
@@ -158300,19 +158300,19 @@ border-radius: 5px;
         
         <ul class="icons2">
             <li>
-                <a href="wishlist.html">
+                <a href="wishlist.php">
                     <img src="./img/wishlist.png" alt="Wishlist">
                     <span>Wishlist</span>
                 </a>
             </li>
             <li>
-                <a href="cart.html">
+                <a href="cart.php">
                     <img src="./img/cart.png" alt="Add to Cart">
                     <span>Cart</span>
                 </a>
             </li>
             <li>
-                <a href="userlogin.html">
+                <a href="userlogin.php">
                     <img src="./img/acc1.png" alt="Sign In">
                     <span>Sign In</span>
                 </a>
@@ -158376,7 +158376,7 @@ border-radius: 5px;
 
   <!-- breadcrum -->
     <div class="py-4 container flex gap-3 items-center">
-        <a href="homepage - final.html" class="text-primary text-base">
+        <a href="homepage - final.php" class="text-primary text-base">
             <i class="fas fa-home"></i>
         </a>
         <span class="text-sm text-gray-400"><i class="fas fa-chevron-right"></i></span>
@@ -158404,36 +158404,36 @@ border-radius: 5px;
             <div class="mt-6 bg-white shadow rounded p-4 divide-y divide-gray-200 space-y-4 text-gray-600">
                 <!-- single link -->
                 <div class="space-y-1 pl-8">
-                    <a href="account.html"
+                    <a href="account.php"
                         class="relative text-base1 font-medium1 capitalize hover:text-primary transition block">
                         Manage account
                         <span class="absolute -left-8 top-0 text-base1">
                             <i class="far fa-address-card"></i>
                         </span>
                     </a>
-                    <a href="profile-info.html" class="hover:text-primary transition capitalize block">Profile
+                    <a href="profile-info.php" class="hover:text-primary transition capitalize block">Profile
                         information</a>
-                    <a href="manage-address.html" class="hover:text-primary transition capitalize block">Manage
+                    <a href="manage-address.php" class="hover:text-primary transition capitalize block">Manage
                         address</a>
 
                 </div>
                 <!-- single link end -->
                 <!-- single link -->
                 <div class="space-y-1 pl-8 pt-4">
-                    <a href="my-order-history.html"
+                    <a href="my-order-history.php"
                         class="relative medium text-base1 font-medium capitalize hover:text-primary transition block">
                         My order history
                         <span class="absolute -left-8 top-0 text-base1">
                             <i class="fas fa-gift"></i>
                         </span>
                     </a>
-                    <a href="my purchases.html" class="hover:text-primary transition capitalize block text-primary">my purchases</a>
-                    <a href="my reviews.html" class="hover:text-primary transition block capitalize">my reviews</a>
+                    <a href="my purchases.php" class="hover:text-primary transition capitalize block text-primary">my purchases</a>
+                    <a href="my reviews.php" class="hover:text-primary transition block capitalize">my reviews</a>
                 </div>
                 <!-- single link end -->
                 <!-- single link -->
                 <div class="pl-8 pt-4">
-                    <a href="wishlist.html"
+                    <a href="wishlist.php"
                         class="relative medium capitalize text-gray-800 font-medium1 hover:text-primary transition block">
                         my wishlist
                         <span class="absolute -left-8 top-0 text-base1">

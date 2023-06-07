@@ -349,3 +349,33 @@ function addAddress($conn, $userid, $country, $region, $city, $zipcode, $address
     header("location: ../account.php");
     exit();
 }
+
+function addCheckout($conn, $fname, $lname, $cname, $country, $address, $city, $zipcode, $phone, $email, $mop, $userid){
+    $sql = "INSERT INTO checkoutinfo (firstname, surname, companyname, country, address, city, zipcode, phone, email, modeofpayment, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../manage-address.php?error=anerroroccured");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, 'ssssssisssi', $fname, $lname, $cname, $country, $address, $city, $zipcode, $phone, $email, $mop, $userid);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../ordercomp.php");
+    exit();
+}
+
+function editQuantity($conn, $quantity, $id){
+    $sql = "UPDATE cart_items SET quantity = ? WHERE item_id = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../cart.php?error=anerroroccured");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, 'ii', $quantity, $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../cart.php");
+    exit();
+}

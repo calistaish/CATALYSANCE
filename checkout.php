@@ -143,7 +143,7 @@
     <div class="container lg:grid grid-cols-12 gap-6 items-start pb-16 pt-4">
         <!-- checkout form -->
         <div class="lg:col-span-8 border border-gray-200 px-4a py-4 rounded">
-            <form action="">
+            <form action="includes/checkout.inc.php" method="post">
                 <h3 class="text-lg font-medium capitalize mb-4">
                     checkout
                 </h3>
@@ -154,69 +154,100 @@
                             <label class="text-gray-600 mb-2 block">
                                 First Name <span class="text-primary">*</span>
                             </label>
-                            <input type="text" class="input-box">
+                            <?php if(isset($_SESSION['id'])) { ?>
+                                <input type="text" name="fname" class="input-box" value="<?php echo $_SESSION['firstname']; ?>">
+                            <?php } else {?>
+                                <input type="text" name="fname" class="input-box">
+                            <?php }?>
                         </div>
                         <div>
                             <label class="text-gray-600 mb-2 block">
                                 Last Name <span class="text-primary">*</span>
                             </label>
-                            <input type="text" class="input-box">
+                            <?php if(isset($_SESSION['id'])) { ?>
+                                <input type="text" name="lname" class="input-box" value="<?php echo $_SESSION['surname']; ?>">
+                            <?php } else {?>
+                                <input type="text" name="lname" class="input-box">
+                            <?php }?>
                         </div>
                     </div>
                     <div>
                         <label class="text-gray-600 mb-2 block">
                             Company Name
                         </label>
-                        <input type="text" class="input-box">
+                        <input type="text" name="cname" class="input-box">
                     </div>
                     <div>
                         <label class="text-gray-600 mb-2 block">
                             County/Region <span class="text-primary">*</span>
                         </label>
-                        <input type="text" class="input-box">
+                        <?php if(isset($_SESSION['id'])) { ?>
+                                <input type="text" name="country" class="input-box" value="<?php echo $_SESSION['country'] ?>">
+                            <?php } else {?>
+                                <input type="text" name="country" class="input-box">
+                            <?php }?>
                     </div>
                     <div>
                         <label class="text-gray-600 mb-2 block">
                             Street Address <span class="text-primary">*</span>
                         </label>
-                        <input type="text" class="input-box">
+                        <?php if(isset($_SESSION['id'])) { ?>
+                                <input type="text" name="address" class="input-box" value="<?php echo $_SESSION['address'] ?>">
+                            <?php } else {?>
+                                <input type="text" name="address" class="input-box">
+                            <?php }?>
                     </div>
                     <div>
                         <label class="text-gray-600 mb-2 block">
                             Town/City <span class="text-primary">*</span>
                         </label>
-                        <input type="text" class="input-box">
+                        <?php if(isset($_SESSION['id'])) { ?>
+                                <input type="text" name="city" class="input-box" value="<?php echo $_SESSION['city'] ?>">
+                            <?php } else {?>
+                                <input type="text" name="city" class="input-box">
+                            <?php }?>
                     </div>
                     <div>
                         <label class="text-gray-600 mb-2 block">
                             Zip Code <span class="text-primary">*</span>
                         </label>
-                        <input type="text" class="input-box">
+                        <?php if(isset($_SESSION['id'])) { ?>
+                                <input type="text" name="zipcode" class="input-box" value="<?php echo $_SESSION['zipcode']  ?>">
+                            <?php } else {?>
+                                <input type="text" name="zipcode" class="input-box">
+                            <?php }?>
                     </div>
                     <div>
                         <label class="text-gray-600 mb-2 block">
                             Phone Number <span class="text-primary">*</span>
                         </label>
-                        <input type="text" class="input-box">
+                        <?php if(isset($_SESSION['id'])) { ?>
+                                <input type="text" name="phone" class="input-box" value="<?php echo $_SESSION['phone'] ?>">
+                            <?php } else {?>
+                                <input type="text" name="phone" class="input-box">
+                            <?php }?>
                     </div>
                     <div>
                         <label class="text-gray-600 mb-2 block">
                             Email Address <span class="text-primary">*</span>
                         </label>
-                        <input type="text" class="input-box">
+                        <?php if(isset($_SESSION['id'])) { ?>
+                                <input type="text" name="email" class="input-box" value="<?php echo $_SESSION['email'] ?>">
+                            <?php } else {?>
+                                <input type="text" name="email" class="input-box">
+                            <?php }?>
                     </div>
                     <div>
                         <label class="text-gray-600 mb-2 block">
                             Mode of Payment <span class="text-primary">*</span>
                         </label>
-                        <select
+                        <select name="MOP"
                     class="w-44 text-sm text-gray-600 px-4 py-3 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary">
-                    <option>Gcash</option>
-                    <option>COD</option>
+                    <option value="GCASH">Gcash</option>
+                    <option value="COD">COD</option>
                 </select>
                     </div>
                 </div>
-            </form>
         </div>
         <!-- checkout form end -->
 
@@ -257,11 +288,10 @@
             </div>
 
             <!-- checkout -->
-            <a href="ordercomp.php" class="bg-primary border border-primary text-white px-4 py-3 font-medium rounded-md uppercase hover:bg-transparent
+            <input type="submit" name="submit" value="Place order"class="bg-primary border border-primary text-white px-4 py-3 font-medium rounded-md uppercase hover:bg-transparent
          hover:text-primary transition text-sm w-full block text-center">
-                Place order
-            </a>
             <!-- checkout end -->
+            </form>
         </div>
         <!-- order summary end -->
     </div>

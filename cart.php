@@ -145,10 +145,27 @@
             <p class="text-beige-600 text-center">Total</p>
         </div>
         <!-- cart title end -->
-
+        <?php
+        require_once 'includes/conn.inc.php';
+        function getCartID($conn){
+            $sql = "select * from cart where user_id = " . $_SESSION['id'] . ";";
+            $cart = $conn->query($sql);
+            while($row = $cart->fetch_assoc()) {
+                $cart_id = $row['cart_id'];
+                return $cart_id;
+            }
+        }
+        $cart_id = getCartID($conn);
+        $results_per_page = 5;
+        if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
+        $start_from = ($page-1) * $results_per_page;
+        $sql = "SELECT * FROM order_summary where cart_id = $cart_id ORDER BY cart_ID ASC LIMIT $start_from, ".$results_per_page;
+        $rs_result = $conn->query($sql);
+        ?>
         <!-- shipping carts -->
         <div class="space-y-4">
             <!-- single cart -->
+            <?php while($row = $rs_result->fetch_assoc()) { ?>
             <div
                 class="flex items-center md:justify-between gap-4 md:gap-6 p-4 border border-gray-200 rounded flex-wrap md:flex-nowrap">
                 <!-- cart image -->
@@ -159,58 +176,28 @@
                 <!-- cart content -->
                 <div class="md:w-1/3 w-full">
                     <h2 class="text-gray-800 mb-3 xl:text-xl textl-lg font-medium uppercase">
-                        Tote Bag
+                        <?php echo $row['name']; ?>
                     </h2>
-                    <p class="text-primary font-semibold">₱45.00</p>
-                    <p class="text-gray-500">Theme: KPop</p>
+                    <p class="text-primary font-semibold">₱ <?php echo $row['price']; ?></p>
+                    <p class="text-gray-500">Theme: <?php echo $row['theme']; ?></p>
                 </div>
                 <!-- cart content end -->
                 <!-- cart quantity -->
-                <div class="flex border border-gray-300 text-gray-600 divide-x divide-gray-300">
-                    <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">-</div>
-                    <div class="h-8 w-10 flex items-center justify-center">4</div>
-                    <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">+</div>
+                <div>
+                        <form style="border: none;" action="includes/quantity.inc.php?id=<?php echo $row['item_id']; ?>" method="post">
+                            <center><input style="width: 50px; text-align: center; margin-bottom: 2px;" type="text" name="quantity" value="<?php echo $row['quantity']; ?>"></center>
+                            <center><input style="padding: 5px; background-color: #bc377e; color: white; font-weight: bold; border-radius: 5px;" type="submit" name="save" value="Save"></center>
+                        </form>
                 </div>
                 <!-- cart quantity end -->
                 <div class="ml-auto md:ml-0">
-                    <p class="text-primary text-lg font-semibold">₱320.00</p>
+                    <p class="text-primary text-lg font-semibold">₱ <?php echo $row['subtotal']; ?></p>
                 </div>
                 <div class="text-gray-600 hover:text-primary cursor-pointer">
                     <i class="fas fa-trash"></i>
                 </div>
             </div>
-            <!-- single cart end -->
-            <!-- single cart -->
-            <div
-                class="flex items-center md:justify-between gap-4 md:gap-6 p-4 border border-gray-200 rounded flex-wrap md:flex-nowrap">
-                <!-- cart image -->
-                <div class="w-32 flex-shrink-0">
-                    <img src="./img/hp.png" class="w-full">
-                </div>
-                <!-- cart image end -->
-                <!-- cart content -->
-                <div class="md:w-1/3 w-full">
-                    <h2 class="text-gray-800 mb-3 xl:text-xl textl-lg font-medium uppercase">
-                        Tote Bag
-                    </h2>
-                    <p class="text-primary font-semibold">₱45.00</p>
-                    <p class="text-gray-500">Theme: KPop</p>
-                </div>
-                <!-- cart content end -->
-                <!-- cart quantity -->
-                <div class="flex border border-gray-300 text-gray-600 divide-x divide-gray-300">
-                    <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">-</div>
-                    <div class="h-8 w-10 flex items-center justify-center">4</div>
-                    <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">+</div>
-                </div>
-                <!-- cart quantity end -->
-                <div class="ml-auto md:ml-0">
-                    <p class="text-primary text-lg font-semibold">₱320.00</p>
-                </div>
-                <div class="text-gray-600 hover:text-primary cursor-pointer">
-                    <i class="fas fa-trash"></i>
-                </div>
-            </div>
+            <?php }; ?>
             <!-- single cart end -->
         </div>
         <!-- shipping carts end -->
@@ -220,34 +207,60 @@
     <div class="xl:col-span-3 lg:col-span-4 border border-gray-200 px-4 py-4 rounded mt-6 lg:mt-0">
         <h4 class="text-gray-800 text-lg mb-4 font-medium uppercase">ORDER SUMMARY</h4>
         <div class="space-y-1 text-gray-600 pb-3 border-b border-gray-200">
+            <?php
+               $sql = "select SUM(subtotal) FROM order_summary;";
+               $sum = $conn->query($sql);
+               $rs_result = $conn->query($sql);
+               while($row = $rs_result->fetch_assoc()) {
+                $subtotal = $row['SUM(subtotal)'];
+            ?>
             <div class="flex justify-between font-medium">
                 <p>Subtotal</p>
-                <p>₱320</p>
+                <p>₱<?php echo $subtotal?></p>
             </div>
             <div class="flex justify-between">
                 <p>Delivery</p>
                 <p>Free</p>
             </div>
             <div class="flex justify-between">
-                <p>Tax</p>
-                <p>Free</p>
+                <p>Discount</p>
+                <?php 
+                $discount = "None";
+                $total = $subtotal;
+                if(isset($_POST['submit'])){
+                    $code = strtoupper($_POST['coupon']);
+
+                    if($code == "CATALYSANCE"){
+                        $discount = "25%";
+                        $total = $subtotal - ($subtotal * 0.25) ;
+                    }
+                    else{
+                        $discount = "None";
+                        $total = $subtotal;
+                    }
+                }    
+                ?>
+                <p><?php echo $discount;?></p>
             </div>
         </div>
         <div class="flex justify-between my-3 text-gray-800 font-semibold uppercase">
             <h4>Total</h4>
-            <h4>₱320</h4>
+            <h4>₱<?php echo number_format($total, 2);?></h4>
         </div>
+        <?php }?>
 
         <!-- searchbar -->
+        <form action="cart.php" method="post">
         <div class="flex mb-5">
-            <input type="text"
+            
+            <input type="text" name="coupon"
                 class="pl-4 w-full border border-r-0 border-primary py-2 px-3 rounded-l-md focus:ring-primary focus:border-primary text-sm"
                 placeholder="Coupon">
-            <button type="submit"
+            <input type="submit" name="submit" value="apply"
                 class="bg-primary border border-primary text-white px-5 font-medium rounded-r-md hover:bg-transparent hover:text-primary transition text-sm font-roboto">
-                Apply
-            </button>
+                
         </div>
+        </form>
         <!-- searchbar end -->
 
         <!-- checkout -->
