@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2023 at 03:36 PM
+-- Generation Time: Jun 08, 2023 at 07:15 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -99,9 +99,10 @@ CREATE TABLE `cart_items` (
 --
 
 INSERT INTO `cart_items` (`item_id`, `cart_id`, `product_id`, `quantity`) VALUES
-(1, 1, 1, 6),
 (2, 1, 2, 3),
-(6, 3, 2, 3);
+(6, 3, 2, 3),
+(7, 1, 1, 5),
+(8, 1, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -175,6 +176,19 @@ CREATE TABLE `details` (
   `details` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `details`
+--
+
+INSERT INTO `details` (`id`, `details`) VALUES
+(1, '- Reusable, lightweight go-everywhere bag keeps you ready to shop responsibly\r\n- The bag measures 12\" x 14 inches\"\r\n- Lightweight 4.2 oz (145g) 100% canvas fabric\r\n- Straps are 1.2 inches wide and 19 inches long\r\n- One-sided design, digitally printed'),
+(2, '- Thick canvas fabric used\r\n- Sturdy. Can carry heavy items\r\n- Reusable, lightweight go-everywhere bag keeps you ready to shop responsibly\r\n- The bag measures 14\" x 16 inches\" / 12 X 14 inches\r\n- Lightweight \r\n- Do not bleach\r\n- Wash in cold water'),
+(3, '- High quality\n- Rubber backed mousepad\n- 7.5 x 8 inches\n- 5mm thickness\n- No limitations on color\n- Add logo, pictures, collage, artwork, or any design\n- We can print full color using CMYK and the artwork transferred using 200C heat and pressure.\n- '),
+(4, 'SIZE: 5MM\nMATERIAL: RUBBER\nPRINTING METHOD: SUBLIMATION'),
+(5, 'SIZE: 7.5 X 8 INCHES\nTHICKNESS: 5MM\nMATERIAL: HIGH-QUALITY RUBBER MOUSEPAD\nPRINTING METHOD: SUBLIMATION'),
+(6, 'SIZE: 3MM\nMATERIAL: RUBBER\nPRINTING METHOD: SUBLIMATION'),
+(7, 'Material: Ceramic\r\nCapacity: 340ml\r\nDimensions: 8.2x9.6cm');
+
 -- --------------------------------------------------------
 
 --
@@ -199,8 +213,45 @@ CREATE TABLE `displayitems` (
 
 CREATE TABLE `images` (
   `id` int(11) NOT NULL,
-  `picture` longblob NOT NULL
+  `product_id` int(11) NOT NULL,
+  `image` varchar(250) NOT NULL,
+  `type` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `images`
+--
+
+INSERT INTO `images` (`id`, `product_id`, `image`, `type`) VALUES
+(1, 1, 'img/products/mousepad/1/1.jpg', 'primary'),
+(2, 1, 'img/products/mousepad/1/2.jpg', ''),
+(3, 1, 'img/products/mousepad/1/3.jpg', ''),
+(4, 1, 'img/products/mousepad/1/4.jpg', ''),
+(5, 1, 'img/products/mousepad/1/5.jpg', ''),
+(6, 1, 'img/products/mousepad/1/6.jpg', ''),
+(7, 1, 'img/products/mousepad/1/7.jpg', ''),
+(8, 2, 'img/products/mousepad/2/1.jpg', 'primary'),
+(9, 2, 'img/products/mousepad/2/2.jpg', ''),
+(10, 2, 'img/products/mousepad/2/3.jpg', ''),
+(11, 2, 'img/products/mousepad/2/4.jpg', ''),
+(12, 2, 'img/products/mousepad/2/5.jpg', ''),
+(13, 2, 'img/products/mousepad/2/6.jpg', ''),
+(14, 2, 'img/products/mousepad/2/7.jpg', ''),
+(15, 3, 'img/products/mousepad/3/1.jpg', 'primary'),
+(16, 3, 'img/products/mousepad/3/2.jpg', ''),
+(17, 3, 'img/products/mousepad/3/3.jpg', ''),
+(18, 3, 'img/products/mousepad/3/4.jpg', ''),
+(19, 3, 'img/products/mousepad/3/5.jpg', ''),
+(20, 3, 'img/products/mousepad/3/6.jpg', ''),
+(21, 4, 'img/products/mousepad/4/1.jpg', 'primary'),
+(22, 4, 'img/products/mousepad/4/2.jpg', ''),
+(23, 4, 'img/products/mousepad/4/3.jpg', ''),
+(24, 4, 'img/products/mousepad/4/4.jpg', ''),
+(25, 4, 'img/products/mousepad/4/5.jpg', ''),
+(26, 5, 'img/products/mousepad/5/1.jpg', 'primary'),
+(27, 5, 'img/products/mousepad/5/2.jpg', ''),
+(28, 5, 'img/products/mousepad/5/3.jpg', ''),
+(29, 5, 'img/products/mousepad/5/4.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -260,6 +311,24 @@ CREATE TABLE `order_summary` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `productdetails`
+-- (See below for the actual view)
+--
+CREATE TABLE `productdetails` (
+`id` int(11)
+,`name` varchar(250)
+,`theme` varchar(250)
+,`category` varchar(250)
+,`price` double
+,`status` varchar(250)
+,`details` varchar(250)
+,`reviews` int(11)
+,`stars` int(11)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `products`
 --
 
@@ -267,70 +336,25 @@ CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   `theme_id` int(11) NOT NULL,
-  `image_id` int(11) NOT NULL,
   `details_id` int(11) NOT NULL,
   `name` varchar(250) NOT NULL,
   `price` double NOT NULL,
-  `original_price` double DEFAULT NULL,
-  `description` varchar(250) NOT NULL,
   `reviews` int(11) NOT NULL,
   `stars` int(11) NOT NULL,
   `stocks` int(11) NOT NULL,
-  `status` varchar(250) GENERATED ALWAYS AS (case when `stocks` = 0 then 'Out of Stock' when `stocks` < 20 then 'Critical Stocks' else 'In Stock' end) VIRTUAL
+  `status` varchar(250) GENERATED ALWAYS AS (case when `stocks` = 0 then 'Out of Stock' else 'In Stock' end) VIRTUAL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `category_id`, `theme_id`, `image_id`, `details_id`, `name`, `price`, `original_price`, `description`, `reviews`, `stars`, `stocks`) VALUES
-(1, 2, 2, 0, 7, 'KIBUNPH BADDEST ALIVE AESTHETIC MUG', 150, 0, '-C-shaped handle, comfortable to hold,\r\n- Durable ceramic material, safe and healthy for drinking\r\n- Can be used for Hot & Cold beverages\r\n- 100% dishwasher, hand-wash, and microwave proof', 1, 5, 100),
-(2, 2, 2, 0, 7, 'KIBUNPH CREATIVE FUEL AESTHETIC MUG', 150, 0, '-C-shaped handle, comfortable to hold,\r\n- Durable ceramic material, safe and healthy for drinking\r\n- Can be used for Hot & Cold beverages\r\n- 100% dishwasher, hand-wash, and microwave proof', 1, 5, 100),
-(3, 2, 2, 0, 7, 'KIBUNPH LIQUID PATIENCE AESTHETIC MUG', 150, 0, '-C-shaped handle, comfortable to hold,\r\n- Durable ceramic material, safe and healthy for drinking\r\n- Can be used for Hot & Cold beverages\r\n- 100% dishwasher, hand-wash, and microwave proof', 0, 0, 100),
-(4, 2, 2, 0, 7, 'KIBUNPH I WORK HARD SO MY CAT CAN HAVE A GOOD LIFE AESTHETIC MUG', 150, 0, '-C-shaped handle, comfortable to hold,\r\n- Durable ceramic material, safe and healthy for drinking\r\n- Can be used for Hot & Cold beverages\r\n- 100% dishwasher, hand-wash, and microwave proof', 0, 0, 100),
-(5, 2, 2, 0, 7, 'KIBUNPH ALL DAY MUG AESTHETIC MUG', 150, 0, '-C-shaped handle, comfortable to hold,\r\n- Durable ceramic material, safe and healthy for drinking\r\n- Can be used for Hot & Cold beverages\r\n- 100% dishwasher, hand-wash, and microwave proof', 0, 0, 100),
-(6, 2, 2, 0, 7, 'KIBUNPH FACTS ABOUT TEA AESTHETIC MUG', 150, 0, '-C-shaped handle, comfortable to hold,\r\n- Durable ceramic material, safe and healthy for drinking\r\n- Can be used for Hot & Cold beverages\r\n- 100% dishwasher, hand-wash, and microwave proof', 0, 0, 100),
-(7, 2, 2, 0, 7, 'KIBUNPH HAVE A TEA AND LET IT BE AESTHETIC MUG', 150, 0, '-C-shaped handle, comfortable to hold,\r\n- Durable ceramic material, safe and healthy for drinking\r\n- Can be used for Hot & Cold beverages\r\n- 100% dishwasher, hand-wash, and microwave proof', 0, 0, 100),
-(8, 2, 2, 0, 7, 'KIBUNPH DONT SPILL THE TEA AESTHETIC MUG', 150, 0, '-C-shaped handle, comfortable to hold,\r\n- Durable ceramic material, safe and healthy for drinking\r\n- Can be used for Hot & Cold beverages\r\n- 100% dishwasher, hand-wash, and microwave proof', 0, 0, 15),
-(9, 2, 2, 0, 7, 'KIBUNPH NO SLEEP CLUB AESTHETIC MUG', 150, 0, '-C-shaped handle, comfortable to hold,\r\n- Durable ceramic material, safe and healthy for drinking\r\n- Can be used for Hot & Cold beverages\r\n- 100% dishwasher, hand-wash, and microwave proof', 0, 0, 100),
-(10, 2, 2, 0, 7, 'KIBUNPH HAPPY CUP AESTHETIC MUG', 150, 0, '-C-shaped handle, comfortable to hold,\r\n- Durable ceramic material, safe and healthy for drinking\r\n- Can be used for Hot & Cold beverages\r\n- 100% dishwasher, hand-wash, and microwave proof', 0, 0, 100),
-(11, 2, 2, 0, 7, 'KIBUNPH TEA TIME AESTHETIC MUG', 150, 0, '-C-shaped handle, comfortable to hold,\r\n- Durable ceramic material, safe and healthy for drinking\r\n- Can be used for Hot & Cold beverages\r\n- 100% dishwasher, hand-wash, and microwave proof', 0, 0, 100),
-(12, 2, 2, 0, 7, 'KIBUNPH PEACHES AND CREAM AESTHETIC MUG', 150, 0, '-C-shaped handle, comfortable to hold,\r\n- Durable ceramic material, safe and healthy for drinking\r\n- Can be used for Hot & Cold beverages\r\n- 100% dishwasher, hand-wash, and microwave proof', 0, 0, 15),
-(13, 2, 2, 0, 7, 'KIBUNPH MORNING COFFEE AESTHETIC MUG', 150, 0, '-C-shaped handle, comfortable to hold,\r\n- Durable ceramic material, safe and healthy for drinking\r\n- Can be used for Hot & Cold beverages\r\n- 100% dishwasher, hand-wash, and microwave proof', 0, 0, 100),
-(14, 2, 2, 0, 7, 'KIBUNPH TAKE A LITTLE COFFEE BREAK AESTHETIC MUG', 150, 0, '-C-shaped handle, comfortable to hold,\r\n- Durable ceramic material, safe and healthy for drinking\r\n- Can be used for Hot & Cold beverages\r\n- 100% dishwasher, hand-wash, and microwave proof', 0, 0, 15),
-(15, 2, 2, 0, 7, 'KIBUNPH IS IT FRIDAY YET AESTHETIC MUG', 150, 0, '-C-shaped handle, comfortable to hold,\r\n- Durable ceramic material, safe and healthy for drinking\r\n- Can be used for Hot & Cold beverages\r\n- 100% dishwasher, hand-wash, and microwave proof', 0, 0, 100),
-(16, 2, 2, 0, 7, 'KIBUNPH PEACHES AND CREAM AESTHETIC MUG', 150, 0, '-C-shaped handle, comfortable to hold,\r\n- Durable ceramic material, safe and healthy for drinking\r\n- Can be used for Hot & Cold beverages\r\n- 100% dishwasher, hand-wash, and microwave proof', 0, 0, 100),
-(17, 2, 2, 0, 7, 'KIBUNPH MORNING COFFEE AESTHETIC MUG', 150, 0, '-C-shaped handle, comfortable to hold,\r\n- Durable ceramic material, safe and healthy for drinking\r\n- Can be used for Hot & Cold beverages\r\n- 100% dishwasher, hand-wash, and microwave proof', 0, 0, 15),
-(18, 2, 2, 0, 7, 'KIBUNPH TAKE A LITTLE COFFEE BREAK AESTHETIC MUG', 150, 0, '-C-shaped handle, comfortable to hold,\r\n- Durable ceramic material, safe and healthy for drinking\r\n- Can be used for Hot & Cold beverages\r\n- 100% dishwasher, hand-wash, and microwave proof', 0, 0, 15),
-(19, 2, 2, 0, 7, 'KIBUNPH IS IT FRIDAY YET AESTHETIC MUG', 150, 0, '-C-shaped handle, comfortable to hold,\r\n- Durable ceramic material, safe and healthy for drinking\r\n- Can be used for Hot & Cold beverages\r\n- 100% dishwasher, hand-wash, and microwave proof', 0, 0, 100),
-(32, 3, 0, 0, 3, 'BEIGE MINIMALIST AESTHETIC COLLECTION MOUSEPAD PART 1', 100, 0, '- Introducing our high-quality rubber backed mousepad\n- The perfect addition to your office or study area. This mousepad offers optimal comfort and control for your mouse movements.\n- Enjoy the minimalist design of this beige themed mouse pad with di', 0, 5, 50),
-(33, 3, 0, 0, 3, 'BEIGE MINIMALIST AESTHETIC HIGH QUALITY MOUSEPAD PART 2', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\n- This mousepad offers optimal comfort and control for your mouse movements.\n- Enjoy the minimalist design of this beige themed mouse pad with d', 0, 5, 50),
-(34, 3, 0, 0, 3, 'MOTIVATIONAL CUSTOM AESTHETIC HIGH QUALITY RUBBER MOUSEPAD', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\n- Enjoy our motivational themed mouse pads that can help you set the proper mindset in studying or in office work,\n- ranging from different desi', 0, 5, 50),
-(35, 3, 0, 0, 3, 'SEVENTEEN CUSTOM MOUSEPAD COLLECTION', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\n- This mousepad offers optimal comfort and control for your mouse movements.\n- Enjoy our custom made mouse pad based on the popular Kpop group S', 0, 5, 100),
-(36, 3, 0, 0, 3, 'PINK AESTHETIC HIGH QUALITY MOUSEPAD COLLECTION', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\n- Enjoy our pink themed mouse pads ranging from different themes that represent the color pink the best,\n- ranging from different designs to fit', 0, 5, 25),
-(37, 3, 0, 0, 3, 'BLUE AESTHETIC HIGH QUALITY MOUSEPAD COLLECTION', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\r\n- Enjoy our blue themed mouse pads ranging from different themes that represent the color blue the best,\r\n- ranging from different designs to f', 0, 5, 18),
-(38, 3, 0, 0, 3, 'IN THE SOOP PAINTING CUSTOM MOUSEPAD', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\r\n- Enjoy our customized mouse pads inspired by the popular South Korean reality series about BTS,\r\n- ranging from different designs and aestheti', 0, 5, 10),
-(39, 3, 0, 0, 3, 'BLACKPINK AESTHETIC CUSTOM MOUSEPAD COLLECTION', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\r\n- Enjoy our customized mouse pads inspired by the popular south korean pop group BLACKPINK,\r\n- ranging from different designs and themes from t', 0, 5, 20),
-(40, 3, 0, 0, 3, 'GINGHAM TRENDY AESTHETICS 5MM HIGH QUALITY RUBBER MOUSEPAD', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\r\n- Enjoy our customized mouse pads with a gingham inspired design,\r\n- ranging from different colors and patterns to fit your overall aesthetic.', 0, 5, 100),
-(41, 3, 0, 0, 3, 'PRINT YOUR MOOD CUSTOMIZED HIGH QUALITY MOUSEPAD', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\r\n- Enjoy your own customized mouse pad with your own design to fit your needs and desired aesthetic.', 0, 5, 30),
-(42, 3, 0, 0, 3, 'BTS AESTHETIC HIGH QUALITY RUBBER MOUSEPAD', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\n- Enjoy our customized mouse pads inspired by the South Korean pop group BTS,\n', 0, 5, 30),
-(43, 3, 0, 0, 3, 'REPLY 1988 CUSTOM RUBBER MOUSEPAD', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\n- Enjoy our customized mouse pads inspired by the popular South Korean drama series “Reply 1988”,\n', 0, 5, 100),
-(44, 3, 0, 0, 3, 'GREEN MINIMALIST AESTHETIC HIGH QUALITY RUBBER MOUSEPAD', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\n- Enjoy our green themed mouse pads ranging from different themes that represent the color green the best,\n', 0, 5, 100),
-(45, 3, 0, 0, 3, 'GUTADEMA AESTHETIC HIGH QUALITY MOUSEPAD COLLECTION', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\n- Enjoy our customized mouse pads inspired by the popular Japanese cartoon character “Gudetama”,\n', 0, 5, 100),
-(46, 3, 0, 0, 3, 'BT21 AESTHETIC HIGH QUALITY MOUSEPAD COLLECTION', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\n- Enjoy our customized mouse pads inspired by the South Korean pop group BTS, their BT21 iconic characters,\n', 0, 5, 100),
-(47, 3, 0, 0, 5, 'CLASSICAL ART VINTAGE MURAL AESTHETIC 5MM HIGH QUALITY RUBBER MOUSEPAD', 100, 0, '- Introducing our high-quality rubber mousepad. Whether you\'re gaming, working, or browsing, this mousepad is the perfect companion for your desk setup, offering both style and functionality.\n- Elevate your workspace with our superior mousepad and en', 0, 5, 100),
-(48, 3, 0, 0, 3, 'COWPRINT TRENDY AESTHETICS 5MM HIGH QUALITY MOUSEPAD', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\n- Enjoy our customized mouse pads with a cow print inspired design,\n', 0, 5, 100),
-(49, 3, 0, 0, 3, 'IT\'S OKAY NOT TO BE OKAY CUSTOM RUBBER MOUSEPAD', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\n- Enjoy our “its okay not to be okay” themed mouse pads that can help you set the proper mindset in studying or in office work,\n', 0, 5, 100),
-(50, 3, 0, 0, 4, '2GETHER THE SERIES AESTHETIC HIGH QUALITY 5MM MOUSEPAD', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\n- Enjoy our customized mouse pads inspired by the popular South Korean comedy, drama and romance series “2GETHER”,\n', 0, 5, 100),
-(51, 3, 0, 0, 3, 'WOOD TEXTURE AESTHETIC HIGH QUALITY RUBBER MOUSEPAD', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\n- Enjoy our customized mouse pads with a wood texture inspired design,\n', 0, 4, 100),
-(52, 3, 0, 0, 3, 'SAILOR MOON AESTHETIC HIGH QUALITY MOUSEPAD', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\n- Enjoy our customized mouse pads inspired by the popular Japanese anime character “Sailor moon”,\n', 0, 5, 100),
-(53, 3, 0, 0, 3, 'TWICE AESTHETIC HIGH QUALITY MOUSEPAD COLLECTION', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\n- Enjoy our customized mouse pads inspired by the South Korean pop group TWICE,\n', 0, 5, 100),
-(54, 3, 0, 0, 3, 'ML AESTHETICS HIGH QUALITY MOUSEPAD', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\n- Enjoy our customized mouse pads inspired by the popular mobile game “Mobile Legends: Bang Bang”,\n', 0, 5, 100),
-(55, 3, 0, 0, 5, 'CHRISTIAN DIOR LUXURY CUSTOM 5MM HIGH QUALITY MOUSEPAD', 100, 0, '- Introducing our high-quality rubber mousepad. Whether you\'re gaming, working, or browsing, this mousepad is the perfect companion for your desk setup, offering both style and functionality.\n- Elevate your workspace with our superior mousepad and en', 0, 5, 100),
-(56, 3, 0, 0, 6, 'BTS DYNAMITE HIGH QUALITY RUBBER MOUSEPAD', 100, 0, '- Introducing our high-quality rubber backed mousepad.\n- Enjoy our customized mouse pads inspired by the popular South Korean kpop group BTS,\n', 0, 5, 100),
-(57, 3, 0, 0, 3, 'STRAY KIDS AESTHETICS HIGH QUALITY 5MM MOUSEPAD COLLECTION', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\n- Enjoy our customized mouse pads inspired by the South Korean pop group Stray Kids,\n', 0, 5, 100),
-(58, 3, 0, 0, 3, 'LATTER DAY SAINTS LDS MORMON HIGH QUALITY MOUSEPAD', 100, 0, '- Introducing our high-quality rubber backed mousepad,\n- the perfect addition to your office or study area.\n', 0, 5, 100),
-(59, 3, 0, 0, 3, 'TINY TAN AESTHETIC HIGH QUALITY CUSTOMIZED MOUSEPAD', 100, 0, '- Introducing our high-quality rubber backed mousepad, the perfect addition to your office or study area.\n- Enjoy our customized mouse pads inspired by the South Korean pop group BTS, their Tiny Tan iconic characters,\n', 0, 5, 100);
+INSERT INTO `products` (`id`, `category_id`, `theme_id`, `details_id`, `name`, `price`, `reviews`, `stars`, `stocks`) VALUES
+(1, 3, 2, 3, 'BLUE MOUSEPAD COLLECTION', 100, 100, 5, 18),
+(2, 3, 1, 3, 'BLACKPINK MOUSEPAD COLLECTION', 100, 125, 5, 10),
+(3, 3, 3, 3, 'MOTIVATION MOUSEPAD COLLECTION', 100, 150, 5, 0),
+(4, 3, 2, 3, 'BEIGE/BROWN MOUSEPAD COLLECTION', 100, 168, 5, 50),
+(5, 3, 2, 3, 'ANIME SKY MOUSEPAD COLLECTION', 100, 136, 5, 25);
 
 -- --------------------------------------------------------
 
@@ -423,10 +447,53 @@ INSERT INTO `users` (`user_id`, `firstname`, `surname`, `email`, `phone`, `usern
 --
 
 CREATE TABLE `wishlist` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `wishlist`
+--
+
+INSERT INTO `wishlist` (`id`, `user_id`) VALUES
+(1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `wishlistdisplay`
+-- (See below for the actual view)
+--
+CREATE TABLE `wishlistdisplay` (
+`id` int(11)
+,`user_id` int(11)
+,`product_id` int(11)
+,`wishlist_id` int(11)
+,`image` varchar(250)
+,`name` varchar(250)
+,`status` varchar(250)
+,`price` double
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wishlist_items`
+--
+
+CREATE TABLE `wishlist_items` (
+  `id` int(11) NOT NULL,
   `wishlist_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `wishlist_items`
+--
+
+INSERT INTO `wishlist_items` (`id`, `wishlist_id`, `product_id`) VALUES
+(1, 1, 1),
+(4, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -454,6 +521,24 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `order_summary`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `order_summary`  AS SELECT `c`.`cart_id` AS `cart_id`, `i`.`item_id` AS `item_id`, `p`.`name` AS `name`, `t`.`theme` AS `theme`, `i`.`quantity` AS `quantity`, `p`.`price` AS `price`, `p`.`price`* `i`.`quantity` AS `subtotal` FROM (((`cart` `c` join `cart_items` `i`) join `products` `p`) join `themes` `t`) WHERE `c`.`cart_id` = `i`.`cart_id` AND `p`.`id` = `i`.`product_id` AND `p`.`theme_id` = `t`.`id` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `productdetails`
+--
+DROP TABLE IF EXISTS `productdetails`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `productdetails`  AS SELECT `p`.`id` AS `id`, `p`.`name` AS `name`, `t`.`theme` AS `theme`, `c`.`category` AS `category`, `p`.`price` AS `price`, `p`.`status` AS `status`, `d`.`details` AS `details`, `p`.`reviews` AS `reviews`, `p`.`stars` AS `stars` FROM (((`products` `p` join `themes` `t`) join `categories` `c`) join `details` `d`) WHERE `p`.`category_id` = `c`.`id` AND `p`.`theme_id` = `t`.`id` AND `p`.`details_id` = `d`.`id` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `wishlistdisplay`
+--
+DROP TABLE IF EXISTS `wishlistdisplay`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `wishlistdisplay`  AS SELECT `wi`.`id` AS `id`, `u`.`user_id` AS `user_id`, `i`.`product_id` AS `product_id`, `wi`.`wishlist_id` AS `wishlist_id`, `i`.`image` AS `image`, `p`.`name` AS `name`, `p`.`status` AS `status`, `p`.`price` AS `price` FROM ((((`wishlist` `w` join `wishlist_items` `wi`) join `images` `i`) join `products` `p`) join `users` `u`) WHERE `w`.`id` = `wi`.`wishlist_id` AND `p`.`id` = `wi`.`product_id` AND `u`.`user_id` = `w`.`user_id` AND `i`.`product_id` = `p`.`id` AND `i`.`type` = 'primary' ;
 
 --
 -- Indexes for dumped tables
@@ -516,7 +601,8 @@ ALTER TABLE `details`
 -- Indexes for table `images`
 --
 ALTER TABLE `images`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`);
 
 --
 -- Indexes for table `orders`
@@ -536,7 +622,10 @@ ALTER TABLE `order_items`
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category_id` (`category_id`),
+  ADD KEY `theme_id` (`theme_id`),
+  ADD KEY `details_id` (`details_id`);
 
 --
 -- Indexes for table `securityanswers`
@@ -569,7 +658,16 @@ ALTER TABLE `users`
 -- Indexes for table `wishlist`
 --
 ALTER TABLE `wishlist`
-  ADD PRIMARY KEY (`wishlist_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `wishlist_items`
+--
+ALTER TABLE `wishlist_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `wishlist_id` (`wishlist_id`),
+  ADD KEY `product_id` (`product_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -597,7 +695,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -621,13 +719,13 @@ ALTER TABLE `custom`
 -- AUTO_INCREMENT for table `details`
 --
 ALTER TABLE `details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -645,7 +743,7 @@ ALTER TABLE `order_items`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `securityanswers`
@@ -675,7 +773,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `wishlist`
 --
 ALTER TABLE `wishlist`
-  MODIFY `wishlist_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `wishlist_items`
+--
+ALTER TABLE `wishlist_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -707,6 +811,12 @@ ALTER TABLE `checkoutinfo`
   ADD CONSTRAINT `checkoutinfo_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
+-- Constraints for table `images`
+--
+ALTER TABLE `images`
+  ADD CONSTRAINT `images_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+
+--
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
@@ -717,6 +827,14 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `order_items`
   ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
+
+--
+-- Constraints for table `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
+  ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`theme_id`) REFERENCES `themes` (`id`),
+  ADD CONSTRAINT `products_ibfk_3` FOREIGN KEY (`details_id`) REFERENCES `details` (`id`);
 
 --
 -- Constraints for table `securityanswers`
@@ -730,6 +848,19 @@ ALTER TABLE `securityanswers`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`SQ_id`) REFERENCES `securityquestions` (`id`);
+
+--
+-- Constraints for table `wishlist`
+--
+ALTER TABLE `wishlist`
+  ADD CONSTRAINT `wishlist_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `wishlist_items`
+--
+ALTER TABLE `wishlist_items`
+  ADD CONSTRAINT `wishlist_items_ibfk_1` FOREIGN KEY (`wishlist_id`) REFERENCES `wishlist` (`id`),
+  ADD CONSTRAINT `wishlist_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
