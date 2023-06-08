@@ -150,7 +150,7 @@
     <!-- product image -->
     <div>
         <div>
-            <img id="main-img" src="<?php echo $row['image']?>" class="w-full zoom">
+            <img id="main-img" src="<?php echo $row['image'];?>" class="w-full zoom">
         </div>
         <div class="grid grid-cols-5 gap-4 mt-4">
             <?php 
@@ -169,7 +169,7 @@
                     ?>
                     
                     <div>
-                    <img src="<?php echo $row['image']?>" class="single-img w-full cursor-pointer border border-primary">
+                    <img src="<?php echo $row['image'];?>" class="single-img w-full cursor-pointer border border-primary">
                     </div>
                 <?php }
                 }
