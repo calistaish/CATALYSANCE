@@ -8,8 +8,6 @@
     <link rel="shortcut icon" href="./img/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/demo/CATALYSANCE/js/product-details-loader.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" />
@@ -140,8 +138,198 @@
     <p class="text-gray-600 font-medium uppercase">Tote Bags</p>
 </div>
 <!-- breadcrum end -->
-<!-- product view start -->
-<div id="productDetailsContainer"></div>
+   <!-- product view -->
+   <div class="container pt-4 pb-6 grid lg:grid-cols-2 gap-6">
+   <?php 
+    require_once 'includes/conn.inc.php';
+    $id = $_GET['id'];
+    $sql = "SELECT * FROM images where product_id = ".  $id . ";";
+    $rs_result = $conn->query($sql);
+    while($row = $rs_result->fetch_assoc()) {
+    ?>
+    <!-- product image -->
+    <div>
+        <div>
+            <img id="main-img" src="<?php echo $row['image']?>" class="w-full zoom">
+        </div>
+        <div class="grid grid-cols-5 gap-4 mt-4">
+            <?php 
+                require_once 'includes/conn.inc.php';
+                $sql = "select count(*) from images where id = ".  $id . ";";
+                $rs_result = $conn->query($sql);
+                $rs_result = $conn->query($sql);
+                while($row = $rs_result->fetch_assoc()) {
+                $quant = $row['count(*)'];
+                for($i = 1; $i <= $quant; $i++){ 
+                    require_once 'includes/conn.inc.php';
+                    $id = $_GET['id'];
+                    $sql = "SELECT * FROM images where id = " . $i . " AND product_id = ".  $id . ";";
+                    $rs_result = $conn->query($sql);
+                    while($row = $rs_result->fetch_assoc()) {
+                    ?>
+                    
+                    <div>
+                    <img src="<?php echo $row['image']?>" class="single-img w-full cursor-pointer border border-primary">
+                    </div>
+                <?php }
+                }
+            }
+            
+            ?>
+            
+            <div>
+                <img src="./img/bp11.png" class="single-img w-full cursor-pointer border">
+            </div>
+            <div>
+                <img src="./img/bp12.png" class="single-img w-full cursor-pointer border">
+            </div>
+            <div>
+                <img src="./img/bp11.png" class="single-img w-full cursor-pointer border">
+            </div>
+            <div>
+                <img src="./img/bp14.png" class="single-img w-full cursor-pointer border">
+            </div>
+        </div>
+    </div>
+    <?php }?>
+    <!-- product image end -->
+    <?php 
+    require_once 'includes/conn.inc.php';
+    $id = $_GET['id'];
+    $sql = "SELECT * FROM productDetails where id = ".  $id . ";";
+    $rs_result = $conn->query($sql);
+    while($row = $rs_result->fetch_assoc()) {
+    ?>
+    <!-- product content -->
+    <div>
+        <h2 class="md:text-3xl text-2xl font-medium uppercase mb-2"><?php echo $row['name'];?></h2>
+        <div class="flex items-center mb-4">
+            <div class="flex gap-1 text-sm text-yellow-400">
+                <span><i class="fas fa-star"></i></span>
+                <span><i class="fas fa-star"></i></span>
+                <span><i class="fas fa-star"></i></span>
+                <span><i class="fas fa-star"></i></span>
+                <span><i class="fas fa-star"></i></span>
+            </div>
+            <div class="text-xs text-gray-500 ml-3">(<?php echo $row['reviews'];?> Reviews)</div>
+        </div>
+        <div class="space-y-2">
+            <p class="text-gray-800 font-semibold space-x-2">
+                <span>Availability: </span>
+                <span class="text-green-600"><?php echo $row['status'];?></span>
+            </p>
+            <p class="space-x-2">
+                <span class="text-gray-800 font-semibold">Theme: </span>
+                <span class="text-gray-600"><?php echo $row['theme'];?></span>
+            </p>
+            <p class="space-x-2">
+                <span class="text-gray-800 font-semibold">Category: </span>
+                <span class="text-gray-600"><?php echo $row['category'];?></span>
+            </p>
+            <p class="space-x-2">
+                <span class="text-gray-800 font-semibold">SKU: </span>
+                <span class="text-gray-600">BE45VGRT</span>
+            </p>
+        </div>
+        <div class="mt-4 flex items-baseline gap-3">
+            <span class="text-primary font-semibold text-xl1">₱<?php echo number_format($row['price'], 2);?></span>
+        </div>
+        <form>
+        <!-- design style -->
+        <div class="mt-4">
+            <h3 class="text-base1 text-gray-800 mb-1">Design</h3>
+            <div class="flex items-center gap-2">
+                <!-- design style size -->
+                <div class="size-selector">
+                    <input type="radio" name="size" class="hidden" id="size-xs">
+                    <label for="size-xs"
+                        class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600">
+                        1
+                    </label>
+                </div>
+                <!-- design style end -->
+                <!-- design style size -->
+                <div class="size-selector">
+                    <input type="radio" name="size" class="hidden" id="size-s">
+                    <label for="size-s"
+                        class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600">
+                        2
+                    </label>
+                </div>
+                <!-- design style end -->
+                <!-- design style end size -->
+                <div class="size-selector">
+                    <input type="radio" name="size" class="hidden" id="size-m" checked>
+                    <label for="size-m"
+                        class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600">
+                        3
+                    </label>
+                </div>
+                <!-- design style end -->
+                <!-- design style -->
+                <div class="size-selector">
+                    <input type="radio" name="size" class="hidden" id="size-l">
+                    <label for="size-l"
+                        class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600">
+                        4
+                    </label>
+                </div>
+                <!-- design style end -->
+                <!-- design style -->
+                <div class="size-selector">
+                    <input type="radio" name="size" class="hidden" id="size-xl">
+                    <label for="size-xl"
+                        class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600">
+                        5
+                    </label>
+                </div>
+                <!-- design style end -->
+            </div>
+        </div>
+        <!-- size end -->
+    
+        <!-- quantity -->
+        <div class="mt-4">
+            <h3 class="text-base1 text-gray-800 mb-1">Quantity</h3>
+            <div class="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
+                <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">-</div>
+                <div class="h-8 w-10 flex items-center justify-center">4</div>
+                <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">+</div>
+            </div>
+        </div>
+        <!-- color end -->
+        <!-- add to cart button -->
+        <div class="flex gap-3 border-b border-gray-200 pb-5 mt-6">
+            <a href="includes/addtocart.inc.php?id=<?php echo $row['id']?>" class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase 
+                hover:bg-transparent hover:text-primary transition text-sm flex items-center">
+                <span class="mr-2"><i class="fas fa-shopping-bag"></i></span> Add to cart
+            </a>
+        </form>
+            <a href="includes/addwishlist.inc.php?id=<?php echo $row['id']?>" class="border border-gray-300 text-gray-600 px-8 py-2 font-medium rounded uppercase 
+                hover:bg-transparent hover:text-primary transition text-sm">
+                <span class="mr-2"><i class="far fa-heart"></i></span> Wishlist
+            </a>
+        </div>
+        <!-- add to cart button end -->
+        <!-- product share icons -->
+        <div class="flex space-x-3 mt-4">
+            <a href="#"
+                class="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#"
+                class="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#"
+                class="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+        <!-- product share icons end -->
+    </div>
+    <!-- product content end -->
+</div>
 <!-- product view end -->
 
 <!-- product details and review -->
@@ -156,23 +344,9 @@
     <div class="lg:w-4/5 xl:w-3/5 pt-6">
         <div class="space-y-3 text-gray-600">
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+            <?php echo $row['details'];?>
             </p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-            </p>
+            
         </div>
         <!-- details table -->
         <table class="table-auto border-collapse w-full text-left text-gray-600 text-sm mt-6">
@@ -193,6 +367,7 @@
     </div>
     <!-- details content end -->
 </div>
+<?php }?>
 <!-- product details and review end -->
 
 

@@ -117,7 +117,7 @@ $rs_result = $conn->query($sql);
                 </center>
               </div>
               <?php 
-                $sql = "SELECT * FROM Inventory WHERE status = 'Critical Stocks' OR status = 'Out of Stock' ORDER BY stocks ASC LIMIT 0, 10 " ;
+                $sql = "SELECT * FROM Inventory WHERE stocks < 20 ORDER BY stocks ASC LIMIT 0, 10 " ;
                 $rs_result = $conn->query($sql);
               ?>
               <div class="top-sales box">

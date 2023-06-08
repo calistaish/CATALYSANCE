@@ -1,5 +1,6 @@
 
-<?php session_start(); ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -158152,6 +158153,15 @@ border-radius: 5px;
 .product-info > *:not(:last-child) {
   margin-bottom: 5px; 
 }
+.status, .status-received{
+  position: absolute;
+  color: #c68234f5;
+  font-size: 15px;
+  right: -200px;
+}
+.status-received{
+  color: #10B981;
+}
 .product-name{
   margin-top: 1.5rem;
   color: #333333; 
@@ -158174,33 +158184,60 @@ border-radius: 5px;
   font-size: 0.875rem;
   font-weight: 500;
 }
-.rate{
+.view_button, .receipt_button{
   font-weight: 700;
+  text-align: center;
   position: absolute;
   bottom: 8px;
   right: -200px;
   padding: 10px 25px;
   background-color: #bc377e;
   color: white;
+  width: 198px;
   cursor: pointer;
   border-radius: 5px;
   transition: all 0.5s;
 }
-.rate:hover{
+.view_button:hover{
   box-shadow: 0 0 0 1px white, 0 0 0 2px #bc377e, 0 0 0 5px #bc377e, 0 0 0 6.5px white, 0 0 0 7px #bc377e;
   border-radius: 100px;
   background: white;
   color: #bc377e;
 }
+.receipt_button:hover{
+  box-shadow: 0 0 0 1px white, 0 0 0 2px #bc377e, 0 0 0 5px #bc377e, 0 0 0 6.5px white, 0 0 0 7px #bc377e;
+  border-radius: 100px;
+  background: white;
+  color: #bc377e;
+}
+.approved_button{
+  font-weight: 700;
+  position: absolute;
+  bottom: 8px;
+  right: 7px;
+  padding: 10px 25px;
+  background-color:#10B981;
+  color: white;
+  point-events: none;
+  cursor: not-allowed;
+  border-radius: 5px;
+  opacity: 0.7px;
+}
+
+
 /*RESPONSIVENESS NG DINAGDAG KO*/
 @media screen and (max-width: 700px){
-	.rate{
-	right: -100px;
+	.view_button, .receipt_button, .status, .status-received{
+	right: -130px;
+	}
+	.approved_button{
+	bottom: 60px;
+	right: -130px;
 	}
 	.product{
 		flex-direction: column;
 		height: 400px;
-	}
+	} 
 	.product > img{
 		height: auto;
 		width: 200px;
@@ -158274,28 +158311,12 @@ border-radius: 5px;
                     <span>Cart</span>
                 </a>
             </li>
-            <?php
-                  if(isset($_SESSION['id'])){
-                ?>
-                <li>
-                    <a href="account.php">
-                        <img src="./img/acc1.png" alt="Sign In">
-                        <span>My Account</span>
-                    </a>
-                </li>
-                <?php
-                }
-                else{
-                ?>
-                <li>
-                    <a href="userlogin.php">
-                        <img src="./img/acc1.png" alt="Sign In">
-                        <span>Sign In</span>
-                    </a>
-                </li>
-                <?php
-                }
-                ?>
+            <li>
+                <a href="userlogin.php">
+                    <img src="./img/acc1.png" alt="Sign In">
+                    <span>Sign In</span>
+                </a>
+            </li>
         </ul>
         
         <div class="burger-menu2">
@@ -158448,11 +158469,12 @@ border-radius: 5px;
 			<div class="product">
 				<img src="./img/bp11.png">
 				<div class="product-info">
+					<p class="status"><i>Waiting for approval...</i></p>
 					<h2 class="product-name">Tote Bag</h2>
 					<h4 class="product-price">₱260.00</h4>
 					<h4 class="product-variation">Variation: Purple Aesthetic Trendy</h4>
 					<p class="product-quantity">x2
-					<a href="#" class="rate">BUY AGAIN</a>  
+					<a href="my oder details(waiting for approval).php" class="view_button">VIEW ORDER DETAILS</a>  
 				</div>
 			   </div>
 		       </div>
@@ -158467,13 +158489,14 @@ border-radius: 5px;
 		<div class="cart">
 		<div class="products">
 			<div class="product">
-				<img src="./img/bp12.png">
+				<img src="./img/bp11.png">
 				<div class="product-info">
-					<h2 class="product-name">Mugs</h2>
-					<h4 class="product-price">₱350.00</h4>
-					<h4 class="product-variation">Variation: Aesthetic Mugs</h4>
-					<p class="product-quantity">x3
-					<a href="#" class="rate">BUY AGAIN</a> 
+					<h2 class="product-name">Tote Bag</h2>
+					<h4 class="product-price">₱260.00</h4>
+					<h4 class="product-variation">Variation: Purple Aesthetic Trendy</h4>
+					<p class="product-quantity">x2
+					<a href="my oder details(order approved).php" class="view_button">VIEW ORDER DETAILS</a>
+					<a href="#" class="approved_button">ORDER APPROVED</a> 
 				</div>
 			   </div>
 		       </div>
@@ -158487,13 +158510,14 @@ border-radius: 5px;
                <div class="cart">
 		<div class="products">
 			<div class="product">
-				<img src="./img/bp16.png">
+				<img src="./img/bp11.png">
 				<div class="product-info">
-					<h2 class="product-name">Mouse Pads</h2>
-					<h4 class="product-price">₱100.00</h4>
-					<h4 class="product-variation">Variation: Blue Aesthetic High Quality</h4>
-					<p class="product-quantity">x1
-					<a href="#" class="rate">BUY AGAIN</a> 
+					<p class="status-received"><i>Received</i></p>
+					<h2 class="product-name">Tote Bag</h2>
+					<h4 class="product-price">₱260.00</h4>
+					<h4 class="product-variation">Variation: Purple Aesthetic Trendy</h4>
+					<p class="product-quantity">x2
+					<a href="my.receipt.php" class="receipt_button">VIEW RECEIPT</a>  
 				</div>
 			</div>
 		      </div>

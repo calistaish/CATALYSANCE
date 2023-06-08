@@ -250,31 +250,70 @@
                 </div>
         </div>
         <!-- checkout form end -->
-
+        <?php
+        require_once 'includes/conn.inc.php';
+        function getCartID($conn){
+            $sql = "select * from cart where user_id = " . $_SESSION['id'] . ";";
+            $cart = $conn->query($sql);
+            while($row = $cart->fetch_assoc()) {
+                $cart_id = $row['cart_id'];
+                return $cart_id;
+            }
+        }
+        $cart_id = getCartID($conn);
+        $results_per_page = 5;
+        if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
+        $start_from = ($page-1) * $results_per_page;
+        $sql = "SELECT * FROM order_summary where cart_id = $cart_id ORDER BY cart_ID ASC LIMIT $start_from, ".$results_per_page;
+        $rs_result = $conn->query($sql);
+        ?>
         <!-- order summary -->
         <div class="lg:col-span-4 border border-gray-200 px-4 py-4 rounded mt-6 lg:mt-0">
             <h4 class="text-gray-800 text-lg mb-4 font-medium uppercase">ORDER SUMMARY</h4>
             <div class="space-y-2">
+            <?php while($row = $rs_result->fetch_assoc()) { ?>
                 <div class="flex justify-between" v-for="n in 3" :key="n">
-                    <div>
-                        <h5 class="text-gray-800 font-medium">Tote Bag KPop</h5>
-                        <p class="text-sm text-gray-600">Theme: Kpop</p>
+                    <div>                   
+                        <h5 class="text-gray-800 font-medium"><?php $name = $row['name']; echo substr($name, 0, 18 ). "..."; ?></h5>
+                        <p class="text-sm text-gray-600">Theme: <?php echo $row['theme']; ?>p</p>
                     </div>
-                    <p class="text-gray-600">x3</p>
-                    <p class="text-gray-800 font-medium">₱320</p>
+                    <p class="text-gray-600">x<?php echo $row['quantity']; ?></p>
+                    <p class="text-gray-800 font-medium">₱<?php echo $row['subtotal']; ?></p>
                 </div>
+                <?php };?>
             </div>
+            <?php
+               $sql = "select SUM(subtotal) FROM order_summary where cart_id =" . $cart_id. ";";
+               $sum = $conn->query($sql);
+               $rs_result = $conn->query($sql);
+               while($row = $rs_result->fetch_assoc()) {
+                $subtotal = $row['SUM(subtotal)'];
+            ?>
             <div class="flex justify-between border-b border-gray-200 mt-1">
                 <h4 class="text-gray-800 font-medium my-3 uppercase">Subtotal</h4>
-                <h4 class="text-gray-800 font-medium my-3 uppercase">₱320</h4>
+                <h4 class="text-gray-800 font-medium my-3 uppercase">₱<?php echo $subtotal?></h4>
             </div>
+            <?php }?>
             <div class="flex justify-between border-b border-gray-200">
                 <h4 class="text-gray-800 font-medium my-3 uppercase">Shipping</h4>
                 <h4 class="text-gray-800 font-medium my-3 uppercase">Free</h4>
             </div>
+            <div class="flex justify-between border-b border-gray-200">
+                <h4 class="text-gray-800 font-medium my-3 uppercase">Discount</h4>
+            <?php $discount = $_GET['discount'];
+            $value = 'none';
+            if($discount == '25%'){
+                $value = ($subtotal * 0.25);?>
+                <h4 class="text-gray-800 font-medium my-3 uppercase">-₱<?php echo number_format($value, 2);?> </h4>
+            <?php } else { 
+                $value = 0; ?>
+                <h4 class="text-gray-800 font-medium my-3 uppercase">None </h4>
+            <?php } ?>       
+            </div>
             <div class="flex justify-between">
                 <h4 class="text-gray-800 font-semibold my-3 uppercase">Total</h4>
-                <h4 class="text-gray-800 font-semibold my-3 uppercase">₱320</h4>
+                <?php $total = $subtotal - $value;?>
+                <h4 class="text-gray-800 font-semibold my-3 uppercase">₱<?php echo number_format($total, 2);?></h4>
             </div>
 
             <!-- agreeement  -->

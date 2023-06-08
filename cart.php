@@ -194,7 +194,9 @@
                     <p class="text-primary text-lg font-semibold">₱ <?php echo $row['subtotal']; ?></p>
                 </div>
                 <div class="text-gray-600 hover:text-primary cursor-pointer">
-                    <i class="fas fa-trash"></i>
+                    <a href="includes/removecart.inc.php?id=<?php echo $row['item_id']?>">
+                        <i class="fas fa-trash"></i>
+                    </a>  
                 </div>
             </div>
             <?php }; ?>
@@ -208,7 +210,7 @@
         <h4 class="text-gray-800 text-lg mb-4 font-medium uppercase">ORDER SUMMARY</h4>
         <div class="space-y-1 text-gray-600 pb-3 border-b border-gray-200">
             <?php
-               $sql = "select SUM(subtotal) FROM order_summary;";
+               $sql = "select SUM(subtotal) FROM order_summary where cart_id = " . $cart_id. ";";
                $sum = $conn->query($sql);
                $rs_result = $conn->query($sql);
                while($row = $rs_result->fetch_assoc()) {
@@ -264,7 +266,7 @@
         <!-- searchbar end -->
 
         <!-- checkout -->
-        <a href="checkout.php" class="bg-primary border border-primary text-white px-4 py-3 font-medium rounded-md uppercase hover:bg-transparent
+        <a href="checkout.php?discount=<?php echo $discount?>" class="bg-primary border border-primary text-white px-4 py-3 font-medium rounded-md uppercase hover:bg-transparent
          hover:text-primary transition text-sm w-full block text-center">
             Process to checkout
         </a>

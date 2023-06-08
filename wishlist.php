@@ -212,62 +212,67 @@
 
         <!-- account content -->
         <div class=" col-span-9 mt-6 lg:mt-0 space-y-4">
+        <?php
+        require_once 'includes/conn.inc.php';
+        function getCartID($conn){
+            $sql = "select * from wishlist where user_id = " . $_SESSION['id'] . ";";
+            $cart = $conn->query($sql);
+            while($row = $cart->fetch_assoc()) {
+                $cart_id = $row['id'];
+                return $cart_id;
+            }
+        }
+        $cart_id = getCartID($conn);
+        $results_per_page = 5;
+        if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
+        $start_from = ($page-1) * $results_per_page;
+        $sql = "SELECT * FROM wishlistDisplay where wishlist_id = $cart_id ORDER BY id ASC LIMIT $start_from, ".$results_per_page;
+        $rs_result = $conn->query($sql);
+        
+        ?>
+        <?php while($row = $rs_result->fetch_assoc()) { ?>
             <!-- single wishlist -->
             <div
                 class="bg-white flex items-center md:justify-between gap-4 md:gap-6 p-4 border border-gray-200 rounded flex-wrap md:flex-nowrap">
                 <!-- cart image -->
                 <div class=" w-28 flex-shrink-0">
-                    <img src="./img/bp11.png"  class="w-full">
+                    <img src="<?php echo $row['image'];?>"  class="w-full">
                 </div>
                 <!-- cart image end -->
                 <!-- cart content -->
                 <div class="md:w-1/3 w-full">
                     <h2 class="text-gray-800 mb-1 xl:text-xl textl-lg font-medium uppercase">
-                        Tote Bag
+                    <?php echo $row['name'];?>
                     </h2>
-                    <p class="text-gray-500 text-sm">Availability: <span class="text-green-600">In Stock</span></p>
+                    <p class="text-gray-500 text-sm">Availability: 
+                    <?php if($row['status'] == 'Out of Stock'){?>
+                        <span class="text-red-600">
+                    <?php } else { ?>
+                        <span class="text-green-600">
+                    <?php } ?>
+                    <?php echo $row['status'];?></span></p>
                 </div>
                 <!-- cart content end -->
                 <div class="">
-                    <p class="text-primary text-lg font-semibold">₱320.00</p>
+                    <p class="text-primary text-lg font-semibold">₱<?php echo number_format($row['price']);?></p>
                 </div>
-                <a href="#"
-                    class="ml-auto md:ml-0 block px-6 py-2 text-center text-sm text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
-                    Add to cart
-                </a>
-                <div class="text-gray-600 hover:text-primary cursor-pointer">
-                    <i class="fas fa-trash"></i>
-                </div>
-            </div>
-            <!-- single wishlist end -->
-            <!-- single wishlist -->
-            <div
-                class="bg-white flex items-center md:justify-between gap-4 md:gap-6 p-4 border border-gray-200 rounded flex-wrap md:flex-nowrap">
-                <!-- cart image -->
-                <div class="w-28 flex-shrink-0">
-                    <img src="./img/bp11.png"  class="w-full">
-                </div>
-                <!-- cart image end -->
-                <!-- cart content -->
-                <div class="md:w-1/3 w-full">
-                    <h2 class="text-gray-800 mb-1 xl:text-xl textl-lg font-medium uppercase">
-                        Tote Bag
-                    </h2>
-                    <p class="text-gray-500 text-sm">Availability: <span class="text-red-600">Out of Stock</span></p>
-                </div>
-                <!-- cart content end -->
-                <div class="">
-                    <p class="text-primary text-lg font-semibold">₱320.00</p>
-                </div>
-                <a href="#"
-                    class="ml-auto md:ml-0 block px-6 py-2 text-center text-sm text-white bg-primary border border-primary rounded 
+                <a href="includes/addtocartfromwishlist.inc.php?id=<?php echo $row['id']?>&product_id=<?php echo $row['product_id']?>"
+                    <?php if($row['status'] == 'Out of Stock'){?>
+                        class="ml-auto md:ml-0 block px-6 py-2 text-center text-sm text-white bg-primary border border-primary rounded 
                     uppercase font-roboto font-medium cursor-not-allowed bg-opacity-80">
+                    <?php } else { ?>
+                        class="ml-auto md:ml-0 block px-6 py-2 text-center text-sm text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
+                    <?php } ?>
+                    
                     Add to cart
                 </a>
                 <div class="text-gray-600 hover:text-primary cursor-pointer">
-                    <i class="fas fa-trash"></i>
+                    <a href="includes/removewishlist.inc.php?id=<?php echo $row['id']?>">
+                        <i class="fas fa-trash"></i>
+                    </a>       
                 </div>
             </div>
+            <?php } ?>
             <!-- single wishlist end -->
         </div>
         <!-- account content end -->

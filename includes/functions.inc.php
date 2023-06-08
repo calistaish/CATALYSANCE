@@ -379,3 +379,152 @@ function editQuantity($conn, $quantity, $id){
     header("location: ../cart.php");
     exit();
 }
+
+function checkWishlistifset($conn, $userid) {
+    $sql = "SELECT * FROM wishlist w, users u WHERE w.user_id = u.user_id AND u.user_id = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../manage-address.php?error=anerroroccured");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "i", $userid);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($resultData)){
+        return $row;
+    }
+    else {
+        $result = false;
+        return $result;
+    }
+
+    mysqli_stmt_close($stmt);
+}
+
+function createWishlist($conn, $userid){
+    $sql = "INSERT INTO wishlist (user_id) VALUES (?);";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../manage-address.php?error=anerroroccured");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, 'i', $userid);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    exit();
+}
+
+function addWishlistItem($conn, $wishlistID, $id){
+    $sql = "INSERT INTO wishlist_items (wishlist_id, product_id) VALUES (?, ?);";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../manage-address.php?error=anerroroccured");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, 'ii', $wishlistID, $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../productdeets.php?id=" . $id . "");
+    exit();
+}
+
+function checkCartifset($conn, $userid) {
+    $sql = "SELECT * FROM cart c, users u WHERE c.user_id = u.user_id AND u.user_id = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../manage-address.php?error=anerroroccured");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "i", $userid);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($resultData)){
+        return $row;
+    }
+    else {
+        $result = false;
+        return $result;
+    }
+
+    mysqli_stmt_close($stmt);
+}
+
+function createCart($conn, $userid){
+    $sql = "INSERT INTO cart (user_id) VALUES (?);";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../manage-address.php?error=anerroroccured");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, 'i', $userid);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    exit();
+}
+
+function addCartItem($conn, $wishlistID, $id, $quantity){
+    $sql = "INSERT INTO cart_items (cart_id, product_id, quantity) VALUES (?, ?, ?);";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../manage-address.php?error=anerroroccured");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, 'iii', $wishlistID, $id, $quantity);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+}
+
+function removewishlistitem($conn, $id){
+    $sql = "DELETE FROM wishlist_items WHERE id = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../manage-address.php?error=anerroroccured");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, 'i', $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../wishlist.php");
+    exit();
+}
+
+function wremovewishlistitem($conn, $id, $product_id){
+    $sql = "DELETE FROM wishlist_items WHERE id = ? AND product_id = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../manage-address.php?error=anerroroccured");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, 'ii', $id, $product_id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../wishlist.php");
+    exit();
+}
+
+function removeCartitem($conn, $id){
+    $sql = "DELETE FROM cart_items WHERE item_id = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../manage-address.php?error=anerroroccured");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, 'i', $id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../cart.php");
+    exit();
+}
