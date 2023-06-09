@@ -25,16 +25,16 @@
             $params = array_merge($params, $selectedThemes);
         }
         if (!is_null($minPrice) && !is_null($maxPrice)) {
-            $sql .= " AND original_price BETWEEN ? AND ?";
+            $sql .= " AND price BETWEEN ? AND ?";
             $params[] = $minPrice;
             $params[] = $maxPrice;
         }
         switch ($sortOption) {
             case 'low':
-                $sql .= " ORDER BY original_price ASC";
+                $sql .= " ORDER BY price ASC";
                 break;
             case 'high':
-                $sql .= " ORDER BY original_price DESC";
+                $sql .= " ORDER BY price DESC";
                 break;
             case 'latest':
                 $sql .= " ORDER BY id DESC";
@@ -58,17 +58,13 @@
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     while ($row = mysqli_fetch_assoc($result)) {
-        $productID = $row['id'];
         $productName = $row['name'];
         $productPrice = $row['price'];
-        $productOriginalPrice = $row['original_price'];
         $productReviews = $row['reviews'];
         $productStars = $row['stars'];
                         $product = array(
-                            'id' => $productID,
                             'name' => $productName,
                             'price' => $productPrice,
-                            'originalPrice' => $productOriginalPrice,
                             'reviews' => $productReviews,
                             'stars' => $productStars
                         );
