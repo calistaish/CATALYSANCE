@@ -153,42 +153,26 @@
             <img id="main-img" src="<?php echo $row['image'];?>" class="w-full zoom">
         </div>
         <div class="grid grid-cols-5 gap-4 mt-4">
-            <?php 
+            <?php
                 require_once 'includes/conn.inc.php';
-                $sql = "select count(*) from images where id = ".  $id . ";";
-                $rs_result = $conn->query($sql);
+                $id = $_GET['id'];
+                $sql = "SELECT * FROM images where product_id = ".  $id . ";";
                 $rs_result = $conn->query($sql);
                 while($row = $rs_result->fetch_assoc()) {
-                $quant = $row['count(*)'];
-                for($i = 1; $i <= $quant; $i++){ 
-                    require_once 'includes/conn.inc.php';
-                    $id = $_GET['id'];
-                    $sql = "SELECT * FROM images where id = " . $i . " AND product_id = ".  $id . ";";
-                    $rs_result = $conn->query($sql);
-                    while($row = $rs_result->fetch_assoc()) {
-                    ?>
+                ?>
                     
-                    <div>
-                    <img src="<?php echo $row['image'];?>" class="single-img w-full cursor-pointer border border-primary">
-                    </div>
+                <div>
+                <img src="<?php echo $row['image'];?>" <?php
+                if($row['type'] == 'primary'){?>
+                    class="single-img w-full cursor-pointer border border-primary"
                 <?php }
-                }
-            }
-            
-            ?>
-            
-            <div>
-                <img src="./img/bp11.png" class="single-img w-full cursor-pointer border">
-            </div>
-            <div>
-                <img src="./img/bp12.png" class="single-img w-full cursor-pointer border">
-            </div>
-            <div>
-                <img src="./img/bp11.png" class="single-img w-full cursor-pointer border">
-            </div>
-            <div>
-                <img src="./img/bp14.png" class="single-img w-full cursor-pointer border">
-            </div>
+                else{ ?>
+                    class="single-img w-full cursor-pointer border"
+                <?php } ?>>
+                    </div>
+                <?php 
+                
+            }?>       
         </div>
     </div>
     <?php }?>
@@ -239,51 +223,26 @@
         <div class="mt-4">
             <h3 class="text-base1 text-gray-800 mb-1">Design</h3>
             <div class="flex items-center gap-2">
-                <!-- design style size -->
-                <div class="size-selector">
-                    <input type="radio" name="size" class="hidden" id="size-xs">
-                    <label for="size-xs"
-                        class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600">
-                        1
-                    </label>
+                <?php 
+                    require_once 'includes/functions.inc.php';
+                    $id = $_GET['id'];
+                    
+                    $count = countDesign($conn, $id);
+
+                    for($i = 1; $i <= $count; $i++){
+                        $query = queryImage($conn, $id);?>
+                        <!-- design style size -->
+                        <div class="size-selector">
+                            <input type="radio" name="design" value="<?php echo $query['id'];?>" class="hidden" id="<?php echo $i;?>">
+                            <label for="<?php echo $i;?>"
+                            class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600">
+                            <?php echo $i;?>
+                        </label>
                 </div>
                 <!-- design style end -->
-                <!-- design style size -->
-                <div class="size-selector">
-                    <input type="radio" name="size" class="hidden" id="size-s">
-                    <label for="size-s"
-                        class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600">
-                        2
-                    </label>
-                </div>
-                <!-- design style end -->
-                <!-- design style end size -->
-                <div class="size-selector">
-                    <input type="radio" name="size" class="hidden" id="size-m" checked>
-                    <label for="size-m"
-                        class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600">
-                        3
-                    </label>
-                </div>
-                <!-- design style end -->
-                <!-- design style -->
-                <div class="size-selector">
-                    <input type="radio" name="size" class="hidden" id="size-l">
-                    <label for="size-l"
-                        class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600">
-                        4
-                    </label>
-                </div>
-                <!-- design style end -->
-                <!-- design style -->
-                <div class="size-selector">
-                    <input type="radio" name="size" class="hidden" id="size-xl">
-                    <label for="size-xl"
-                        class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600">
-                        5
-                    </label>
-                </div>
-                <!-- design style end -->
+                    <?php }
+                ?>
+                
             </div>
         </div>
         <!-- size end -->
@@ -293,15 +252,20 @@
             <h3 class="text-base1 text-gray-800 mb-1">Quantity</h3>
             <div class="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
                 <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">-</div>
-                <div class="h-8 w-10 flex items-center justify-center">4</div>
+                <div class="h-8 w-10 flex items-center justify-center">1</div>
                 <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">+</div>
             </div>
         </div>
         <!-- color end -->
         <!-- add to cart button -->
         <div class="flex gap-3 border-b border-gray-200 pb-5 mt-6">
-            <a href="includes/addtocart.inc.php?id=<?php echo $row['id']?>" class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase 
+            <?php if ($count == 0){ ?>
+                <a href="includes/addtocart.inc.php?id=<?php echo $row['id']?>&pid=1" class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase 
                 hover:bg-transparent hover:text-primary transition text-sm flex items-center">
+            <?php } else { ?>
+            <a href="includes/addtocart.inc.php?id=<?php echo $row['id']?>&pid=<?php echo $query['id'];?>" class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase 
+                hover:bg-transparent hover:text-primary transition text-sm flex items-center">
+            <?php };?>
                 <span class="mr-2"><i class="fas fa-shopping-bag"></i></span> Add to cart
             </a>
         </form>

@@ -361,8 +361,6 @@ function addCheckout($conn, $fname, $lname, $cname, $country, $address, $city, $
     mysqli_stmt_bind_param($stmt, 'ssssssisssi', $fname, $lname, $cname, $country, $address, $city, $zipcode, $phone, $email, $mop, $userid);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    header("location: ../ordercomp.php");
-    exit();
 }
 
 function editQuantity($conn, $quantity, $id){
@@ -471,15 +469,15 @@ function createCart($conn, $userid){
     exit();
 }
 
-function addCartItem($conn, $wishlistID, $id, $quantity){
-    $sql = "INSERT INTO cart_items (cart_id, product_id, quantity) VALUES (?, ?, ?);";
+function addCartItem($conn, $wishlistID, $id, $quantity, $design){
+    $sql = "INSERT INTO cart_items (cart_id, product_id, quantity, design) VALUES (?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../manage-address.php?error=anerroroccured");
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, 'iii', $wishlistID, $id, $quantity);
+    mysqli_stmt_bind_param($stmt, 'iiii', $wishlistID, $id, $quantity, $design);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 }
@@ -528,3 +526,42 @@ function removeCartitem($conn, $id){
     header("location: ../cart.php");
     exit();
 }
+
+function countDesign($conn, $id){
+    $sql = "SELECT count(*) FROM images where product_id = ".  $id . " AND type != 'primary';";
+    $rs_result = $conn->query($sql);
+    while($row = $rs_result->fetch_assoc()) {
+        $count = $row['count(*)'];
+        return $count;
+    }
+}
+
+function queryImage($conn, $id){
+    $sql = "SELECT * FROM images where product_id = ".  $id . " AND type != 'primary';";
+    $rs_result = $conn->query($sql);
+    while($row = $rs_result->fetch_assoc()) {
+        return $row;
+    }
+}
+
+function carttorders($conn, $userid){
+    $sql = "select * from checkoutinfo C, users U where C.user_id = U.user_id and U.user_id = " .$userid . ";";
+    $rs_result = $conn->query($sql);
+    while($row = $rs_result->fetch_assoc()) {
+        $checkoutID = $row['id'];
+    }
+    $sql = "select * from cart C, users U where C.user_id = U.user_id and U.user_id = " .$userid . ";";
+    $rs_result = $conn->query($sql);
+    
+    while($row = $rs_result->fetch_assoc()) {
+        $cartid = $row['cart_id'];
+        $sql = $sql = "select * from cart C, cart_items I where C.cart_id = I.cart_id and C.cart_id = " .$cartid . ";";
+        while($row = $rs_result->fetch_assoc()) {
+            $item_id = $row['item_id'];
+            $sql = "INSERT INTO order_items (checkout_id, cart_items, status, total) values ($checkoutID, $item_id, 'Waiting for approval')";
+            $rs_result = $conn->query($sql);
+        }
+    }
+    header("location: ../ordercomp.php");
+}
+

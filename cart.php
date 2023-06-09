@@ -170,7 +170,7 @@
                 class="flex items-center md:justify-between gap-4 md:gap-6 p-4 border border-gray-200 rounded flex-wrap md:flex-nowrap">
                 <!-- cart image -->
                 <div class="w-32 flex-shrink-0">
-                    <img src="./img/hp.png" class="w-full">
+                    <img src="<?php echo $row['image']; ?>" class="w-full">
                 </div>
                 <!-- cart image end -->
                 <!-- cart content -->

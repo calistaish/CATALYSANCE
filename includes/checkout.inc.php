@@ -1,7 +1,9 @@
 <?php 
+    
 if(isset($_POST['submit'])){
     session_start();
     $userid = $_SESSION['id'];
+    $total = $_POST['total'];
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
     $cname = $_POST['cname'];
@@ -16,7 +18,8 @@ if(isset($_POST['submit'])){
 
     require_once 'conn.inc.php';
     require_once 'functions.inc.php';
-    
+
+    carttorders($conn, $userid);
     addCheckout($conn, $fname, $lname, $cname, $country, $address, $city, $zipcode, $phone, $email, $mop, $userid);
 }
 else {

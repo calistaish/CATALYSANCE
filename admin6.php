@@ -1,3 +1,10 @@
+<?php require_once 'includes/conn.inc.php';
+$results_per_page = 10;
+if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
+$start_from = ($page-1) * $results_per_page;
+$sql = "SELECT * FROM users ORDER BY user_id ASC LIMIT $start_from, ".$results_per_page;
+$rs_result = $conn->query($sql);
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -77,41 +84,24 @@
               <div class="recent-sales box">
                 <div class="title orange">Users</div>
                 <div class="sales-details">
-                  <ul class="details">
-                    <li class="topic">Username</li>
-                    <li><a href="#">chanyeolloml</a></li>
-                    <li><a href="#">dkdokyeom</a></li>
-                    <li><a href="#">joshuashua</a></li>
-                    <li><a href="#">wonwoorawr</a></li>
-                  </ul>
-                  <ul class="details">
-                  <li class="topic">First Name</li>
-                  <li><a href="#">Chanyeol</a></li>
-                  <li><a href="#">Seokmin</a></li>
-                  <li><a href="#">Jisoo</a></li>
-                  <li><a href="#">Wonwoo</a></li>
-                </ul>
-                <ul class="details">
-                  <li class="topic">Last Name</li>
-                  <li><a href="#">Park</a></li>
-                  <li><a href="#">Lee</a></li>
-                  <li><a href="#">Hong</a></li>
-                  <li><a href="#">Jeon</a></li>
-                </ul>
-                <ul class="details">
-                  <li class="topic">Contact No.</li>
-                  <li><a href="#">091309133131</a></li>
-                  <li><a href="#">093092308212</a></li>
-                  <li><a href="#">092309232323</a></li>
-                  <li><a href="#">093535232323</a></li>
-                </ul>
-                <ul class="details">
-                    <li class="topic">Email Address</li>
-                    <li><a href="#">parkchanyeol@gmail.com</a></li>
-                    <li><a href="#">leeseokmin@gmail.com</a></li>
-                    <li><a href="#">hongjisoo@gmail.com</a></li>
-                    <li><a href="#">jeonwoo@gmail.com</a></li>
-                  </ul>
+                <table style="width: 100%; border-spacing: 5px;" class="details">
+                  <tr>
+                    <td style="font-size: 20px;" class="topic"><strong>Username</strong></td>
+                    <td style="font-size: 20px;" class="topic"><strong>First Name</strong></td>
+                    <td style="font-size: 20px;" class="topic"><strong>Last Name</strong></td>
+                    <td style="font-size: 20px;" class="topic"><strong>Contact No.</strong></td>
+                    <td style="font-size: 20px;" class="topic"><strong>Email Address</strong></td>
+                  </tr>
+                  <?php while($row = $rs_result->fetch_assoc()) { ?>
+                    <tr>
+                      <td><a style="text-decoration: none; font-size: 18px; color:  #333;"><?php echo $row["username"]; ?></td>
+                      <td><a style="text-decoration: none; font-size: 18px; color:  #333;"><?php echo $row["firstname"]; ?></td>
+                      <td><a style="text-decoration: none; font-size: 18px; color:  #333;"><?php echo $row["surname"]; ?></td>
+                      <td><a style="text-decoration: none; font-size: 18px; color:  #333;"><?php echo $row["phone"]; ?></td>
+                      <td><a style="text-decoration: none; font-size: 18px; color:  #333;"><?php echo $row["email"]; ?></td>
+                    </tr>
+                    <?php }; ?>
+                </table>
                 </div>
               </div>
             </div>

@@ -138,12 +138,12 @@
         <p class="text-gray-600 font-medium uppercase">CHECKOUT</p>
     </div>
     <!-- breadcrum end -->
-
+    <?php ?>
     <!-- checkout wrapper -->
     <div class="container lg:grid grid-cols-12 gap-6 items-start pb-16 pt-4">
         <!-- checkout form -->
         <div class="lg:col-span-8 border border-gray-200 px-4a py-4 rounded">
-            <form action="includes/checkout.inc.php" method="post">
+            <form action="includes/checkout.inc.php?" method="post">
                 <h3 class="text-lg font-medium capitalize mb-4">
                     checkout
                 </h3>
@@ -325,9 +325,9 @@
                     <a href="#" class="text-primary">terms & conditions</a>
                 </label>
             </div>
-
+            <input type="text" name="total" value="<?php echo $total; ?>" class="hidden">
             <!-- checkout -->
-            <input type="submit" name="submit" value="Place order"class="bg-primary border border-primary text-white px-4 py-3 font-medium rounded-md uppercase hover:bg-transparent
+            <input type="submit" name="submit" value="Place order" class="bg-primary border border-primary text-white px-4 py-3 font-medium rounded-md uppercase hover:bg-transparent
          hover:text-primary transition text-sm w-full block text-center">
             <!-- checkout end -->
             </form>
