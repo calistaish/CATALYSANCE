@@ -19,8 +19,8 @@ if(isset($_POST['submit'])){
     require_once 'conn.inc.php';
     require_once 'functions.inc.php';
 
-    carttorders($conn, $userid);
     addCheckout($conn, $fname, $lname, $cname, $country, $address, $city, $zipcode, $phone, $email, $mop, $userid);
+    carttorders($conn, $userid);
 }
 else {
     header("location: ../checkout.php");

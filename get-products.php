@@ -58,11 +58,13 @@
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     while ($row = mysqli_fetch_assoc($result)) {
+        $productid = $row['id'];
         $productName = $row['name'];
         $productPrice = $row['price'];
         $productReviews = $row['reviews'];
         $productStars = $row['stars'];
                         $product = array(
+                            'id' => $productid,
                             'name' => $productName,
                             'price' => $productPrice,
                             'reviews' => $productReviews,

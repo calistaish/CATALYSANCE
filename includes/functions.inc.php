@@ -555,7 +555,7 @@ function carttorders($conn, $userid){
     
     while($row = $rs_result->fetch_assoc()) {
         $cartid = $row['cart_id'];
-        $sql = $sql = "select * from cart C, cart_items I where C.cart_id = I.cart_id and C.cart_id = " .$cartid . ";";
+        $sql = $sql = "select * from cart_items C, cart_items I where C.cart_id = I.cart_id and C.cart_id = " .$cartid . ";";
         while($row = $rs_result->fetch_assoc()) {
             $item_id = $row['item_id'];
             $sql = "INSERT INTO order_items (checkout_id, cart_items, status, total) values ($checkoutID, $item_id, 'Waiting for approval')";
@@ -563,5 +563,43 @@ function carttorders($conn, $userid){
         }
     }
     header("location: ../ordercomp.php");
+}
+
+function findcheckoutID($conn, $userid) {
+    $sql = "SELECT * FROM checkoutinfo C, user U WHERE C.user_id = U.user_id AND C.user_id = " . $userid . ";";
+    $rs_result = $conn->query($sql);
+    while($row = $rs_result->fetch_assoc()) {
+        $checkoutID = $row['id'];
+        return $checkoutID;
+    }
+}
+
+function findCartID($conn, $checkoutID) {
+    $sql = "SELECT * FROM cart C, user U WHERE C.user_id = U.user_id AND C.user_id = " . $userid . ";";
+    $rs_result = $conn->query($sql);
+    while($row = $rs_result->fetch_assoc()) {
+        $cartID = $row['cart_id'];
+        return $cartID;
+    }
+}
+
+function findCartItems($conn, $cartID) {
+    $sql = "SELECT * FROM cart_items I, cart C WHERE C.id = I.cart_id AND C.cart_id = " . $cartID . ";";
+    $rs_result = $conn->query($sql);
+    while($row = $rs_result->fetch_assoc()) {
+        $row['product_id'];
+        $row['quantity'];
+    }
+}
+
+function addOrderItems($conn, $checkoutID, $cartID) {
+    $items = findCartItems($conn, $cartID);
+    while
+    $sql = "SELECT * FROM cart_items I, cart C WHERE C.id = I.cart_id AND C.cart_id = " . $cartID . ";";
+    $rs_result = $conn->query($sql);
+    while($row = $rs_result->fetch_assoc()) {
+        $row['product_id'];
+        $row['quantity'];
+    }
 }
 
